@@ -2,6 +2,7 @@
 // Zero-latency in-memory state, KaTeX rendering, localStorage persistence
 
 const STATE = {
+  view: 'landing', // 'landing' | 'player'
   currentPaper: 'CUET_PG_MBA_2022.json',
   allQuestions: [],
   filteredQuestions: [],
@@ -16,16 +17,6 @@ const STATE = {
   timerInterval: null,
   examSubmitted: false
 };
-
-// Available papers
-const PAPERS = [
-  { id: 'CUET_PG_MBA_2022.json', name: 'CUET PG MBA 2022 (PGQP38 Slot 1)' },
-  { id: 'CUET_PG_MBA_2023.json', name: 'CUET PG MBA 2023' },
-  { id: 'CUET_PG_MBA_2024.json', name: 'CUET PG MBA 2024' },
-  { id: 'CUET_PG_MBA_2025.json', name: 'CUET PG MBA 2025' },
-  { id: 'CUET_PG_MBA_2026.json', name: 'CUET PG MBA 2026' },
-  { id: 'CUET_PG_MBA_All_PYQs.json', name: 'All PYQs Master Collection (425 Qs)' }
-];
 
 // Sound Synthesizer via Web Audio API
 const Sound = {
@@ -70,12 +61,63 @@ const Sound = {
   }
 };
 
+// Launch Test from Landing Page
+async function launchTest(filename, mode = 'practice') {
+  Sound.playClick();
+  STATE.currentPaper = filename;
+  STATE.mode = mode;
+  STATE.view = 'player';
+  
+  // Set paper selector value
+  const paperSelect = document.getElementById('paper-select');
+  if (paperSelect) paperSelect.value = filename;
+
+  // Switch UI view
+  document.getElementById('landing-view').style.display = 'none';
+  document.getElementById('test-player-view').style.display = 'flex';
+  document.getElementById('nav-to-home-btn').style.display = 'flex';
+  document.getElementById('paper-select').style.display = 'block';
+  document.getElementById('mode-toggle-group').style.display = 'flex';
+
+  // Apply Mode Styles
+  if (mode === 'practice') {
+    document.getElementById('practice-mode-btn').classList.add('active');
+    document.getElementById('exam-mode-btn').classList.remove('active');
+    document.getElementById('timer-box').style.display = 'none';
+    document.getElementById('submit-btn').style.display = 'none';
+    if (STATE.timerInterval) clearInterval(STATE.timerInterval);
+  } else {
+    document.getElementById('exam-mode-btn').classList.add('active');
+    document.getElementById('practice-mode-btn').classList.remove('active');
+    document.getElementById('timer-box').style.display = 'flex';
+    document.getElementById('submit-btn').style.display = 'flex';
+  }
+
+  await loadPaperData(filename);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Show Landing Screen
+function showLandingView() {
+  Sound.playClick();
+  STATE.view = 'landing';
+  if (STATE.timerInterval) clearInterval(STATE.timerInterval);
+
+  document.getElementById('landing-view').style.display = 'flex';
+  document.getElementById('test-player-view').style.display = 'none';
+  document.getElementById('nav-to-home-btn').style.display = 'none';
+  document.getElementById('paper-select').style.display = 'none';
+  document.getElementById('mode-toggle-group').style.display = 'none';
+  document.getElementById('timer-box').style.display = 'none';
+  document.getElementById('submit-btn').style.display = 'none';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
 // Initialize App
 async function initApp() {
   loadSavedState();
   setupEventListeners();
   setupKeyboardShortcuts();
-  await loadPaperData(STATE.currentPaper);
   lucide.createIcons();
 }
 
@@ -248,7 +290,6 @@ function handleOptionSelect(key) {
   } else {
     STATE.selectedOptions[qNum] = key;
     if (STATE.mode === 'practice') {
-      // In practice mode, optionally reveal upon selection if correct
       if (String(key) === String(q.correct_option)) {
         Sound.playSuccess();
       }
@@ -397,10 +438,10 @@ function submitExam() {
       unattempted++;
     } else if (String(userOpt).trim() === correctOpt) {
       correct++;
-      score += 4; // CUET PG Marking (+4 for correct)
+      score += 4;
     } else {
       incorrect++;
-      score -= 1; // CUET PG Marking (-1 for negative)
+      score -= 1;
     }
   });
 
@@ -424,7 +465,6 @@ function closeModal() {
 // KaTeX Formatting
 function formatLatex(text) {
   if (!text) return '';
-  // Convert standard markdown math $$...$$ and $...$ into KaTeX-compatible spans
   let formatted = text
     .replace(/\$\$(.+?)\$\$/g, '<span class="katex-block" data-expr="$1"></span>')
     .replace(/\$(.+?)\$/g, '<span class="katex-inline" data-expr="$1"></span>');
@@ -443,9 +483,10 @@ function renderKaTeXFormulas() {
   }
 }
 
-// Keyboard Shortcuts (1-4, Arrows, R for Reveal, M for Mark)
+// Keyboard Shortcuts
 function setupKeyboardShortcuts() {
   window.addEventListener('keydown', (e) => {
+    if (STATE.view !== 'player') return;
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT' || e.target.tagName === 'TEXTAREA') return;
 
     if (e.key === 'ArrowRight' || e.key === 'n' || e.key === 'N') {
@@ -472,6 +513,10 @@ function setupKeyboardShortcuts() {
 
 // Setup Event Listeners
 function setupEventListeners() {
+  // Brand / Home navigation
+  document.getElementById('brand-home-btn').addEventListener('click', showLandingView);
+  document.getElementById('nav-to-home-btn').addEventListener('click', showLandingView);
+
   // Paper change
   document.getElementById('paper-select').addEventListener('change', (e) => {
     STATE.currentPaper = e.target.value;
@@ -569,6 +614,11 @@ function loadSavedState() {
     }
   } catch(e) {}
 }
+
+// Expose launchTest globally for HTML onclick
+window.launchTest = launchTest;
+window.showLandingView = showLandingView;
+window.closeModal = closeModal;
 
 // Start app on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', initApp);
