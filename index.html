@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CUET PG MBA — Ultra-Fast Test & Practice Engine</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- KaTeX CSS & JS for Instant Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="app-header">
+    <div class="brand-section">
+      <div class="brand-badge">MBA</div>
+      <div>
+        <h1 class="brand-title">CUET PG Practice Portal</h1>
+        <p class="brand-subtitle">Master Testing & Instant Analysis System</p>
+      </div>
+    </div>
+
+    <div class="header-controls">
+      <!-- Paper Selector -->
+      <select id="paper-select" class="paper-select">
+        <option value="CUET_PG_MBA_2022.json" selected>CUET PG MBA 2022 (PGQP38 Slot 1)</option>
+        <option value="CUET_PG_MBA_2023.json">CUET PG MBA 2023</option>
+        <option value="CUET_PG_MBA_2024.json">CUET PG MBA 2024</option>
+        <option value="CUET_PG_MBA_2025.json">CUET PG MBA 2025</option>
+        <option value="CUET_PG_MBA_2026.json">CUET PG MBA 2026</option>
+        <option value="CUET_PG_MBA_All_PYQs.json">All PYQs Master (425 Qs)</option>
+      </select>
+
+      <!-- Practice vs Exam Mode Toggle -->
+      <div class="mode-toggle">
+        <button id="practice-mode-btn" class="mode-btn active">
+          <i data-lucide="book-open" style="width: 14px; height: 14px;"></i> Practice Mode
+        </button>
+        <button id="exam-mode-btn" class="mode-btn">
+          <i data-lucide="clock" style="width: 14px; height: 14px;"></i> Timed Exam
+        </button>
+      </div>
+
+      <!-- Timer (Visible in Exam Mode) -->
+      <div id="timer-box" class="timer-box" style="display: none;">
+        <i data-lucide="hourglass" style="width: 16px; height: 16px;"></i>
+        <span id="timer-val">120:00</span>
+      </div>
+
+      <!-- Submit Exam Button -->
+      <button id="submit-btn" class="btn-primary" style="display: none;">
+        <i data-lucide="check-circle" style="width: 16px; height: 16px;"></i> Finish Test
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="app-container">
+    
+    <!-- Central Content Area -->
+    <main class="main-content">
+      
+      <!-- Section Filters & Language View Options -->
+      <div class="filter-bar">
+        <div class="section-tabs">
+          <button class="section-tab active" data-section="ALL">All Sections</button>
+          <button class="section-tab" data-section="Language">Verbal & English</button>
+          <button class="section-tab" data-section="Quantitative">Quantitative Aptitude</button>
+          <button class="section-tab" data-section="Logical">Logical Reasoning</button>
+          <button class="section-tab" data-section="Data Interpretation">Data Interpretation</button>
+        </div>
+
+        <div class="view-options">
+          <span style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Lang:</span>
+          <button class="lang-btn active" data-lang="both">Bilingual</button>
+          <button class="lang-btn" data-lang="en">English</button>
+          <button class="lang-btn" data-lang="hi">Hindi</button>
+        </div>
+      </div>
+
+      <!-- Question Card -->
+      <section id="question-card" class="question-card">
+        
+        <div class="question-header">
+          <div class="q-meta">
+            <span id="q-number" class="q-number-badge">Question 1</span>
+            <span id="q-section" class="q-section-badge">Section</span>
+          </div>
+
+          <div class="q-actions">
+            <button id="flag-btn" class="action-btn-sm">
+              <i data-lucide="bookmark" style="width: 14px; height: 14px;"></i> Flag for Review
+            </button>
+          </div>
+        </div>
+
+        <!-- Question Text & High-Res DI Chart (if any) -->
+        <div id="question-body" class="question-body">
+          <!-- Populated dynamically via JS -->
+        </div>
+
+        <!-- Options List -->
+        <div id="options-list" class="options-list">
+          <!-- Populated dynamically via JS -->
+        </div>
+
+        <!-- Explanation Box (Revealed on demand or after submission) -->
+        <div id="explanation-box" class="explanation-box" style="display: none;">
+          <div class="explanation-title">
+            <i data-lucide="lightbulb" style="width: 18px; height: 18px; color: #16a34a;"></i>
+            <span>Step-by-Step Mathematical & Conceptual Explanation</span>
+          </div>
+          <div id="explanation-text" class="explanation-content">
+            <!-- Populated dynamically via JS -->
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Bottom Navigation Footer -->
+      <div class="nav-footer">
+        <button id="prev-btn" class="btn-secondary">
+          <i data-lucide="arrow-left" style="width: 16px; height: 16px;"></i> Previous
+        </button>
+
+        <button id="reveal-btn" class="btn-reveal">
+          <i data-lucide="eye" style="width: 16px; height: 16px;"></i> Reveal Answer & Explanation
+        </button>
+
+        <button id="next-btn" class="btn-primary">
+          Next <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+        </button>
+      </div>
+
+      <div class="shortcut-hint">
+        Keyboard Shortcuts: <kbd>1</kbd>–<kbd>4</kbd> or <kbd>A</kbd>–<kbd>D</kbd> Select Option | <kbd>R</kbd> Reveal Answer | <kbd>→</kbd> Next | <kbd>←</kbd> Prev | <kbd>M</kbd> Mark
+      </div>
+
+    </main>
+
+    <!-- Side Question Palette -->
+    <aside class="palette-sidebar">
+      <div class="palette-header">
+        <h2 class="palette-title">Question Palette</h2>
+        <div style="font-size: 0.8rem; font-weight: 700; color: var(--primary);">
+          <span id="answered-count">0</span> / <span id="total-count">100</span>
+        </div>
+      </div>
+
+      <!-- Legend -->
+      <div class="legend-grid">
+        <div class="legend-item">
+          <div class="legend-dot dot-current"></div>
+          <span>Current</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot dot-answered"></div>
+          <span>Answered</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot dot-flagged"></div>
+          <span>Flagged (<span id="flagged-count">0</span>)</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot dot-unanswered"></div>
+          <span>Unanswered</span>
+        </div>
+      </div>
+
+      <!-- Grid Matrix -->
+      <div id="palette-grid" class="palette-grid">
+        <!-- Populated dynamically via JS -->
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- Exam Score Analysis Modal -->
+  <div id="score-modal" class="modal-backdrop" style="display: none;">
+    <div class="modal-card">
+      <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border-light); padding-bottom: 1rem;">
+        <h2 style="font-size: 1.25rem; font-weight: 800; color: var(--text-primary); display: flex; align-items: center; gap: 0.5rem;">
+          <i data-lucide="award" style="color: #4f46e5;"></i> Test Performance Scorecard
+        </h2>
+        <button id="close-modal-btn" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--text-secondary);">✕</button>
+      </div>
+
+      <div class="score-stats">
+        <div class="stat-box">
+          <div id="modal-score" class="stat-val">0</div>
+          <div class="stat-label">Total Marks</div>
+        </div>
+        <div class="stat-box">
+          <div id="modal-accuracy" class="stat-val" style="color: #10b981;">0%</div>
+          <div class="stat-label">Accuracy</div>
+        </div>
+        <div class="stat-box">
+          <div id="modal-correct" class="stat-val" style="color: #10b981;">0</div>
+          <div class="stat-label">Correct (+4)</div>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 1rem; justify-content: space-around; background: #f8fafc; padding: 1rem; border-radius: var(--radius-lg); border: 1px solid var(--border-light);">
+        <div style="text-align: center;">
+          <div id="modal-incorrect" style="font-weight: 700; color: #ef4444; font-size: 1.1rem;">0</div>
+          <div style="font-size: 0.75rem; color: var(--text-secondary);">Incorrect (-1)</div>
+        </div>
+        <div style="text-align: center;">
+          <div id="modal-unattempted" style="font-weight: 700; color: #64748b; font-size: 1.1rem;">0</div>
+          <div style="font-size: 0.75rem; color: var(--text-secondary);">Unattempted (0)</div>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; gap: 0.75rem;">
+        <button onclick="closeModal()" class="btn-primary" style="width: 100%; justify-content: center; padding: 0.75rem;">
+          Review Answers & Solutions
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Custom App Script -->
+  <script src="app.js"></script>
+</body>
+</html>
