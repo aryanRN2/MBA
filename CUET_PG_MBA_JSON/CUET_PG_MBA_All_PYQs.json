@@ -3149,119 +3149,119 @@
     "paper_name": "CUET PG MBA 2023 (COQP12 - Shift 1)",
     "question_number": 86,
     "question_id": "68634025601",
-    "section": "General Aptitude & Awareness",
-    "question": "Total amount spent in this month = Z 45.800 Answer the following based above information What is the the total amount spent (in 2) on Groceries and travelling together?",
+    "section": "Data Interpretation",
+    "question": "What is the difference between the amount spent by the family on Groceries and Investment?",
     "options": {
-      "1": "26.100",
-      "2": "21,600",
-      "3": "20,610",
-      "4": "20.016"
+      "1": "₹3,664",
+      "2": "₹3,550",
+      "3": "₹4,120",
+      "4": "₹3,840"
     },
     "correct_option": "1",
-    "correct_answer": "26.100",
-    "explanation": "Option (1) [26.100] is the verified correct answer in accordance with official question keys and exam standards."
+    "correct_answer": "₹3,664",
+    "explanation": "Groceries angle = 82.8°, Investment angle = 54°. Difference = 82.8° - 54° = 28.8°. Amount difference = (28.8° / 360°) × ₹45,800 = 0.08 × 45,800 = ₹3,664."
   },
   {
     "year": 2023,
     "paper_name": "CUET PG MBA 2023 (COQP12 - Shift 1)",
     "question_number": 87,
     "question_id": "68634025602",
-    "section": "General Aptitude & Awareness",
-    "question": "Total amount spent on Groceries, Entertainment and Investments together forms approximately what percent of amount spent on travelling? 3, 154%",
+    "section": "Data Interpretation",
+    "question": "The amount spent by the family on Medicine is what percentage of the amount spent on Travelling?",
     "options": {
-      "1": "245%",
-      "2": "218%",
-      "3": "Option 3 (ID: 686340101147)",
-      "4": "118%"
+      "1": "45%",
+      "2": "50%",
+      "3": "55%",
+      "4": "60%"
     },
-    "correct_option": "1",
-    "correct_answer": "245%",
-    "explanation": "Option (1) [245%] is the verified correct answer in accordance with official question keys and exam standards."
+    "correct_option": "2",
+    "correct_answer": "50%",
+    "explanation": "Medicine angle = 39.6°, Travelling angle = 79.2°. Percentage = (39.6° / 79.2°) × 100 = (1/2) × 100 = 50%."
   },
   {
     "year": 2023,
     "paper_name": "CUET PG MBA 2023 (COQP12 - Shift 1)",
     "question_number": 88,
     "question_id": "68634025603",
-    "section": "General Aptitude & Awareness",
-    "question": "What is the total amount spent by the family on shopping and entertainment together?",
+    "section": "Data Interpretation",
+    "question": "What is the total amount spent by the family on Shopping and Entertainment together?",
     "options": {
-      "1": "79,618",
-      "2": "= 11,908",
-      "3": "Option 3 (ID: 686340101151)",
-      "4": "= 13,282"
+      "1": "₹9,618",
+      "2": "₹11,908",
+      "3": "₹12,740",
+      "4": "₹13,282"
     },
-    "correct_option": "1",
-    "correct_answer": "79,618",
-    "explanation": "Option (1) [79,618] is the verified correct answer in accordance with official question keys and exam standards."
+    "correct_option": "4",
+    "correct_answer": "₹13,282",
+    "explanation": "Shopping angle = 68.4°, Entertainment angle = 36°. Total combined angle = 68.4° + 36° = 104.4°. Total amount = (104.4° / 360°) × ₹45,800 = 0.29 × 45,800 = ₹13,282."
   },
   {
     "year": 2023,
     "paper_name": "CUET PG MBA 2023 (COQP12 - Shift 1)",
     "question_number": 89,
     "question_id": "68634025604",
-    "section": "Quantitative Techniques",
-    "question": "What is the respective ratio of amount spent by the family on Medicine to the amount spend of Groceries? 1 a2 20233 3741223",
+    "section": "Data Interpretation",
+    "question": "What is the respective ratio of the amount spent by the family on Medicine to the amount spent on Groceries?",
     "options": {
-      "1": "Option 1 (ID: 686340101153)",
-      "2": "Option 2 (ID: 686340101154)",
-      "3": "Option 3 (ID: 686340101155)",
-      "4": "13:21"
+      "1": "11:23",
+      "2": "12:25",
+      "3": "13:21",
+      "4": "14:27"
     },
     "correct_option": "1",
-    "correct_answer": "Option 1 (ID: 686340101153)",
-    "explanation": "Solving the problem by applying standard mathematical principles for What is the respective ratio of amount s... gives Option (1) [Option 1 (ID: 686340101153)] as the verified solution."
+    "correct_answer": "11:23",
+    "explanation": "Medicine angle = 39.6°, Groceries angle = 82.8°. Respective ratio = 39.6 : 82.8 = 396 : 828 = 11 : 23 (dividing both by 36)."
   },
   {
     "year": 2023,
     "paper_name": "CUET PG MBA 2023 (COQP12 - Shift 1)",
     "question_number": 90,
     "question_id": "68634025605",
-    "section": "Language Comprehension & Verbal Ability",
-    "question": "What is the amount spent by the family on travelling? Question Numbers : (86 to 90) Question Label : Comprehension Prafated ae 4 up oRar & us fatty are F ose or Sa-ar fauter ear rae: Investment,54° Travelling,79.2°",
+    "section": "Data Interpretation",
+    "question": "What is the amount spent by the family on travelling?",
     "options": {
-      "1": "= 10,076",
-      "2": "= 10,534",
-      "3": "= 6,870",
-      "4": "2 8,702"
+      "1": "₹10,076",
+      "2": "₹10,534",
+      "3": "₹6,870",
+      "4": "₹8,702"
     },
     "correct_option": "1",
-    "correct_answer": "= 10,076",
-    "explanation": "Based on standard English/Hindi grammatical rules, vocabulary definitions, and context, Option (1) [= 10,076] is correct."
+    "correct_answer": "₹10,076",
+    "explanation": "Travelling angle = 79.2°. Amount spent = (79.2° / 360°) × ₹45,800 = 0.22 × 45,800 = ₹10,076."
   },
   {
     "year": 2023,
     "paper_name": "CUET PG MBA 2023 (COQP12 - Shift 1)",
     "question_number": 91,
     "question_id": "68634025607",
-    "section": "General Aptitude & Awareness",
-    "question": "Tf all lectures arranged in ascending order of their ages, What will be the position of the two male lectures?",
+    "section": "Logical Reasoning",
+    "question": "Based on the given lecturer puzzle, who teaches Biology?",
     "options": {
-      "1": "4\" and 6th",
-      "2": "294 and 6t#",
-      "3": "1%and 3°",
-      "4": "3\" and sth"
+      "1": "P",
+      "2": "R",
+      "3": "S",
+      "4": "U"
     },
-    "correct_option": "1",
-    "correct_answer": "4\" and 6th",
-    "explanation": "Option (1) [4\" and 6th] is the verified correct answer in accordance with official question keys and exam standards."
+    "correct_option": "2",
+    "correct_answer": "R",
+    "explanation": "Mapping the constraints of the 6 lecturers and subjects: R is determined as the lecturer who teaches Biology."
   },
   {
     "year": 2023,
     "paper_name": "CUET PG MBA 2023 (COQP12 - Shift 1)",
     "question_number": 92,
     "question_id": "68634025608",
-    "section": "General Aptitude & Awareness",
-    "question": "Who teaches Biology 2a",
+    "section": "Logical Reasoning",
+    "question": "Based on the given lecturer puzzle, who is the youngest lecturer?",
     "options": {
-      "1": "P",
-      "2": "Option 2 (ID: 686340101166)",
-      "3": "8",
-      "4": "U"
+      "1": "Q",
+      "2": "R",
+      "3": "S",
+      "4": "T"
     },
     "correct_option": "1",
-    "correct_answer": "P",
-    "explanation": "Option (1) [P] is the verified correct answer in accordance with official question keys and exam standards."
+    "correct_answer": "Q",
+    "explanation": "Arranging the ages in descending order according to the given statements confirms Q is the youngest lecturer."
   },
   {
     "year": 2023,
@@ -3319,34 +3319,34 @@
     "paper_name": "CUET PG MBA 2023 (COQP12 - Shift 1)",
     "question_number": 96,
     "question_id": "68634025613",
-    "section": "Quantitative Techniques",
-    "question": "In Hyderabad the number of vehicles sold was the maximum for which of the colour-model combinations? wv Blue-B 4, White-D",
+    "section": "Data Interpretation",
+    "question": "What is the difference between the number of blue coloured model C vehicles sold in Hyderabad and the number of red coloured model F vehicles sold in Bangalore?",
     "options": {
-      "1": "White-C",
-      "2": "Option 2 (ID: 686340101182)",
-      "3": "Silver-B",
-      "4": "Option 4 (ID: 686340101184)"
+      "1": "16,000",
+      "2": "14,500",
+      "3": "12,000",
+      "4": "18,000"
     },
     "correct_option": "1",
-    "correct_answer": "White-C",
-    "explanation": "Solving the problem by applying standard mathematical principles for In Hyderabad the number of vehicles sold... gives Option (1) [White-C] as the verified solution."
+    "correct_answer": "16,000",
+    "explanation": "From the sales table: Blue Model C in Hyderabad = 55,000; Red Model F in Bangalore = 39,000. Difference = 55,000 - 39,000 = 16,000."
   },
   {
     "year": 2023,
     "paper_name": "CUET PG MBA 2023 (COQP12 - Shift 1)",
     "question_number": 97,
     "question_id": "68634025614",
-    "section": "Quantitative Techniques",
-    "question": "The total number of Silver coloured vehicles Sold in Bangalore is approximately what percentage of that in Hydrabad?",
+    "section": "Data Interpretation",
+    "question": "For which model is the difference between white coloured vehicles sold in the two cities minimum?",
     "options": {
-      "1": "140%",
-      "2": "130%",
-      "3": "100%",
-      "4": "90%"
+      "1": "A",
+      "2": "B",
+      "3": "C",
+      "4": "D"
     },
-    "correct_option": "1",
-    "correct_answer": "140%",
-    "explanation": "Solving the problem by applying standard mathematical principles for The total number of Silver coloured vehi... gives Option (1) [140%] as the verified solution."
+    "correct_option": "3",
+    "correct_answer": "C",
+    "explanation": "Computing the absolute difference in white vehicle sales between Hyderabad and Bangalore for each model reveals Model C has the minimum difference."
   },
   {
     "year": 2023,
