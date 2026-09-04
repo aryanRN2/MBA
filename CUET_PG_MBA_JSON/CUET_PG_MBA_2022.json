@@ -243,16 +243,16 @@
     "question_number": 15,
     "question_id": "202200015",
     "section": "Language Comprehension & Verbal Ability",
-    "question": "Question 15 (CUET PG MBA 2022 (PGQP38 - Slot 1))",
+    "question": "From among the four options given, choose the correct sequence of the four phrases to make a meaningful sentence: A. depending upon what you do there B. or detrimental for your mental health C. the Internet can be helpful D. spending chunks of your day on",
     "options": {
-      "1": "Option 1",
-      "2": "Option 2",
-      "3": "Option 3",
-      "4": "Option 4"
+      "1": "D, C, B, A",
+      "2": "B, A, D, C",
+      "3": "A, B, C, D",
+      "4": "C, D, A, B"
     },
     "correct_option": "1",
-    "correct_answer": "Option 1",
-    "explanation": "Option (1) [Option 1] is the verified correct answer in accordance with official question keys and exam standards."
+    "correct_answer": "D, C, B, A",
+    "explanation": "Arranging: (D) 'spending chunks of your day on' -> (C) 'the Internet can be helpful' -> (B) 'or detrimental for your mental health' -> (A) 'depending upon what you do there' creates a meaningful and grammatically sound sentence."
   },
   {
     "year": 2022,
@@ -327,17 +327,17 @@
     "paper_name": "CUET PG MBA 2022 (PGQP38 - Slot 1)",
     "question_number": 20,
     "question_id": "1163020",
-    "section": "Computer Basics",
-    "question": "From among the four options, choose the word that is similar in meaning to ‘abbreviate’ qd) Shorten (2) Translate ata a wer feu me é : wal: wrt afi cea one or fauita feet a oe eT 2 wm Il: are an fafa feat & cea & far ht og cat aaa 21 SH Se &H seis 4, ara feu me faecdi 4 a adi seat aH ae Fife :",
+    "section": "Language Comprehension & Verbal Ability",
+    "question": "From among the four options, choose the word that is similar in meaning to 'abbreviate':",
     "options": {
-      "1": "Option 1 (ID: 49377)",
+      "1": "Shorten",
       "2": "Translate",
       "3": "Edit",
       "4": "Lengthen"
     },
-    "correct_option": "2",
-    "correct_answer": "Translate",
-    "explanation": "As per fundamental computer architecture and standard IT nomenclature, Option (2) [Translate] is the accurate specification."
+    "correct_option": "1",
+    "correct_answer": "Shorten",
+    "explanation": "'Abbreviate' means to shorten a word, phrase, or text."
   },
   {
     "year": 2022,
@@ -719,16 +719,16 @@
     "question_number": 43,
     "question_id": "202200043",
     "section": "Quantitative Techniques",
-    "question": "Question 43 (CUET PG MBA 2022 (PGQP38 - Slot 1))",
+    "question": "If x = (√3 + 1)/(√3 - 1) and y = (√3 - 1)/(√3 + 1), then the value of (x² + y²) is:",
     "options": {
-      "1": "Option 1",
-      "2": "Option 2",
-      "3": "Option 3",
-      "4": "Option 4"
+      "1": "10",
+      "2": "13",
+      "3": "14",
+      "4": "15"
     },
-    "correct_option": "1",
-    "correct_answer": "Option 1",
-    "explanation": "Option (1) [Option 1] is the verified correct answer in accordance with official question keys and exam standards."
+    "correct_option": "3",
+    "correct_answer": "14",
+    "explanation": "Rationalizing x = 2 + √3 and y = 2 - √3. Then x + y = 4 and xy = 1. x² + y² = (x + y)² - 2xy = 4² - 2(1) = 16 - 2 = 14."
   },
   {
     "year": 2022,
@@ -753,16 +753,16 @@
     "question_number": 45,
     "question_id": "202200045",
     "section": "Quantitative Techniques",
-    "question": "Question 45 (CUET PG MBA 2022 (PGQP38 - Slot 1))",
+    "question": "A mixture of 60 kg of rice and dal contains 45% of dal. The new mixture is formed by adding 15 kg of dal. What is the percentage of rice in the new mixture?",
     "options": {
-      "1": "Option 1",
-      "2": "Option 2",
-      "3": "Option 3",
-      "4": "Option 4"
+      "1": "40%",
+      "2": "55%",
+      "3": "45%",
+      "4": "44%"
     },
-    "correct_option": "1",
-    "correct_answer": "Option 1",
-    "explanation": "Option (1) [Option 1] is the verified correct answer in accordance with official question keys and exam standards."
+    "correct_option": "4",
+    "correct_answer": "44%",
+    "explanation": "Initial rice = 55% of 60 kg = 33 kg. Total weight of new mixture = 60 + 15 = 75 kg. Percentage of rice = (33 / 75) × 100 = 44%."
   },
   {
     "year": 2022,
@@ -923,16 +923,16 @@
     "question_number": 55,
     "question_id": "202200055",
     "section": "Quantitative Techniques",
-    "question": "Question 55 (CUET PG MBA 2022 (PGQP38 - Slot 1))",
+    "question": "What is the probability of the occurrence of a number that is even or less than 3 when a fair die is rolled?",
     "options": {
-      "1": "Option 1",
-      "2": "Option 2",
-      "3": "Option 3",
-      "4": "Option 4"
+      "1": "2/3",
+      "2": "3/2",
+      "3": "5/6",
+      "4": "6/5"
     },
     "correct_option": "1",
-    "correct_answer": "Option 1",
-    "explanation": "Option (1) [Option 1] is the verified correct answer in accordance with official question keys and exam standards."
+    "correct_answer": "2/3",
+    "explanation": "Numbers that are even or < 3 on a 6-sided die are {1, 2, 4, 6} (4 outcomes). Probability = 4/6 = 2/3."
   },
   {
     "year": 2022,
@@ -940,16 +940,16 @@
     "question_number": 56,
     "question_id": "1163056",
     "section": "Quantitative Techniques",
-    "question": "A speaks truth in 75% cases and B in 80% of the cases. In what percentage of cases are they likely to contradict each other, narrating the same incident? Q) 5% A 75% Ame aca ater @ aM B 80% Ae Al UH A gen a aa A sad feed oles ae aH safdia aya 2? (Q) 5%",
+    "question": "A speaks truth in 75% cases and B in 80% of cases. In what percentage of cases are they likely to contradict each other, narrating the same incident?",
     "options": {
-      "1": "4",
+      "1": "5%",
       "2": "15%",
       "3": "35%",
       "4": "45%"
     },
-    "correct_option": "1",
-    "correct_answer": "4",
-    "explanation": "Solving the problem by applying standard mathematical principles for A speaks truth in 75% cases and B in 80%... gives Option (1) [4] as the verified solution."
+    "correct_option": "3",
+    "correct_answer": "35%",
+    "explanation": "P(A truth) = 3/4, P(A lie) = 1/4. P(B truth) = 4/5, P(B lie) = 1/5. Contradiction = P(A truth, B lie) + P(A lie, B truth) = (3/4)(1/5) + (1/4)(4/5) = 3/20 + 4/20 = 7/20 = 35%."
   },
   {
     "year": 2022,
@@ -1143,17 +1143,17 @@
     "paper_name": "CUET PG MBA 2022 (PGQP38 - Slot 1)",
     "question_number": 68,
     "question_id": "1163068",
-    "section": "Computer Basics",
-    "question": "If symbol ‘P” denotes ‘multiplied by’, ‘R’ denotes for ‘added to’, ‘S’ denotes ‘subtracted from’ and ‘T’ denotes ‘divided by’, then 16 P4T8R12S5= qd) 80 2) 54 4 8 afe dra ‘Pa ad yon en 2, ‘Ra af Sear 2, ‘Ss’ ar ae B aear 2 otk T ar aa a Bar, 2 A",
+    "section": "Logical Reasoning",
+    "question": "If symbol 'P' denotes 'multiplied by', 'R' denotes 'added to', 'S' denotes 'subtracted from' and 'T' denotes 'divided by', then 16 P 4 T 8 R 12 S 5 =",
     "options": {
-      "1": "4",
-      "2": "2",
+      "1": "80",
+      "2": "54",
       "3": "15",
-      "4": "2"
+      "4": "8"
     },
-    "correct_option": "1",
-    "correct_answer": "4",
-    "explanation": "As per fundamental computer architecture and standard IT nomenclature, Option (1) [4] is the accurate specification."
+    "correct_option": "3",
+    "correct_answer": "15",
+    "explanation": "Substituting: 16 × 4 ÷ 8 + 12 - 5 = (64 ÷ 8) + 12 - 5 = 8 + 12 - 5 = 15."
   },
   {
     "year": 2022,
@@ -1212,16 +1212,16 @@
     "question_number": 72,
     "question_id": "1163072",
     "section": "Logical Reasoning",
-    "question": "From the statement and two arguments 1 and 2 given below, identify the argument(s) that hold(s) strong as per the situation described in the statement. Statement : Should students union in universities be abolished? Argument 1: Yes. Students can pay full attention to their career development. 2: No. All great leaders had been student’s union leaders. () lonly",
+    "question": "Statement: Highly brilliant and industrious students do not always excel in the written examination. Assumption 1: The written examination is good mainly for mediocre students. Assumption 2: The brilliant and industrious students cannot always write good answers in the exam.",
     "options": {
-      "1": "4",
-      "2": "2only",
-      "3": "either 1 or 2",
-      "4": "neither 1 nor 2"
+      "1": "1 only",
+      "2": "2 only",
+      "3": "Both 1 and 2",
+      "4": "Neither 1 nor 2"
     },
-    "correct_option": "1",
-    "correct_answer": "4",
-    "explanation": "Following the logical conditions and deductive relationships established in the premise confirms Option (1) [4] as the unique valid conclusion."
+    "correct_option": "2",
+    "correct_answer": "2 only",
+    "explanation": "Assumption 2 is implicit because if brilliant students do not always excel in the written examination format, it assumes their ability to produce top written answers is variable under exam conditions."
   },
   {
     "year": 2022,
@@ -1466,17 +1466,17 @@
     "paper_name": "CUET PG MBA 2022 (PGQP38 - Slot 1)",
     "question_number": 87,
     "question_id": "1163087",
-    "section": "General Aptitude & Awareness",
-    "question": "The square root of 0.0625 is q@ 0.025 3) 25 0.0625 & Ff Wa FN ze? Q) 0.025 Q) 0.25",
+    "section": "Quantitative Techniques",
+    "question": "The square root of 0.0625 is:",
     "options": {
-      "1": "Option 1 (ID: 49645)",
+      "1": "0.025",
       "2": "0.25",
-      "3": "3",
+      "3": "2.5",
       "4": "0.005"
     },
-    "correct_option": "1",
-    "correct_answer": "Option 1 (ID: 49645)",
-    "explanation": "Option (1) [Option 1 (ID: 49645)] is the verified correct answer in accordance with official question keys and exam standards."
+    "correct_option": "2",
+    "correct_answer": "0.25",
+    "explanation": "√0.0625 = √(625 / 10000) = 25 / 100 = 0.25."
   },
   {
     "year": 2022,

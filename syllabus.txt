@@ -1,0 +1,93 @@
+CUET PG MBA (PAPER CODE: COQP12) - DETAILED SYLLABUS
+
+==================================================
+EXAM PATTERN OVERVIEW
+==================================================
+* Total Questions: 75 MCQs (All compulsory)
+* Total Marks: 300 Marks (+4 for correct, -1 for incorrect)
+* Duration: 90 Minutes
+* Test Structure: 4 Sections
+* Language Choice: Candidates must attempt Language Comprehension in 
+  either English OR Hindi. Quant, Reasoning, and DI are bilingual.
+
+==================================================
+SECTION 1: LANGUAGE COMPREHENSION
+(Choose either English OR Hindi)
+==================================================
+
+[OPTION A: ENGLISH COMPREHENSION]
+* English Grammar
+* Sentence Correction
+* Sentence Improvement
+* English Usage Errors
+* Reading Comprehension
+* Paragraph Completion
+* Jumbled Paragraphs / Para Jumbles
+* One-Word Substitution
+* Synonyms and Antonyms
+* Idioms and Phrases
+
+[OPTION B: HINDI COMPREHENSION (हिन्दी पाठ बोधन)]
+* हिन्दी व्याकरण (Hindi Grammar)
+* पाठ बोधन (Reading Comprehension)
+* वाक्य शुद्धि (Sentence Correction)
+* वाक्य परिष्कार (Sentence Improvement)
+* अशुद्ध प्रयोग (Usage Errors)
+* वाक्य की पूर्णता (Paragraph/Sentence Completion)
+* परिच्छेद का उचित क्रम (Jumbled Paragraphs)
+* अनेक शब्दों के लिए एक शब्द (One-Word Substitution)
+* समानार्थी एवं विलोम शब्द (Synonyms & Antonyms)
+* मुहावरे एवं कहावतें (Idioms & Proverbs)
+
+==================================================
+SECTION 2: MATHEMATICAL / QUANTITATIVE ABILITY
+==================================================
+* Percentages
+* Profit & Loss
+* Simple Interest & Compound Interest
+* Partnership
+* Time and Work
+* Work and Wages
+* Pipes and Cisterns
+* Time-Speed-Distance
+* Problems on Trains
+* Boats & Streams
+* Ratio & Proportion
+* Averages & Mixture-Alligation
+* Number Systems & Elementary Algebra
+* Mensuration (2D & 3D Geometry)
+* Permutations & Combinations (Basics)
+* Probability (Basics)
+
+==================================================
+SECTION 3: LOGICAL REASONING
+==================================================
+* Linear Arrangements
+* Circular & Matrix Arrangements
+* Sequencing & Ordering
+* Ranking Tests
+* Direction and Distance Test
+* Blood Relationship Tests
+* Coding and Decoding
+* Number Series & Letter Series
+* Analogy Tests
+* Symbol-Based Problems
+* Statements and Assumptions
+* Statements and Arguments
+* Statements and Conclusions
+* Cause and Effects
+* Inferences
+* Non-Verbal Reasoning
+* Venn Diagrams, Cubes & Dice
+
+==================================================
+SECTION 4: DATA INTERPRETATION
+==================================================
+* Pie Charts
+* Line Charts & Line Graphs
+* Bar Graphs & Column Charts
+* Tabular Charts / Tabulation
+* Mixed Graphs
+* Graph Number Systems
+* Sets and Venn Diagrams
+* Data Sufficiency
