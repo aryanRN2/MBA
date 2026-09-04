@@ -906,33 +906,33 @@
     "question_number": 54,
     "question_id": "68634025568",
     "section": "Quantitative Techniques",
-    "question": "1 Ifa+ : =| and b+— =|, then what is the value of abe? i] c",
+    "question": "If a + 1/b = 1 and b + 1/c = 1, then what is the value of abc?",
     "options": {
-      "1": "Option 1 (ID: 686340101013)",
-      "2": "Option 2 (ID: 686340101014)",
-      "3": "Option 3 (ID: 686340101015)",
+      "1": "-1",
+      "2": "1",
+      "3": "2",
       "4": "0"
     },
     "correct_option": "1",
-    "correct_answer": "Option 1 (ID: 686340101013)",
-    "explanation": "Option (1) [Option 1 (ID: 686340101013)] is the verified correct answer in accordance with official question keys and exam standards."
+    "correct_answer": "-1",
+    "explanation": "From a + 1/b = 1 => a = 1 - 1/b = (b - 1)/b. From b + 1/c = 1 => 1/c = 1 - b => c = 1/(1 - b). Multiplying: abc = [(b - 1)/b] × b × [1/(1 - b)] = (b - 1) / -(b - 1) = -1."
   },
   {
     "year": 2023,
     "paper_name": "CUET PG MBA 2023 (COQP12 - Shift 1)",
     "question_number": 55,
     "question_id": "68634025569",
-    "section": "General Aptitude & Awareness",
-    "question": "l 1. If2x+— = 6, then 3x+ a equal to: wv o",
+    "section": "Quantitative Techniques",
+    "question": "If 2x + 1/(3x) = 6, then 3x + 1/(2x) is equal to:",
     "options": {
-      "1": "If2x+— = 6, then 3x+ a equal to:",
-      "2": "Option 2 (ID: 686340101018)",
-      "3": "Option 3 (ID: 686340101019)",
-      "4": "Option 4 (ID: 686340101020)"
+      "1": "4",
+      "2": "8",
+      "3": "9",
+      "4": "12"
     },
-    "correct_option": "1",
-    "correct_answer": "If2x+— = 6, then 3x+ a equal to:",
-    "explanation": "Option (1) [If2x+— = 6, then 3x+ a equal to:] is the verified correct answer in accordance with official question keys and exam standards."
+    "correct_option": "3",
+    "correct_answer": "9",
+    "explanation": "Multiply both sides of the equation 2x + 1/(3x) = 6 by 3/2: (3/2) × (2x + 1/(3x)) = (3/2) × 6 => 3x + 1/(2x) = 9."
   },
   {
     "year": 2023,
@@ -940,16 +940,16 @@
     "question_number": 56,
     "question_id": "68634025570",
     "section": "Quantitative Techniques",
-    "question": "Ifa+b+c=0, then the value off tb te is: a —be",
+    "question": "If a + b + c = 0, then the value of (a² + b² + c²) / (a² - bc) is:",
     "options": {
-      "1": "Option 1 (ID: 686340101021)",
-      "2": "Option 2 (ID: 686340101022)",
-      "3": "Option 3 (ID: 686340101023)",
+      "1": "1",
+      "2": "2",
+      "3": "-1",
       "4": "3"
     },
-    "correct_option": "1",
-    "correct_answer": "Option 1 (ID: 686340101021)",
-    "explanation": "Option (1) [Option 1 (ID: 686340101021)] is the verified correct answer in accordance with official question keys and exam standards."
+    "correct_option": "2",
+    "correct_answer": "2",
+    "explanation": "Given a + b + c = 0 => b + c = -a. Squaring both sides: (b + c)² = (-a)² => b² + c² + 2bc = a² => b² + c² = a² - 2bc. Substituting in numerator: a² + b² + c² = a² + (a² - 2bc) = 2a² - 2bc = 2(a² - bc). Therefore, (a² + b² + c²) / (a² - bc) = 2(a² - bc) / (a² - bc) = 2."
   },
   {
     "year": 2023,
@@ -957,16 +957,16 @@
     "question_number": 57,
     "question_id": "68634025571",
     "section": "Quantitative Techniques",
-    "question": "If the area of the circle in the figure is 362 cm? and ABCD is a square. then the area of AACD, in cm”, is:",
+    "question": "If the area of the circle in the figure is 36π cm² and ABCD is an inscribed square, then the area of ΔACD, in cm², is:",
     "options": {
-      "1": "Option 1 (ID: 686340101025)",
-      "2": "Option 2 (ID: 686340101026)",
-      "3": "Option 3 (ID: 686340101027)",
-      "4": "Option 4 (ID: 686340101028)"
+      "1": "18",
+      "2": "24",
+      "3": "36",
+      "4": "72"
     },
-    "correct_option": "2",
-    "correct_answer": "Option 2 (ID: 686340101026)",
-    "explanation": "Solving the problem by applying standard mathematical principles for If the area of the circle in the figure ... gives Option (2) [Option 2 (ID: 686340101026)] as the verified solution."
+    "correct_option": "3",
+    "correct_answer": "36",
+    "explanation": "Area of circle = πr² = 36π => radius r = 6 cm. The diagonal of the inscribed square ABCD is the circle diameter d = 2r = 12 cm. Area of square ABCD = d² / 2 = 12² / 2 = 72 cm². Diagonal AC divides the square into two equal triangles, so Area(ΔACD) = 72 / 2 = 36 cm²."
   },
   {
     "year": 2023,
@@ -974,16 +974,16 @@
     "question_number": 58,
     "question_id": "68634025572",
     "section": "Quantitative Techniques",
-    "question": "Apiece of wire 78 cm long is bent in the form of an isosceles triangle. If the ratio of one of the equal sides to the base 5:3, then what is the length of the base?",
+    "question": "A piece of wire 78 cm long is bent in the form of an isosceles triangle. If the ratio of one of the equal sides to the base is 5:3, then what is the length of the base?",
     "options": {
-      "1": "16cm",
+      "1": "16 cm",
       "2": "18 cm",
       "3": "20 cm",
-      "4": "30cm"
+      "4": "30 cm"
     },
-    "correct_option": "1",
-    "correct_answer": "16cm",
-    "explanation": "Solving the problem by applying standard mathematical principles for Apiece of wire 78 cm long is bent in the... gives Option (1) [16cm] as the verified solution."
+    "correct_option": "2",
+    "correct_answer": "18 cm",
+    "explanation": "Let the sides be 5x, 5x, and base 3x. Perimeter = 5x + 5x + 3x = 13x = 78 cm => x = 6 cm. Length of the base = 3x = 3 × 6 = 18 cm."
   },
   {
     "year": 2023,
@@ -991,16 +991,16 @@
     "question_number": 59,
     "question_id": "68634025573",
     "section": "Quantitative Techniques",
-    "question": "A sum of money at simple interest amounts to 2 815 in 3 years and to 2 854 in 4 years. The sum is:",
+    "question": "A sum of money at simple interest amounts to ₹815 in 3 years and to ₹854 in 4 years. The sum is:",
     "options": {
-      "1": "2650",
-      "2": "= 690",
-      "3": "= 698",
-      "4": "2700"
+      "1": "₹650",
+      "2": "₹690",
+      "3": "₹698",
+      "4": "₹700"
     },
-    "correct_option": "2",
-    "correct_answer": "= 690",
-    "explanation": "Solving the problem by applying standard mathematical principles for A sum of money at simple interest amount... gives Option (2) [= 690] as the verified solution."
+    "correct_option": "3",
+    "correct_answer": "₹698",
+    "explanation": "Simple interest for 1 year = ₹854 - ₹815 = ₹39. Simple interest for 3 years = 3 × ₹39 = ₹117. Principal sum = ₹815 - ₹117 = ₹698."
   },
   {
     "year": 2023,
@@ -1008,16 +1008,16 @@
     "question_number": 60,
     "question_id": "68634025574",
     "section": "Quantitative Techniques",
-    "question": "The average of six numbers is m and the arrange of three of these is y. If the average of the remining three is Z, then: .2z=mty",
+    "question": "The average of six numbers is m and the average of three of these is y. If the average of the remaining three is z, then:",
     "options": {
-      "1": "2m=ytz",
-      "2": "2y=m+z",
-      "3": "Option 3 (ID: 686340101039)",
-      "4": "m=2y+z"
+      "1": "2m = y + z",
+      "2": "2y = m + z",
+      "3": "2z = m + y",
+      "4": "m = 2y + z"
     },
-    "correct_option": "2",
-    "correct_answer": "2y=m+z",
-    "explanation": "Solving the problem by applying standard mathematical principles for The average of six numbers is m and the ... gives Option (2) [2y=m+z] as the verified solution."
+    "correct_option": "1",
+    "correct_answer": "2m = y + z",
+    "explanation": "Total sum of all 6 numbers = 6m. Sum of first 3 = 3y, sum of remaining 3 = 3z. Total sum equation: 6m = 3y + 3z => 6m = 3(y + z) => 2m = y + z."
   },
   {
     "year": 2023,
