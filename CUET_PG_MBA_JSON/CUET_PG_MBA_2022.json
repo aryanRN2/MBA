@@ -143,99 +143,99 @@
     "section": "Language Comprehension & Verbal Ability",
     "question": "Match List I with List II : List I List II (Foreign Phrases in English) (Meaning) (A) Status quo (Way of doing things (B) Corpus delieti (1) Current state of affairs (C) Modus operandi (II) What will be, will be",
     "options": {
-      "1": "Current state of affairs",
-      "2": "2",
-      "3": "3",
-      "4": "14"
+      "1": "A-II, B-III, C-I, D-IV",
+      "2": "A-II, B-I, C-IV, D-III",
+      "3": "A-I, B-II, C-III, D-IV",
+      "4": "A-III, B-IV, C-I, D-II"
     },
-    "correct_option": "2",
-    "correct_answer": "2",
-    "explanation": "Based on standard English/Hindi grammatical rules, vocabulary definitions, and context, Option (2) [2] is correct."
+    "correct_option": "1",
+    "correct_answer": "A-II, B-III, C-I, D-IV",
+    "explanation": "'Status quo' means the current state of affairs (A-II), 'Modus operandi' means a particular way of doing things/operating (C-I), and 'Corpus delicti' means the principle that a crime must be proved to have occurred before a person can be convicted (B-III)."
   },
   {
     "year": 2022,
     "paper_name": "CUET PG MBA 2022 (PGQP38 - Slot 1)",
     "question_number": 10,
     "question_id": "1163010",
-    "section": "Computer Basics",
+    "section": "Language Comprehension & Verbal Ability",
     "question": "From among the four options given, choose the correct sequence of the four phrases given below, to make a meaningful sentence: A. February 21, 2022 B. the world witnessed €. a rare and somewhat DB. unexpected sight on",
     "options": {
-      "1": "1",
-      "2": "B,C,D,A",
-      "3": "C,D,A,B",
-      "4": "A,B,C,D"
+      "1": "A, B, C, D",
+      "2": "B, C, D, A",
+      "3": "C, D, A, B",
+      "4": "D, A, B, C"
     },
     "correct_option": "2",
-    "correct_answer": "B,C,D,A",
-    "explanation": "As per fundamental computer architecture and standard IT nomenclature, Option (2) [B,C,D,A] is the accurate specification."
+    "correct_answer": "B, C, D, A",
+    "explanation": "Arranging the segments in sequence: (B) 'the world witnessed' -> (C) 'a rare and somewhat' -> (D) 'unexpected sight on' -> (A) 'February 21, 2022' forms a coherent and grammatically correct sentence."
   },
   {
     "year": 2022,
     "paper_name": "CUET PG MBA 2022 (PGQP38 - Slot 1)",
     "question_number": 11,
     "question_id": "1163011",
-    "section": "Quantitative Techniques",
+    "section": "Language Comprehension & Verbal Ability",
     "question": "Choose the correctly spelt word from the following: () malvolence (2) maleviolence frafafiad 4 ag area é - (A) aeaa aaa a 21 (BR) aa a eT a AT (C) Fane agi acm zl",
     "options": {
-      "1": "Option 1 (ID: 49341)",
+      "1": "malvolence",
       "2": "maleviolence",
       "3": "malevolence",
       "4": "malvolense"
     },
-    "correct_option": "1",
-    "correct_answer": "Option 1 (ID: 49341)",
-    "explanation": "Solving the problem by applying standard mathematical principles for Choose the correctly spelt word from the... gives Option (1) [Option 1 (ID: 49341)] as the verified solution."
+    "correct_option": "3",
+    "correct_answer": "malevolence",
+    "explanation": "'Malevolence' (spelled M-A-L-E-V-O-L-E-N-C-E, meaning the state or condition of wishing evil or harm to others) is the only correctly spelled word."
   },
   {
     "year": 2022,
     "paper_name": "CUET PG MBA 2022 (PGQP38 - Slot 1)",
     "question_number": 12,
     "question_id": "1163012",
-    "section": "Computer Basics",
+    "section": "Language Comprehension & Verbal Ability",
     "question": "From among the four options given, choose the grammatically correct sentence: (68) Four key stakeholder are integral to the supply for foodgrains in the country (14) 1 gall & aa geh-ll a froma Fifa : ail aat-Il (A) Waa et © fear",
     "options": {
-      "1": "fraterét",
+      "1": "Four key stakeholder is integral to the supply of foodgrains",
       "2": "Four key stakeholders are integral to the supply for foodgrains in the country",
-      "3": "Four key stakeholders is integral to the supply for foodgrains in the country",
-      "4": "Fourth keying stakeholders are integral to the supply for foodgrains in the country"
+      "3": "Four key stakeholders is integral to the supply for foodgrains",
+      "4": "Fourth keying stakeholders are integral to the supply of foodgrains"
     },
-    "correct_option": "1",
-    "correct_answer": "fraterét",
-    "explanation": "As per fundamental computer architecture and standard IT nomenclature, Option (1) [fraterét] is the accurate specification."
+    "correct_option": "2",
+    "correct_answer": "Four key stakeholders are integral to the supply for foodgrains in the country",
+    "explanation": "Subject-verb agreement requires the plural subject 'Four key stakeholders' to take the plural verb 'are'. Option (2) follows correct grammatical syntax."
   },
   {
     "year": 2022,
     "paper_name": "CUET PG MBA 2022 (PGQP38 - Slot 1)",
     "question_number": 13,
     "question_id": "1163013",
-    "section": "Computer Basics",
+    "section": "Language Comprehension & Verbal Ability",
     "question": "From among the four options given, choose the pair of words that are synonymous qd) conversion — contraversy (2) envisage — face ae & aa ae a Frew Fife : wail wall (A) wimawa © aeahia (B) a 4 fran gan sa dd wey",
     "options": {
-      "1": "4",
+      "1": "conversion — controversy",
       "2": "envisage — face",
       "3": "defer — postpone",
       "4": "strong — sluggish"
     },
-    "correct_option": "1",
-    "correct_answer": "4",
-    "explanation": "As per fundamental computer architecture and standard IT nomenclature, Option (1) [4] is the accurate specification."
+    "correct_option": "3",
+    "correct_answer": "defer — postpone",
+    "explanation": "'Defer' and 'postpone' are exact synonyms meaning to put off an action or event to a later time."
   },
   {
     "year": 2022,
     "paper_name": "CUET PG MBA 2022 (PGQP38 - Slot 1)",
     "question_number": 14,
     "question_id": "1163014",
-    "section": "Data Interpretation",
+    "section": "Language Comprehension & Verbal Ability",
     "question": "From among the four options given, choose the pair of phrases that will be the most suitable to complete the following and make a meaningful sentence: Although the two friends did not on many things when they were younger, they were able to as they matured and their friendship lasted for many years. () hit the nail on the head; bite the bullet q@) 1",
     "options": {
-      "1": "4",
+      "1": "hit the nail on the head; bite the bullet",
       "2": "see eye to eye; let bygones be bygones",
       "3": "see eye to eye; call it a day",
       "4": "break a leg; let bygones be bygones"
     },
     "correct_option": "2",
     "correct_answer": "see eye to eye; let bygones be bygones",
-    "explanation": "Extracting and computing the values directly from the provided dataset confirms Option (2) [see eye to eye; let bygones be bygones]."
+    "explanation": "'See eye to eye' means to agree with someone, and 'let bygones be bygones' means to forgive and forget past disagreements. This pair completes the sentence meaningfully."
   },
   {
     "year": 2022,
