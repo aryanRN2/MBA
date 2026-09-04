@@ -1,0 +1,5 @@
+raw_ocr/
+ocr_*.txt
+__pycache__/
+*.pyc
+.DS_Store
