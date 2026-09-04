@@ -40,112 +40,23 @@
       </p>
     </div>
 
-    <!-- Paper Selection Section -->
-    <div class="papers-section">
-      <div class="section-heading">
-        <h2 class="section-title">Select Question Paper to Begin</h2>
-        <span style="font-size: 0.85rem; font-weight: 600; color: var(--text-secondary);">Showing available tests</span>
-      </div>
+    <!-- Clean Minimalist Paper Selection -->
+    <div class="papers-button-group">
+      <button class="btn-black-pyq main-pyq" onclick="launchTest('CUET_PG_MBA_2022.json', 'practice')">
+        <i data-lucide="play-circle" style="width: 20px; height: 20px;"></i>
+        <span>2022 PYQ</span>
+      </button>
 
-      <div class="paper-grid">
-        
-        <!-- FEATURED PAPER: 2022 -->
-        <div class="paper-card featured">
-          <div class="featured-ribbon">Featured 2022</div>
-          
-          <div class="paper-card-header">
-            <div class="paper-icon-box">
-              <i data-lucide="file-check-2" style="width: 26px; height: 26px;"></i>
-            </div>
-            <div>
-              <h3 class="paper-card-title">CUET PG MBA 2022</h3>
-              <p class="paper-card-subtitle">COQP12 / PGQP38 — Official Shift 1 Paper</p>
-            </div>
-          </div>
-
-          <div class="paper-meta-pills">
-            <div class="meta-pill"><i data-lucide="layers" style="width: 12px; height: 12px;"></i> 100 Questions</div>
-            <div class="meta-pill"><i data-lucide="award" style="width: 12px; height: 12px;"></i> 400 Marks</div>
-            <div class="meta-pill"><i data-lucide="clock" style="width: 12px; height: 12px;"></i> 120 Minutes</div>
-            <div class="meta-pill"><i data-lucide="languages" style="width: 12px; height: 12px;"></i> Bilingual (Hindi + English)</div>
-            <div class="meta-pill"><i data-lucide="pie-chart" style="width: 12px; height: 12px;"></i> DI Charts Included</div>
-          </div>
-
-          <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;">
-            Includes Verbal Ability, Quantitative Aptitude, Logical Reasoning, and Data Interpretation with instant answer reveal & step-by-step solutions.
-          </p>
-
-          <div class="paper-actions">
-            <button class="btn-start-practice" onclick="launchTest('CUET_PG_MBA_2022.json', 'practice')">
-              <i data-lucide="book-open" style="width: 16px; height: 16px;"></i> Practice Mode
-            </button>
-            <button class="btn-start-exam" onclick="launchTest('CUET_PG_MBA_2022.json', 'exam')">
-              <i data-lucide="play" style="width: 16px; height: 16px;"></i> Timed Exam
-            </button>
-          </div>
-        </div>
-
-        <!-- 2023 PAPER -->
-        <div class="paper-card">
-          <div class="paper-card-header">
-            <div class="paper-icon-box" style="background: #e0f2fe; color: #0284c7;">
-              <i data-lucide="file-text" style="width: 24px; height: 24px;"></i>
-            </div>
-            <div>
-              <h3 class="paper-card-title">CUET PG MBA 2023</h3>
-              <p class="paper-card-subtitle">COQP12 Official Question Paper</p>
-            </div>
-          </div>
-
-          <div class="paper-meta-pills">
-            <div class="meta-pill">100 Questions</div>
-            <div class="meta-pill">400 Marks</div>
-            <div class="meta-pill">120 Mins</div>
-          </div>
-
-          <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">
-            Practice 2023 paper with full solutions, negative marking, and performance analytics.
-          </p>
-
-          <div class="paper-actions">
-            <button class="btn-start-practice" onclick="launchTest('CUET_PG_MBA_2023.json', 'practice')">
-              <i data-lucide="book-open" style="width: 14px; height: 14px;"></i> Practice
-            </button>
-            <button class="btn-start-exam" onclick="launchTest('CUET_PG_MBA_2023.json', 'exam')">
-              <i data-lucide="play" style="width: 14px; height: 14px;"></i> Exam
-            </button>
-          </div>
-        </div>
-
-        <!-- ALL PYQS MASTER COLLECTION -->
-        <div class="paper-card">
-          <div class="paper-card-header">
-            <div class="paper-icon-box" style="background: #fef3c7; color: #d97706;">
-              <i data-lucide="library" style="width: 24px; height: 24px;"></i>
-            </div>
-            <div>
-              <h3 class="paper-card-title">All PYQs Master (425 Qs)</h3>
-              <p class="paper-card-subtitle">Comprehensive Question Bank</p>
-            </div>
-          </div>
-
-          <div class="paper-meta-pills">
-            <div class="meta-pill">425 Questions</div>
-            <div class="meta-pill">All 5 Years</div>
-            <div class="meta-pill">Multi-Section</div>
-          </div>
-
-          <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">
-            Master question repository across all available years with section filters and search.
-          </p>
-
-          <div class="paper-actions">
-            <button class="btn-start-practice" onclick="launchTest('CUET_PG_MBA_All_PYQs.json', 'practice')" style="width: 100%;">
-              <i data-lucide="book-open" style="width: 14px; height: 14px;"></i> Open Question Bank
-            </button>
-          </div>
-        </div>
-
+      <div class="other-pyq-row">
+        <button class="btn-black-pyq secondary-pyq" onclick="launchTest('CUET_PG_MBA_2023.json', 'practice')">
+          2023 PYQ
+        </button>
+        <button class="btn-black-pyq secondary-pyq" onclick="launchTest('CUET_PG_MBA_2024.json', 'practice')">
+          2024 PYQ
+        </button>
+        <button class="btn-black-pyq secondary-pyq" onclick="launchTest('CUET_PG_MBA_All_PYQs.json', 'practice')">
+          All PYQs (425 Qs)
+        </button>
       </div>
     </div>
 
