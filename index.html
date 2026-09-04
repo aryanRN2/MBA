@@ -23,55 +23,6 @@
 </head>
 <body>
 
-  <!-- Top Navigation Header -->
-  <header class="app-header">
-    <div id="brand-home-btn" class="brand-section">
-      <div class="brand-badge">MBA</div>
-      <div>
-        <h1 class="brand-title">CUET PG Practice Portal</h1>
-        <p class="brand-subtitle">Master Testing & Instant Analysis System</p>
-      </div>
-    </div>
-
-    <div class="header-controls">
-      <!-- Home Navigation Button (shown in player view) -->
-      <button id="nav-to-home-btn" class="nav-home-btn" style="display: none;">
-        <i data-lucide="home" style="width: 14px; height: 14px;"></i> Home / Change Paper
-      </button>
-
-      <!-- Paper Selector (In Player View) -->
-      <select id="paper-select" class="paper-select" style="display: none;">
-        <option value="CUET_PG_MBA_2022.json" selected>CUET PG MBA 2022 (PGQP38 Slot 1)</option>
-        <option value="CUET_PG_MBA_2023.json">CUET PG MBA 2023</option>
-        <option value="CUET_PG_MBA_2024.json">CUET PG MBA 2024</option>
-        <option value="CUET_PG_MBA_2025.json">CUET PG MBA 2025</option>
-        <option value="CUET_PG_MBA_2026.json">CUET PG MBA 2026</option>
-        <option value="CUET_PG_MBA_All_PYQs.json">All PYQs Master (425 Qs)</option>
-      </select>
-
-      <!-- Practice vs Exam Mode Toggle (In Player View) -->
-      <div id="mode-toggle-group" class="mode-toggle" style="display: none;">
-        <button id="practice-mode-btn" class="mode-btn active">
-          <i data-lucide="book-open" style="width: 14px; height: 14px;"></i> Practice Mode
-        </button>
-        <button id="exam-mode-btn" class="mode-btn">
-          <i data-lucide="clock" style="width: 14px; height: 14px;"></i> Timed Exam
-        </button>
-      </div>
-
-      <!-- Timer (Visible in Exam Mode) -->
-      <div id="timer-box" class="timer-box" style="display: none;">
-        <i data-lucide="hourglass" style="width: 16px; height: 16px;"></i>
-        <span id="timer-val">120:00</span>
-      </div>
-
-      <!-- Submit Exam Button -->
-      <button id="submit-btn" class="btn-primary" style="display: none;">
-        <i data-lucide="check-circle" style="width: 16px; height: 16px;"></i> Finish Test
-      </button>
-    </div>
-  </header>
-
   <!-- ================= 1. HOME LANDING VIEW ================= -->
   <div id="landing-view" class="landing-view">
     
@@ -207,6 +158,44 @@
     <!-- Central Content Area -->
     <main class="main-content">
       
+      <!-- Test Player Top Control Bar -->
+      <div class="player-top-bar">
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <button id="nav-to-home-btn" class="nav-home-btn">
+            <i data-lucide="arrow-left" style="width: 14px; height: 14px;"></i> Home
+          </button>
+          
+          <select id="paper-select" class="paper-select">
+            <option value="CUET_PG_MBA_2022.json" selected>CUET PG MBA 2022 (PGQP38 Slot 1)</option>
+            <option value="CUET_PG_MBA_2023.json">CUET PG MBA 2023</option>
+            <option value="CUET_PG_MBA_2024.json">CUET PG MBA 2024</option>
+            <option value="CUET_PG_MBA_2025.json">CUET PG MBA 2025</option>
+            <option value="CUET_PG_MBA_2026.json">CUET PG MBA 2026</option>
+            <option value="CUET_PG_MBA_All_PYQs.json">All PYQs Master (425 Qs)</option>
+          </select>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <div id="mode-toggle-group" class="mode-toggle">
+            <button id="practice-mode-btn" class="mode-btn active">
+              <i data-lucide="book-open" style="width: 14px; height: 14px;"></i> Practice
+            </button>
+            <button id="exam-mode-btn" class="mode-btn">
+              <i data-lucide="clock" style="width: 14px; height: 14px;"></i> Timed Exam
+            </button>
+          </div>
+
+          <div id="timer-box" class="timer-box" style="display: none;">
+            <i data-lucide="hourglass" style="width: 16px; height: 16px;"></i>
+            <span id="timer-val">120:00</span>
+          </div>
+
+          <button id="submit-btn" class="btn-primary" style="display: none;">
+            <i data-lucide="check-circle" style="width: 16px; height: 16px;"></i> Finish Test
+          </button>
+        </div>
+      </div>
+
       <!-- Section Filters & Language View Options -->
       <div class="filter-bar">
         <div class="section-tabs">

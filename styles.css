@@ -147,6 +147,19 @@ body {
   border-color: rgba(79, 70, 229, 0.3);
 }
 
+.player-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-sm);
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
 /* ================= HOME LANDING SCREEN ================= */
 .landing-view {
   max-width: 1200px;
@@ -194,6 +207,7 @@ body {
 .hero-title span {
   background: linear-gradient(135deg, #4f46e5, #ec4899);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 

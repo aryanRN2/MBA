@@ -75,9 +75,6 @@ async function launchTest(filename, mode = 'practice') {
   // Switch UI view
   document.getElementById('landing-view').style.display = 'none';
   document.getElementById('test-player-view').style.display = 'flex';
-  document.getElementById('nav-to-home-btn').style.display = 'flex';
-  document.getElementById('paper-select').style.display = 'block';
-  document.getElementById('mode-toggle-group').style.display = 'flex';
 
   // Apply Mode Styles
   if (mode === 'practice') {
@@ -105,11 +102,6 @@ function showLandingView() {
 
   document.getElementById('landing-view').style.display = 'flex';
   document.getElementById('test-player-view').style.display = 'none';
-  document.getElementById('nav-to-home-btn').style.display = 'none';
-  document.getElementById('paper-select').style.display = 'none';
-  document.getElementById('mode-toggle-group').style.display = 'none';
-  document.getElementById('timer-box').style.display = 'none';
-  document.getElementById('submit-btn').style.display = 'none';
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -513,9 +505,9 @@ function setupKeyboardShortcuts() {
 
 // Setup Event Listeners
 function setupEventListeners() {
-  // Brand / Home navigation
-  document.getElementById('brand-home-btn').addEventListener('click', showLandingView);
-  document.getElementById('nav-to-home-btn').addEventListener('click', showLandingView);
+  // Home navigation
+  const homeBtn = document.getElementById('nav-to-home-btn');
+  if (homeBtn) homeBtn.addEventListener('click', showLandingView);
 
   // Paper change
   document.getElementById('paper-select').addEventListener('change', (e) => {
