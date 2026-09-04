@@ -1,0 +1,436 @@
+import React, { useEffect, useMemo, useCallback } from 'react';
+import {
+  ArrowLeft,
+  ArrowRight,
+  Bookmark,
+  BookmarkCheck,
+  BookOpen,
+  CheckCircle,
+  Clock,
+  Eye,
+  EyeOff,
+  Hourglass,
+  Lightbulb,
+} from 'lucide-react';
+import type { Question, OptionKey, PaperMeta, TestMode, LanguageView } from '../types';
+import { MathRenderer } from './MathRenderer';
+
+interface TestPlayerProps {
+  questions: Question[];
+  currentPaper: PaperMeta;
+  allPapers: PaperMeta[];
+  mode: TestMode;
+  onPaperChange: (filename: string) => void;
+  onModeChange: (mode: TestMode) => void;
+  onBackToHome: () => void;
+  onSubmitExam: () => void;
+  currentIndex: number;
+  setCurrentIndex: (idx: number) => void;
+  selectedOptions: Record<number, OptionKey>;
+  setSelectedOptions: React.Dispatch<React.SetStateAction<Record<number, OptionKey>>>;
+  revealedAnswers: Record<number, boolean>;
+  setRevealedAnswers: React.Dispatch<React.SetStateAction<Record<number, boolean>>>;
+  flaggedQuestions: Record<number, boolean>;
+  setFlaggedQuestions: React.Dispatch<React.SetStateAction<Record<number, boolean>>>;
+  selectedSection: string;
+  setSelectedSection: (sec: string) => void;
+  languageView: LanguageView;
+  setLanguageView: (lang: LanguageView) => void;
+  timerSeconds: number;
+  examSubmitted: boolean;
+}
+
+export const TestPlayer: React.FC<TestPlayerProps> = ({
+  questions,
+  currentPaper,
+  allPapers,
+  mode,
+  onPaperChange,
+  onModeChange,
+  onBackToHome,
+  onSubmitExam,
+  currentIndex,
+  setCurrentIndex,
+  selectedOptions,
+  setSelectedOptions,
+  revealedAnswers,
+  setRevealedAnswers,
+  flaggedQuestions,
+  setFlaggedQuestions,
+  selectedSection,
+  setSelectedSection,
+  languageView,
+  setLanguageView,
+  timerSeconds,
+  examSubmitted,
+}) => {
+  // Filter questions based on section
+  const filteredQuestions = useMemo(() => {
+    if (selectedSection === 'ALL') return questions;
+    return questions.filter(q =>
+      (q.section || '').toLowerCase().includes(selectedSection.toLowerCase())
+    );
+  }, [questions, selectedSection]);
+
+  const currentQuestion = filteredQuestions[currentIndex] || filteredQuestions[0];
+  const qNum = currentQuestion?.question_number;
+  const isRevealed = revealedAnswers[qNum] || false;
+  const isFlagged = flaggedQuestions[qNum] || false;
+  const selectedOpt = selectedOptions[qNum];
+
+  // Option selection
+  const handleSelectOption = useCallback((key: OptionKey) => {
+    if (mode === 'exam' && examSubmitted) return;
+    if (!qNum) return;
+
+    setSelectedOptions(prev => {
+      if (prev[qNum] === key) {
+        const next = { ...prev };
+        delete next[qNum];
+        return next;
+      }
+      return { ...prev, [qNum]: key };
+    });
+  }, [mode, examSubmitted, qNum, setSelectedOptions]);
+
+  // Reveal toggle
+  const toggleReveal = useCallback(() => {
+    if (!qNum) return;
+    setRevealedAnswers(prev => ({ ...prev, [qNum]: !prev[qNum] }));
+  }, [qNum, setRevealedAnswers]);
+
+  // Flag toggle
+  const toggleFlag = useCallback(() => {
+    if (!qNum) return;
+    setFlaggedQuestions(prev => ({ ...prev, [qNum]: !prev[qNum] }));
+  }, [qNum, setFlaggedQuestions]);
+
+  // Navigation
+  const handleNext = useCallback(() => {
+    if (currentIndex < filteredQuestions.length - 1) {
+      setCurrentIndex(currentIndex + 1);
+    }
+  }, [currentIndex, filteredQuestions.length, setCurrentIndex]);
+
+  const handlePrev = useCallback(() => {
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+    }
+  }, [currentIndex, setCurrentIndex]);
+
+  // Keyboard Shortcuts
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (['INPUT', 'SELECT', 'TEXTAREA'].includes((e.target as HTMLElement).tagName)) return;
+
+      if (e.key === 'ArrowRight' || e.key === 'n' || e.key === 'N') {
+        handleNext();
+      } else if (e.key === 'ArrowLeft' || e.key === 'p' || e.key === 'P') {
+        handlePrev();
+      } else if (['1', '2', '3', '4'].includes(e.key)) {
+        handleSelectOption(e.key as OptionKey);
+      } else if (['a', 'A'].includes(e.key)) {
+        handleSelectOption('1');
+      } else if (['b', 'B'].includes(e.key)) {
+        handleSelectOption('2');
+      } else if (['c', 'C'].includes(e.key)) {
+        handleSelectOption('3');
+      } else if (['d', 'D'].includes(e.key)) {
+        handleSelectOption('4');
+      } else if (e.key === 'r' || e.key === 'R') {
+        toggleReveal();
+      } else if (e.key === 'm' || e.key === 'M') {
+        toggleFlag();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [handleNext, handlePrev, handleSelectOption, toggleReveal, toggleFlag]);
+
+  // Format timer
+  const formatTimer = (totalSeconds: number) => {
+    const mins = Math.floor(totalSeconds / 60);
+    const secs = totalSeconds % 60;
+    return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+  };
+
+  const answeredCount = Object.keys(selectedOptions).length;
+  const flaggedCount = Object.keys(flaggedQuestions).length;
+
+  if (!currentQuestion) {
+    return <div className="p-8 text-center text-gray-500">Loading questions...</div>;
+  }
+
+  return (
+    <div className="test-player-view">
+      <main className="main-content">
+        
+        {/* Player Top Navigation Bar */}
+        <div className="player-top-bar">
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+            <button className="nav-home-btn" onClick={onBackToHome}>
+              <ArrowLeft size={14} /> Home
+            </button>
+
+            <select
+              className="paper-select"
+              value={currentPaper.filename}
+              onChange={(e) => onPaperChange(e.target.value)}
+            >
+              {allPapers.map(p => (
+                <option key={p.id} value={p.filename}>
+                  {p.title}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+            <div className="mode-toggle">
+              <button
+                className={`mode-btn ${mode === 'practice' ? 'active' : ''}`}
+                onClick={() => onModeChange('practice')}
+              >
+                <BookOpen size={14} /> Practice
+              </button>
+              <button
+                className={`mode-btn ${mode === 'exam' ? 'active' : ''}`}
+                onClick={() => onModeChange('exam')}
+              >
+                <Clock size={14} /> Timed Exam
+              </button>
+            </div>
+
+            {mode === 'exam' && (
+              <div className="timer-box">
+                <Hourglass size={16} />
+                <span>{formatTimer(timerSeconds)}</span>
+              </div>
+            )}
+
+            {mode === 'exam' && !examSubmitted && (
+              <button className="btn-primary" onClick={onSubmitExam}>
+                <CheckCircle size={16} /> Finish Test
+              </button>
+            )}
+          </div>
+        </div>
+
+        {/* Section Filters & Language View Bar */}
+        <div className="filter-bar">
+          <div className="section-tabs">
+            {['ALL', 'Language', 'Quantitative', 'Logical', 'Data Interpretation'].map(sec => (
+              <button
+                key={sec}
+                className={`section-tab ${selectedSection === sec ? 'active' : ''}`}
+                onClick={() => {
+                  setSelectedSection(sec);
+                  setCurrentIndex(0);
+                }}
+              >
+                {sec === 'ALL' ? 'All Sections' : sec === 'Language' ? 'Verbal & English' : sec}
+              </button>
+            ))}
+          </div>
+
+          <div className="view-options">
+            <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase' }}>Lang:</span>
+            <button
+              className={`lang-btn ${languageView === 'both' ? 'active' : ''}`}
+              onClick={() => setLanguageView('both')}
+            >
+              Bilingual
+            </button>
+            <button
+              className={`lang-btn ${languageView === 'en' ? 'active' : ''}`}
+              onClick={() => setLanguageView('en')}
+            >
+              English
+            </button>
+            <button
+              className={`lang-btn ${languageView === 'hi' ? 'active' : ''}`}
+              onClick={() => setLanguageView('hi')}
+            >
+              Hindi
+            </button>
+          </div>
+        </div>
+
+        {/* Central Question Card */}
+        <section className="question-card">
+          <div className="question-header">
+            <div className="q-meta">
+              <span className="q-number-badge">Question {qNum}</span>
+              <span className="q-section-badge">{currentQuestion.section}</span>
+            </div>
+
+            <div className="q-actions">
+              <button
+                className={`action-btn-sm ${isFlagged ? 'flagged' : ''}`}
+                onClick={toggleFlag}
+              >
+                {isFlagged ? <BookmarkCheck size={14} /> : <Bookmark size={14} />}
+                {isFlagged ? 'Flagged' : 'Flag for Review'}
+              </button>
+            </div>
+          </div>
+
+          {/* Question Text with KaTeX */}
+          <div className="question-body">
+            {(languageView === 'both' || languageView === 'en' || !currentQuestion.question_hi) && (
+              <div className="question-text-en">
+                <MathRenderer text={currentQuestion.question_en || currentQuestion.question} />
+              </div>
+            )}
+
+            {(languageView === 'both' || languageView === 'hi') && currentQuestion.question_hi && (
+              <div className="question-text-hi">
+                <MathRenderer text={currentQuestion.question_hi} />
+              </div>
+            )}
+
+            {/* High-Resolution Data Interpretation Chart */}
+            {currentQuestion.chart_image && (
+              <div className="chart-container">
+                <img
+                  src={currentQuestion.chart_image}
+                  alt={`Question ${qNum} Chart`}
+                  className="chart-image"
+                />
+                <div className="chart-caption">Data Visualization Chart (High-Resolution)</div>
+              </div>
+            )}
+          </div>
+
+          {/* Options List */}
+          <div className="options-list">
+            {(['1', '2', '3', '4'] as OptionKey[]).map((key) => {
+              const optVal = currentQuestion.options?.[key];
+              if (!optVal) return null;
+
+              const isSelected = selectedOpt === key;
+              const isCorrect = isRevealed && (String(key) === String(currentQuestion.correct_option));
+              const isIncorrect = isRevealed && isSelected && (String(key) !== String(currentQuestion.correct_option));
+
+              let itemClass = 'option-item';
+              if (isSelected) itemClass += ' selected';
+              if (isCorrect) itemClass += ' correct-revealed';
+              if (isIncorrect) itemClass += ' incorrect-revealed';
+
+              return (
+                <div
+                  key={key}
+                  className={itemClass}
+                  onClick={() => handleSelectOption(key)}
+                >
+                  <div className="option-key">{key}</div>
+                  <div className="option-text">
+                    <MathRenderer text={optVal} />
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Step-by-Step Explanation Box */}
+          {(isRevealed || (mode === 'exam' && examSubmitted)) && (
+            <div className="explanation-box">
+              <div className="explanation-title">
+                <Lightbulb size={18} style={{ color: '#16a34a' }} />
+                <span>Step-by-Step Mathematical & Conceptual Explanation</span>
+              </div>
+              <div className="explanation-content">
+                <MathRenderer text={currentQuestion.explanation || `Correct option is (${currentQuestion.correct_option}).`} />
+              </div>
+            </div>
+          )}
+        </section>
+
+        {/* Bottom Navigation Footer */}
+        <div className="nav-footer">
+          <button
+            className="btn-secondary"
+            disabled={currentIndex === 0}
+            onClick={handlePrev}
+          >
+            <ArrowLeft size={16} /> Previous
+          </button>
+
+          {(mode === 'practice' || examSubmitted) && (
+            <button className="btn-reveal" onClick={toggleReveal}>
+              {isRevealed ? <EyeOff size={16} /> : <Eye size={16} />}
+              {isRevealed ? 'Hide Explanation' : 'Reveal Answer & Explanation'}
+            </button>
+          )}
+
+          <button
+            className="btn-primary"
+            disabled={currentIndex === filteredQuestions.length - 1}
+            onClick={handleNext}
+          >
+            Next <ArrowRight size={16} />
+          </button>
+        </div>
+
+        <div className="shortcut-hint">
+          Keyboard Shortcuts: <kbd>1</kbd>–<kbd>4</kbd> or <kbd>A</kbd>–<kbd>D</kbd> Select Option | <kbd>R</kbd> Reveal Answer | <kbd>→</kbd> Next | <kbd>←</kbd> Prev | <kbd>M</kbd> Mark
+        </div>
+
+      </main>
+
+      {/* Side Question Palette */}
+      <aside className="palette-sidebar">
+        <div className="palette-header">
+          <h2 className="palette-title">Question Palette</h2>
+          <div style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--primary)' }}>
+            <span>{answeredCount}</span> / <span>{questions.length}</span>
+          </div>
+        </div>
+
+        <div className="legend-grid">
+          <div className="legend-item">
+            <div className="legend-dot dot-current"></div>
+            <span>Current</span>
+          </div>
+          <div className="legend-item">
+            <div className="legend-dot dot-answered"></div>
+            <span>Answered</span>
+          </div>
+          <div className="legend-item">
+            <div className="legend-dot dot-flagged"></div>
+            <span>Flagged ({flaggedCount})</span>
+          </div>
+          <div className="legend-item">
+            <div className="legend-dot dot-unanswered"></div>
+            <span>Unanswered</span>
+          </div>
+        </div>
+
+        <div className="palette-grid">
+          {filteredQuestions.map((q, idx) => {
+            const num = q.question_number;
+            const isAnswered = !!selectedOptions[num];
+            const isFlag = !!flaggedQuestions[num];
+            const isCurrent = idx === currentIndex;
+
+            let btnClass = 'palette-btn';
+            if (isCurrent) btnClass += ' current';
+            else if (isFlag) btnClass += ' flagged';
+            else if (isAnswered) btnClass += ' answered';
+
+            return (
+              <button
+                key={num}
+                className={btnClass}
+                onClick={() => setCurrentIndex(idx)}
+              >
+                {num}
+              </button>
+            );
+          })}
+        </div>
+      </aside>
+    </div>
+  );
+};
