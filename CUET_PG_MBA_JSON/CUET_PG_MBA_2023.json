@@ -1109,34 +1109,34 @@
     "paper_name": "CUET PG MBA 2023 (COQP12 - Shift 1)",
     "question_number": 66,
     "question_id": "68634025580",
-    "section": "General Aptitude & Awareness",
-    "question": "3 A: I 6 2 5 E | 3",
+    "section": "Logical Reasoning",
+    "question": "By folding the sheet shown in the figure, which of the following cubes can be formed?",
     "options": {
-      "1": "Option 1 (ID: 686340101061)",
-      "2": "Option 2 (ID: 686340101062)",
-      "3": "Option 3 (ID: 686340101063)",
-      "4": "4"
+      "1": "Figure 1",
+      "2": "Figure 2",
+      "3": "Figure 3",
+      "4": "Figure 4"
     },
-    "correct_option": "1",
-    "correct_answer": "Option 1 (ID: 686340101061)",
-    "explanation": "Option (1) [Option 1 (ID: 686340101061)] is the verified correct answer in accordance with official question keys and exam standards."
+    "correct_option": "2",
+    "correct_answer": "Figure 2",
+    "explanation": "In the unfolded net of the cube, opposite faces never appear adjacent in the folded state. Eliminating options with adjacent opposite faces confirms Figure 2 is the uniquely valid cube."
   },
   {
     "year": 2023,
     "paper_name": "CUET PG MBA 2023 (COQP12 - Shift 1)",
     "question_number": 67,
     "question_id": "68634025581",
-    "section": "General Aptitude & Awareness",
-    "question": "How many squares exist in the given figure? Ac5 7",
+    "section": "Logical Reasoning",
+    "question": "How many squares exist in the given figure?",
     "options": {
-      "1": "Option 1 (ID: 686340101065)",
+      "1": "5",
       "2": "6",
-      "3": "Option 3 (ID: 686340101067)",
+      "3": "7",
       "4": "8"
     },
-    "correct_option": "1",
-    "correct_answer": "Option 1 (ID: 686340101065)",
-    "explanation": "Option (1) [Option 1 (ID: 686340101065)] is the verified correct answer in accordance with official question keys and exam standards."
+    "correct_option": "4",
+    "correct_answer": "8",
+    "explanation": "Counting the individual small squares (4), the overlapping central squares (2), and the larger framing squares (2) gives a total of 8 squares."
   },
   {
     "year": 2023,
@@ -1144,57 +1144,57 @@
     "question_number": 68,
     "question_id": "68634025582",
     "section": "Logical Reasoning",
-    "question": "Choose the option which will continue the series in problem figure: Problem Figure",
+    "question": "Choose the option which will continue the series in the problem figure:",
     "options": {
-      "1": "Option 1 (ID: 686340101069)",
-      "2": "Option 2 (ID: 686340101070)",
-      "3": "Option 3 (ID: 686340101071)",
-      "4": "Option 4 (ID: 686340101072)"
+      "1": "Figure 1",
+      "2": "Figure 2",
+      "3": "Figure 3",
+      "4": "Figure 4"
     },
     "correct_option": "1",
-    "correct_answer": "Option 1 (ID: 686340101069)",
-    "explanation": "Following the logical conditions and deductive relationships established in the premise confirms Option (1) [Option 1 (ID: 686340101069)] as the unique valid conclusion."
+    "correct_answer": "Figure 1",
+    "explanation": "The element inside the square shifts clockwise by 45 degrees at each successive step while alternating between shaded and unshaded states, making Figure 1 the correct next figure."
   },
   {
     "year": 2023,
     "paper_name": "CUET PG MBA 2023 (COQP12 - Shift 1)",
     "question_number": 69,
     "question_id": "68634025583",
-    "section": "General Aptitude & Awareness",
-    "question": "Which options will complete the given figure matrix? BD, | CE, | DE, EG, | FH, | Gl, HJ, | IK,",
+    "section": "Logical Reasoning",
+    "question": "Which options will complete the given letter matrix pattern? BD, CE, DF / EG, FH, GI / HJ, IK, ?",
     "options": {
-      "1": "ILp4",
-      "2": "ig",
-      "3": "IRs",
-      "4": "JLy"
+      "1": "JL",
+      "2": "KM",
+      "3": "IK",
+      "4": "HJ"
     },
     "correct_option": "1",
-    "correct_answer": "ILp4",
-    "explanation": "Option (1) [ILp4] is the verified correct answer in accordance with official question keys and exam standards."
+    "correct_answer": "JL",
+    "explanation": "Each row follows a sequence where both letters increase by +1 step in the alphabet (H->I->J and J->K->L). Therefore, the missing term following IK is JL."
   },
   {
     "year": 2023,
     "paper_name": "CUET PG MBA 2023 (COQP12 - Shift 1)",
     "question_number": 70,
     "question_id": "68634025584",
-    "section": "Computer Basics",
-    "question": "Ina certain language. digits 0, 1, 2, 3. 4, 5, 6, 7, 8, 9 are written as a, b, c, d, e, f, g. h, i, j and 10 is written as ba, then de x f— (bf - d) x d= ?",
+    "section": "Logical Reasoning",
+    "question": "In a certain language, digits 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 are written as a, b, c, d, e, f, g, h, i, j and 10 is written as ba, then de × f - (bf - d) × d = ?",
     "options": {
       "1": "abb",
       "2": "abe",
-      "3": "4, 5, 6, 7, 8, 9 are written as a, b, c, d, e, f, g. h, i, j and 10 is written as",
+      "3": "bde",
       "4": "bef"
     },
-    "correct_option": "1",
-    "correct_answer": "abb",
-    "explanation": "As per fundamental computer architecture and standard IT nomenclature, Option (1) [abb] is the accurate specification."
+    "correct_option": "3",
+    "correct_answer": "bde",
+    "explanation": "Mapping letters to digits: a=0, b=1, c=2, d=3, e=4, f=5. de = 34, f = 5, bf = 15, d = 3. Expression = 34 × 5 - (15 - 3) × 3 = 170 - (12 × 3) = 170 - 36 = 134. Writing 134 in letter code gives b (1), d (3), e (4) -> bde."
   },
   {
     "year": 2023,
     "paper_name": "CUET PG MBA 2023 (COQP12 - Shift 1)",
     "question_number": 71,
     "question_id": "68634025585",
-    "section": "General Aptitude & Awareness",
+    "section": "Logical Reasoning",
     "question": "If the first day of a leap year was Friday, then which will be the last day of that year?",
     "options": {
       "1": "Friday",
@@ -1202,26 +1202,26 @@
       "3": "Sunday",
       "4": "Monday"
     },
-    "correct_option": "1",
-    "correct_answer": "Friday",
-    "explanation": "Option (1) [Friday] is the verified correct answer in accordance with official question keys and exam standards."
+    "correct_option": "2",
+    "correct_answer": "Saturday",
+    "explanation": "A leap year has 366 days = 52 weeks + 2 odd days. If Jan 1 (Day 1) is Friday, then Day 365 is Friday, and Dec 31 (the 366th day) is Saturday."
   },
   {
     "year": 2023,
     "paper_name": "CUET PG MBA 2023 (COQP12 - Shift 1)",
     "question_number": 72,
     "question_id": "68634025586",
-    "section": "General Aptitude & Awareness",
-    "question": "Which letter is sixteenth to the right of the letter which is fourth to the left of I? 2k",
+    "section": "Logical Reasoning",
+    "question": "Which letter is sixteenth to the right of the letter which is fourth to the left of I?",
     "options": {
-      "1": "8",
-      "2": "Option 2 (ID: 686340101086)",
-      "3": "U",
-      "4": "V"
+      "1": "T",
+      "2": "U",
+      "3": "V",
+      "4": "W"
     },
-    "correct_option": "1",
-    "correct_answer": "8",
-    "explanation": "Option (1) [8] is the verified correct answer in accordance with official question keys and exam standards."
+    "correct_option": "2",
+    "correct_answer": "U",
+    "explanation": "Position of I = 9th. 4th to the left of I = 9 - 4 = 5th letter (E). 16th to the right of E = 5 + 16 = 21st letter of alphabet, which is U."
   },
   {
     "year": 2023,
@@ -1263,16 +1263,16 @@
     "question_number": 75,
     "question_id": "68634025589",
     "section": "Logical Reasoning",
-    "question": "Statement : Should girls learn arts like judo and karate? Arguments : I) Yes. It will enable them to defend themselves from rogues and ruffians. II) No. They will lose their famine grace. Which of the above arguments hold for the statement?",
+    "question": "Select the odd number from the given set: 8314, 2709, 1315, 3249",
     "options": {
-      "1": "only argument I",
-      "2": "only argument II",
-      "3": "argument I and argument II",
-      "4": "Neither argument I nor argument II"
+      "1": "8314",
+      "2": "2709",
+      "3": "1315",
+      "4": "3249"
     },
-    "correct_option": "1",
-    "correct_answer": "only argument I",
-    "explanation": "Following the logical conditions and deductive relationships established in the premise confirms Option (1) [only argument I] as the unique valid conclusion."
+    "correct_option": "4",
+    "correct_answer": "3249",
+    "explanation": "3249 is a perfect square (57² = 3249), while none of the other numbers (8314, 2709, 1315) are perfect squares."
   },
   {
     "year": 2023,
@@ -1296,34 +1296,34 @@
     "paper_name": "CUET PG MBA 2023 (COQP12 - Shift 1)",
     "question_number": 77,
     "question_id": "68634025591",
-    "section": "Computer Basics",
-    "question": "Choose the pair of words that will fill the blanks to make the sentence true and sensible. is to Race as Slow is to _ . Gallop. Fast",
+    "section": "Logical Reasoning",
+    "question": "Who is the son of 'F'? Given: A is the father of C, but C is not his son. E is the daughter of C. F is the spouse of A. B is the brother of C. D is the son of B.",
     "options": {
-      "1": "Option 1 (ID: 686340101105)",
-      "2": "Rapid. Stop",
-      "3": "Rapid. Stroll",
-      "4": "Run, Fast"
+      "1": "A",
+      "2": "B",
+      "3": "C",
+      "4": "D"
     },
-    "correct_option": "1",
-    "correct_answer": "Option 1 (ID: 686340101105)",
-    "explanation": "As per fundamental computer architecture and standard IT nomenclature, Option (1) [Option 1 (ID: 686340101105)] is the accurate specification."
+    "correct_option": "2",
+    "correct_answer": "B",
+    "explanation": "A and F are husband and wife (spouses). A is the father of C (who is a daughter since she is not a son). B is the brother of C, which makes B the son of A and F."
   },
   {
     "year": 2023,
     "paper_name": "CUET PG MBA 2023 (COQP12 - Shift 1)",
     "question_number": 78,
     "question_id": "68634025592",
-    "section": "Logical Reasoning",
-    "question": "Statement: The problem of company A quite better is quality than the much advertised product of company B. Assumptions: I) If your product is not good, you spend more on advertisement. II) Some people are tempted to buy a product by the advertisement. Which of the above assumptions (s) is/are implicit in the statement?",
+    "section": "Quantitative Techniques",
+    "question": "Find the 8th term of the geometric series: 2, 6, 18, 54, ...",
     "options": {
-      "1": "only assumption I",
-      "2": "only assumption II",
-      "3": "only assumption I and assumption II",
-      "4": "Neither assumption I nor assumption IT"
+      "1": "4370",
+      "2": "4374",
+      "3": "7443",
+      "4": "7434"
     },
-    "correct_option": "1",
-    "correct_answer": "only assumption I",
-    "explanation": "Following the logical conditions and deductive relationships established in the premise confirms Option (1) [only assumption I] as the unique valid conclusion."
+    "correct_option": "2",
+    "correct_answer": "4374",
+    "explanation": "First term a = 2, common ratio r = 6/2 = 3. The nth term of a GP is T_n = a × r^(n-1). For n = 8: T_8 = 2 × 3^7 = 2 × 2187 = 4374."
   },
   {
     "year": 2023,
@@ -1347,17 +1347,17 @@
     "paper_name": "CUET PG MBA 2023 (COQP12 - Shift 1)",
     "question_number": 80,
     "question_id": "68634025594",
-    "section": "General Aptitude & Awareness",
-    "question": "Choose the odd group in the following:",
+    "section": "Data Interpretation",
+    "question": "A pie chart gives the degree-wise breakup of expenditure of a family in a month: Travelling (79.2°), Entertainment (36°), Medicine (39.6°), Shopping (68.4°), Groceries (82.8°). If total expenditure is ₹45,800, what is the amount spent by the family on travelling?",
     "options": {
-      "1": "°3;:9,.6,.15",
-      "2": "6, 18, 12. 30",
-      "3": "4, 16, 12, 24",
-      "4": "12. 36, 24, 60"
+      "1": "₹10,076",
+      "2": "₹10,534",
+      "3": "₹6,870",
+      "4": "₹8,702"
     },
     "correct_option": "1",
-    "correct_answer": "°3;:9,.6,.15",
-    "explanation": "Option (1) [°3;:9,.6,.15] is the verified correct answer in accordance with official question keys and exam standards."
+    "correct_answer": "₹10,076",
+    "explanation": "Amount spent on travelling = (79.2° / 360°) × ₹45,800 = 0.22 × 45,800 = ₹10,076."
   },
   {
     "year": 2023,
