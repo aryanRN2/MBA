@@ -116,7 +116,7 @@ async function initApp() {
 // Load Paper JSON Data
 async function loadPaperData(filename) {
   try {
-    const res = await fetch(`CUET_PG_MBA_JSON/${filename}`);
+    const res = await fetch(`CUET_PG_MBA_JSON/${filename}?t=${Date.now()}`);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
     STATE.allQuestions = data;
