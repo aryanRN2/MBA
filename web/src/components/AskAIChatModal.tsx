@@ -122,18 +122,31 @@ GUIDELINES FOR YOUR RESPONSES:
         max_tokens: 1024,
       };
 
-      const res = await fetch('https://integrate.api.nvidia.com/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${DEFAULT_NVIDIA_API_KEY}`,
-        },
-        body: JSON.stringify(payload),
-      });
+      // Call our serverless /api/chat endpoint to eliminate CORS issues on Vercel
+      let res: Response;
+      try {
+        res = await fetch('/api/chat', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload),
+        });
+      } catch {
+        // Fallback to direct NVIDIA endpoint if running in an environment without serverless proxy
+        res = await fetch('https://integrate.api.nvidia.com/v1/chat/completions', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${DEFAULT_NVIDIA_API_KEY}`,
+          },
+          body: JSON.stringify(payload),
+        });
+      }
 
       if (!res.ok) {
         const errorData = await res.json().catch(() => ({}));
-        throw new Error(errorData.error?.message || `NVIDIA API error (Status ${res.status})`);
+        throw new Error(errorData.error?.message || `API error (Status ${res.status})`);
       }
 
       const data = await res.json();
