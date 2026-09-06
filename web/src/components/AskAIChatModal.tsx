@@ -68,7 +68,7 @@ export const AskAIChatModal: React.FC<AskAIChatModalProps> = ({
       .join('\n');
 
     return `You are an expert CUET PG MBA Exam Tutor.
-Provide a clean, beautifully formatted step-by-step explanation for this question:
+Provide a clean, beautifully formatted, fluent step-by-step explanation for this question:
 
 ---
 [QUESTION DETAILS]
@@ -82,21 +82,23 @@ Correct Option: Option (${question.correct_option}) ${question.correct_answer ? 
 Official Explanation: ${question.explanation || 'Not provided'}
 ---
 
-OUTPUT FORMATTING INSTRUCTIONS:
-Always format your response with clean Markdown:
-1. Use standard Markdown headings:
-   ### 1. Correct Option Analysis
-   Explain why Option (${question.correct_option}) is the correct answer and the underlying concept or rule.
+OUTPUT FORMATTING RULES:
+Always write in fluent, natural English with clear structure:
 
-   ### 2. Why Other Options Are Incorrect
-   Briefly explain why the other options do not fit.
+### 1. Correct Option Breakdown
+- State the correct answer clearly: **Option (${question.correct_option})**.
+- Explain the logic, sequence, grammar rule, or mathematical concept in detail.
 
-   ### 3. Exam Shortcut & Strategy
-   Give a quick tip or elimination trick for the exam.
+### 2. Why Other Options Are Incorrect
+- Break down each incorrect option with bullet points (e.g., **Option (1):** why it does not fit).
 
-2. Always properly close bold tags with two asterisks on both sides (e.g. **Bold Title:** followed by text).
-3. Use LaTeX formatting ($...$ for inline and $$...$$ for block math) whenever math formulas or symbols appear.
-4. Keep the explanation concise, direct, and encouraging.`;
+### 3. Exam Shortcut & Strategy
+- Provide a rapid elimination trick or exam strategy to solve this type of question in under 30 seconds.
+
+IMPORTANT:
+- Use standard Markdown headings with a space after hashes (e.g. "### 1. Title").
+- Always enclose bold text with double asterisks on both sides (e.g. **Option (1):** explanation).
+- For math formulas, use LaTeX format: $x^2 + y^2$ or $$...$$.`;
   };
 
   const handleSendMessage = async (customPrompt?: string) => {

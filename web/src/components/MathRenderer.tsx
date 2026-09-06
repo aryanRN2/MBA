@@ -172,17 +172,28 @@ export const MathRenderer: React.FC<MathRendererProps> = ({ text, className = ''
       }
 
       // 3. Headings (#, ##, ###, ####, #####, ######) with or without trailing space
-      if (/^#{1,6}(?:\s*|\b)/.test(trimmed) && !trimmed.startsWith('###-')) {
+      if (/^#{1,6}/.test(trimmed) && !trimmed.startsWith('###-')) {
         const match = trimmed.match(/^#{1,6}/);
         if (match) {
           const level = Math.min(match[0].length, 6);
-          const headingText = trimmed.slice(level).trim();
+          let headingText = trimmed.slice(level).trim();
+
+          // If the line had only ### and text is on the next line, consume the next line
+          if (!headingText && i + 1 < lines.length && lines[i + 1].trim() && !lines[i + 1].trim().startsWith('#')) {
+            i++;
+            headingText = lines[i].trim();
+          }
+
           if (headingText) {
             const headingTag = level <= 2 ? 'h3' : level === 3 ? 'h4' : 'h5';
             const h = document.createElement(headingTag);
             h.className = `markdown-heading markdown-h${level}`;
             renderInline(headingText, h);
             containerRef.current.appendChild(h);
+            i++;
+            continue;
+          } else {
+            // Stray empty hashes line, skip
             i++;
             continue;
           }
