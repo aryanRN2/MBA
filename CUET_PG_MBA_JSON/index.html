@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CUET PG MBA (COQP12) — Interactive Master Prep & Test Portal</title>
+  <meta name="description" content="Ultimate CUET PG MBA (COQP12) PYQ Practice Portal and Real CBT Mock Exam Simulation for 2022-2026.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎯</text></svg>">
+</head>
+<body>
+  <!-- App Container -->
+  <div id="app" class="app-root">
+    
+    <!-- Top Header Navigation -->
+    <header class="navbar">
+      <div class="nav-brand">
+        <div class="brand-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">CUET PG MBA <span class="badge-code">COQP12</span></span>
+          <span class="brand-subtitle">Master Prep & CBT Portal</span>
+        </div>
+      </div>
+
+      <!-- Mode Switcher -->
+      <nav class="nav-modes">
+        <button class="mode-btn active" data-mode="practice" id="btnModePractice">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+          <span>Practice PYQs</span>
+        </button>
+        <button class="mode-btn" data-mode="mock" id="btnModeMock">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          <span>CBT Mock Exam</span>
+        </button>
+        <button class="mode-btn" data-mode="flashcards" id="btnModeFlashcards">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+          <span>Flashcards</span>
+        </button>
+        <button class="mode-btn" data-mode="analytics" id="btnModeAnalytics">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+          <span>Analytics</span>
+        </button>
+      </nav>
+
+      <!-- Utility Actions -->
+      <div class="nav-actions">
+        <button class="icon-btn" id="btnKeyboardShortcuts" title="Keyboard Shortcuts" aria-label="Keyboard Shortcuts">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2" ry="2"></rect><line x1="6" y1="8" x2="6.01" y2="8"></line><line x1="10" y1="8" x2="10.01" y2="8"></line><line x1="14" y1="8" x2="14.01" y2="8"></line><line x1="18" y1="8" x2="18.01" y2="8"></line><line x1="6" y1="12" x2="6.01" y2="12"></line><line x1="18" y1="12" x2="18.01" y2="12"></line><line x1="7" y1="16" x2="17" y2="16"></line></svg>
+        </button>
+        <button class="icon-btn" id="btnSoundToggle" title="Toggle Sound Effects" aria-label="Toggle Sound Effects">
+          <svg id="soundIconOn" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+          <svg id="soundIconOff" class="hidden" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
+        </button>
+        <button class="icon-btn" id="btnThemeToggle" title="Toggle Theme" aria-label="Toggle Theme">
+          <svg id="themeIconDark" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          <svg id="themeIconLight" class="hidden" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main View Container -->
+    <main class="main-content" id="mainContent">
+
+      <!-- ========================================================= -->
+      <!-- VIEW 1: PRACTICE MODE -->
+      <!-- ========================================================= -->
+      <section id="viewPractice" class="view-panel active">
+        <!-- Control Bar: Filter by Year, Section, Status, Search -->
+        <div class="control-card">
+          <div class="filter-group">
+            <div class="select-wrapper">
+              <label for="paperSelect">Paper / Year:</label>
+              <select id="paperSelect" class="form-select">
+                <option value="CUET_PG_MBA_2024.json" selected>CUET PG MBA 2024 (75 Qs)</option>
+                <option value="CUET_PG_MBA_2026.json">CUET PG MBA 2026 (75 Qs)</option>
+                <option value="CUET_PG_MBA_2025.json">CUET PG MBA 2025 (75 Qs)</option>
+                <option value="CUET_PG_MBA_2023.json">CUET PG MBA 2023 (100 Qs)</option>
+                <option value="CUET_PG_MBA_2022.json">CUET PG MBA 2022 (100 Qs)</option>
+                <option value="CUET_PG_MBA_All_PYQs.json">⭐ Master Bank (All 425 Qs)</option>
+              </select>
+            </div>
+
+            <div class="select-wrapper">
+              <label for="sectionSelect">Section:</label>
+              <select id="sectionSelect" class="form-select">
+                <option value="all">All Sections (Full Paper)</option>
+              </select>
+            </div>
+
+            <div class="select-wrapper">
+              <label for="statusFilter">Status:</label>
+              <select id="statusFilter" class="form-select">
+                <option value="all">All Questions</option>
+                <option value="unattempted">Unattempted</option>
+                <option value="correct">Solved Correctly (✓)</option>
+                <option value="incorrect">Solved Incorrectly (✗)</option>
+                <option value="bookmarked">Bookmarked (★)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="search-and-stats">
+            <div class="search-input-box">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="text" id="searchInput" placeholder="Search keywords in questions/options..." autocomplete="off">
+              <button id="btnClearSearch" class="btn-clear hidden">&times;</button>
+            </div>
+            <div class="stats-pill">
+              <span id="practiceSolvedCount">0</span>/<span id="practiceTotalCount">0</span> Solved
+              <span class="accuracy-badge" id="practiceAccuracyBadge">0% Acc</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Practice Arena Grid -->
+        <div class="practice-arena">
+          <!-- Left Column: Question Card -->
+          <div class="question-container">
+            <div class="question-header">
+              <div class="q-meta-badges">
+                <span class="badge-year" id="qYearBadge">2024</span>
+                <span class="badge-section" id="qSectionBadge">Language Comprehension</span>
+                <span class="badge-marking">+4 / -1 Marks</span>
+              </div>
+              <div class="q-actions">
+                <button class="btn-action-icon" id="btnBookmark" title="Bookmark Question">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                </button>
+                <button class="btn-action-icon" id="btnResetCurrent" title="Reset this Question">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Question Text Body -->
+            <div class="question-body">
+              <div class="q-number-title">
+                <span class="q-num-label">Question <span id="qDisplayNum">1</span></span>
+                <span class="q-id-tag">ID: <span id="qDisplayId">--</span></span>
+              </div>
+              <div class="q-text-content" id="qText">
+                Loading question data...
+              </div>
+            </div>
+
+            <!-- Options List -->
+            <div class="options-list" id="optionsContainer">
+              <!-- Dynamically populated -->
+            </div>
+
+            <!-- Solution & Explanation Panel -->
+            <div class="solution-panel hidden" id="solutionPanel">
+              <div class="solution-header">
+                <span class="solution-title">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
+                  Official Answer & Detailed Solution
+                </span>
+                <span class="badge-correct-opt">Correct Option: <strong id="solutionCorrectOpt">--</strong></span>
+              </div>
+              <div class="solution-content">
+                <div class="solution-ans-text">
+                  <strong>Answer:</strong> <span id="solutionCorrectAns">--</span>
+                </div>
+                <div class="solution-explanation-text">
+                  <div class="explanation-title">Explanation:</div>
+                  <div id="solutionExplanation">--</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bottom Practice Navigation Footer -->
+            <div class="practice-footer">
+              <button class="btn-nav" id="btnPrevQ">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                <span>Previous</span>
+              </button>
+
+              <div class="center-footer-actions">
+                <button class="btn-subtle" id="btnToggleExplanation">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                  <span>Toggle Solution (E)</span>
+                </button>
+              </div>
+
+              <button class="btn-nav btn-primary" id="btnNextQ">
+                <span>Next</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Right Column: Question Palette Sidebar -->
+          <aside class="palette-sidebar">
+            <div class="palette-card">
+              <div class="palette-header">
+                <h3>Question Grid</h3>
+                <span class="palette-count" id="paletteCount">0 / 0</span>
+              </div>
+              <div class="palette-legend">
+                <div class="legend-item"><span class="legend-dot status-correct"></span> Correct</div>
+                <div class="legend-item"><span class="legend-dot status-incorrect"></span> Incorrect</div>
+                <div class="legend-item"><span class="legend-dot status-bookmarked"></span> Starred</div>
+                <div class="legend-item"><span class="legend-dot status-unattempted"></span> Unseen</div>
+              </div>
+              <div class="palette-grid-scroll">
+                <div class="palette-grid" id="paletteGrid">
+                  <!-- Generated dynamically -->
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ========================================================= -->
+      <!-- VIEW 2: CBT MOCK EXAM MODE (NTA Real Simulation) -->
+      <!-- ========================================================= -->
+      <section id="viewMock" class="view-panel">
+        <!-- Pre-exam Setup Screen -->
+        <div id="mockSetupScreen" class="mock-setup-container">
+          <div class="mock-welcome-card">
+            <div class="mock-badge">NTA SIMULATION</div>
+            <h2>CUET PG MBA (COQP12) Real CBT Mock Test</h2>
+            <p class="mock-intro-desc">Experience the exact National Testing Agency computer-based testing environment with authentic negative marking (+4 for correct, -1 for wrong, 0 for unattempted) and strict real-time countdown timer.</p>
+            
+            <div class="mock-config-grid">
+              <div class="config-item">
+                <label for="mockPaperSelect">Select PYQ Paper / Mock Bank:</label>
+                <select id="mockPaperSelect" class="form-select">
+                  <option value="CUET_PG_MBA_2024.json">CUET PG MBA 2024 (75 Questions - 105 Mins)</option>
+                  <option value="CUET_PG_MBA_2026.json">CUET PG MBA 2026 (75 Questions - 105 Mins)</option>
+                  <option value="CUET_PG_MBA_2025.json">CUET PG MBA 2025 (75 Questions - 105 Mins)</option>
+                  <option value="CUET_PG_MBA_2023.json">CUET PG MBA 2023 (100 Questions - 120 Mins)</option>
+                  <option value="CUET_PG_MBA_2022.json">CUET PG MBA 2022 (100 Questions - 120 Mins)</option>
+                </select>
+              </div>
+              <div class="config-item">
+                <label for="mockTimerSelect">Time Duration:</label>
+                <select id="mockTimerSelect" class="form-select">
+                  <option value="105">105 Minutes (Official CUET PG Pattern)</option>
+                  <option value="60">60 Minutes (Speed Drill)</option>
+                  <option value="45">45 Minutes (Express Sprint)</option>
+                  <option value="0">Unlimited (No Time Limit)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Exam Guidelines & Legends -->
+            <div class="mock-guidelines-box">
+              <h4>Official CBT Color Code Legend:</h4>
+              <div class="cbt-legend-grid">
+                <div class="cbt-legend-card"><span class="cbt-tag cbt-not-visited">1</span> Not Visited Yet</div>
+                <div class="cbt-legend-card"><span class="cbt-tag cbt-not-answered">2</span> Not Answered</div>
+                <div class="cbt-legend-card"><span class="cbt-tag cbt-answered">3</span> Answered (+4 / -1)</div>
+                <div class="cbt-legend-card"><span class="cbt-tag cbt-marked">4</span> Marked for Review</div>
+                <div class="cbt-legend-card"><span class="cbt-tag cbt-ans-marked">5</span> Answered & Marked for Review</div>
+              </div>
+            </div>
+
+            <button class="btn-start-mock" id="btnStartMockExam">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+              <span>Begin Official CBT Mock Test</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Active Exam Screen (NTA CBT Simulation) -->
+        <div id="mockActiveScreen" class="mock-active-container hidden">
+          <!-- Top CBT Header -->
+          <div class="cbt-exam-header">
+            <div class="cbt-test-info">
+              <h3 id="mockExamTitle">CUET PG MBA 2024</h3>
+              <span class="cbt-candidate">Candidate: <strong>Aspirant (General MBA)</strong></span>
+            </div>
+            
+            <div class="cbt-timer-box">
+              <span class="timer-label">Time Remaining:</span>
+              <div class="timer-display" id="mockTimerDisplay">01:45:00</div>
+            </div>
+
+            <button class="btn-submit-cbt" id="btnOpenSubmitModal">
+              Submit Test
+            </button>
+          </div>
+
+          <!-- Section Switcher Ribbon -->
+          <div class="cbt-section-bar" id="mockSectionBar">
+            <!-- Dynamically populated section tabs -->
+          </div>
+
+          <!-- Exam Split Arena -->
+          <div class="cbt-split-arena">
+            <!-- Left: Question & Options Arena -->
+            <div class="cbt-question-panel">
+              <div class="cbt-q-header">
+                <div class="cbt-q-title">
+                  Question No. <span id="mockQNum">1</span>
+                </div>
+                <div class="cbt-q-marks">
+                  Marks: <span class="text-success">+4.00</span> | <span class="text-danger">-1.00</span>
+                </div>
+              </div>
+
+              <div class="cbt-q-body" id="mockQText">
+                Loading test question...
+              </div>
+
+              <div class="cbt-options-container" id="mockOptionsContainer">
+                <!-- Dynamically populated radio list -->
+              </div>
+
+              <!-- CBT Action Bottom Bar -->
+              <div class="cbt-bottom-bar">
+                <div class="cbt-left-actions">
+                  <button class="btn-cbt-action" id="btnMockSaveNext">Save & Next</button>
+                  <button class="btn-cbt-action btn-cbt-secondary" id="btnMockClear">Clear Response</button>
+                  <button class="btn-cbt-action btn-cbt-purple" id="btnMockMarkNext">Mark for Review & Next</button>
+                </div>
+                <div class="cbt-right-actions">
+                  <button class="btn-cbt-nav" id="btnMockPrev">Previous</button>
+                  <button class="btn-cbt-nav" id="btnMockNext">Next</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: NTA CBT Question Grid Sidebar -->
+            <aside class="cbt-palette-panel">
+              <div class="cbt-status-summary">
+                <div class="summary-badge answered"><strong id="summaryAnswered">0</strong> Answered</div>
+                <div class="summary-badge not-answered"><strong id="summaryNotAnswered">0</strong> Not Answered</div>
+                <div class="summary-badge not-visited"><strong id="summaryNotVisited">75</strong> Not Visited</div>
+                <div class="summary-badge marked"><strong id="summaryMarked">0</strong> Marked Review</div>
+                <div class="summary-badge ans-marked"><strong id="summaryAnsMarked">0</strong> Ans & Marked</div>
+              </div>
+
+              <div class="cbt-grid-title">Choose a Question</div>
+              <div class="cbt-grid-scroll">
+                <div class="cbt-grid" id="mockGrid">
+                  <!-- Dynamically populated boxes with status -->
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+
+        <!-- CBT Mock Result / Scorecard Screen -->
+        <div id="mockResultScreen" class="mock-result-container hidden">
+          <div class="result-header-card">
+            <div class="result-score-banner">
+              <div class="score-circle">
+                <span class="score-number" id="resultTotalScore">0</span>
+                <span class="score-out-of">/ <span id="resultMaxScore">300</span></span>
+              </div>
+              <div class="result-meta-text">
+                <h2>CBT Mock Exam Completed!</h2>
+                <p id="resultFeedback">Great effort! Review your in-depth performance analysis below.</p>
+                <div class="quick-stats-row">
+                  <div class="q-stat"><span class="label">Accuracy:</span> <strong id="resultAccuracy">0%</strong></div>
+                  <div class="q-stat"><span class="label">Attempted:</span> <strong id="resultAttempted">0 / 0</strong></div>
+                  <div class="q-stat"><span class="label">Time Taken:</span> <strong id="resultTimeTaken">0 mins</strong></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="result-breakdown-cards">
+              <div class="breakdown-card correct-card">
+                <div class="b-icon">✓</div>
+                <div class="b-val" id="resultCorrectCount">0</div>
+                <div class="b-lbl">Correct (+<span id="resultPositiveMarks">0</span>)</div>
+              </div>
+              <div class="breakdown-card incorrect-card">
+                <div class="b-icon">✗</div>
+                <div class="b-val" id="resultIncorrectCount">0</div>
+                <div class="b-lbl">Incorrect (-<span id="resultNegativeMarks">0</span>)</div>
+              </div>
+              <div class="breakdown-card unattempted-card">
+                <div class="b-icon">○</div>
+                <div class="b-val" id="resultUnattemptedCount">0</div>
+                <div class="b-lbl">Unattempted (0)</div>
+              </div>
+            </div>
+
+            <!-- Section-wise Performance Table -->
+            <div class="result-section-table-box">
+              <h3>Section-wise Breakdown</h3>
+              <div class="table-responsive">
+                <table class="result-table">
+                  <thead>
+                    <tr>
+                      <th>Section</th>
+                      <th>Total</th>
+                      <th>Attempted</th>
+                      <th>Correct</th>
+                      <th>Incorrect</th>
+                      <th>Score</th>
+                      <th>Accuracy</th>
+                    </tr>
+                  </thead>
+                  <tbody id="resultSectionTableBody">
+                    <!-- Dynamic -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="result-actions-row">
+              <button class="btn-primary btn-lg" id="btnRetakeMock">Retake Mock Exam</button>
+              <button class="btn-subtle btn-lg" id="btnReviewMockSolutions">Review Detailed Solutions</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================= -->
+      <!-- VIEW 3: FLASHCARDS / RAPID REVISION MODE -->
+      <!-- ========================================================= -->
+      <section id="viewFlashcards" class="view-panel">
+        <div class="flashcard-deck-container">
+          <div class="flashcard-controls">
+            <div class="select-wrapper">
+              <label for="flashcardPaperSelect">Topic / Paper:</label>
+              <select id="flashcardPaperSelect" class="form-select">
+                <option value="CUET_PG_MBA_2024.json">CUET PG MBA 2024</option>
+                <option value="CUET_PG_MBA_2026.json">CUET PG MBA 2026</option>
+                <option value="CUET_PG_MBA_2025.json">CUET PG MBA 2025</option>
+                <option value="CUET_PG_MBA_2023.json">CUET PG MBA 2023</option>
+                <option value="CUET_PG_MBA_2022.json">CUET PG MBA 2022</option>
+                <option value="CUET_PG_MBA_All_PYQs.json">All PYQs (425 Questions)</option>
+              </select>
+            </div>
+            <div class="flashcard-progress">
+              Card <span id="flashcardCurrentIndex">1</span> of <span id="flashcardTotalCount">75</span>
+            </div>
+          </div>
+
+          <!-- 3D Flippable Card -->
+          <div class="flashcard-scene" id="flashcardScene">
+            <div class="flashcard-3d" id="flashcardElement">
+              <!-- Front Side: Question -->
+              <div class="card-face card-front">
+                <div class="card-tag" id="fcFrontTag">Question</div>
+                <div class="card-prompt" id="fcFrontText">Click or press Space to reveal answer</div>
+                <div class="card-hint">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
+                  Click card to flip
+                </div>
+              </div>
+              <!-- Back Side: Correct Answer & Explanation -->
+              <div class="card-face card-back">
+                <div class="card-tag tag-success" id="fcBackTag">Official Solution</div>
+                <div class="card-solution-answer" id="fcBackAnswer">--</div>
+                <div class="card-solution-detail" id="fcBackExplanation">--</div>
+                <div class="card-hint">Click card to flip back</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Flashcard Navigation -->
+          <div class="flashcard-nav-row">
+            <button class="btn-nav" id="btnFcPrev">Previous Card</button>
+            <button class="btn-subtle" id="btnFcFlip">Flip Card (Space)</button>
+            <button class="btn-nav btn-primary" id="btnFcNext">Next Card</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================= -->
+      <!-- VIEW 4: ANALYTICS & INSIGHTS -->
+      <!-- ========================================================= -->
+      <section id="viewAnalytics" class="view-panel">
+        <div class="analytics-dashboard">
+          <div class="analytics-header">
+            <h2>Your Preparation Progress & Analytics</h2>
+            <p>Real-time analytics across all attempted CUET PG MBA question sets.</p>
+          </div>
+
+          <div class="analytics-metrics-grid">
+            <div class="metric-card">
+              <div class="metric-val" id="anaTotalAttempted">0</div>
+              <div class="metric-lbl">Total Questions Solved</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-val text-success" id="anaAccuracy">0%</div>
+              <div class="metric-lbl">Overall Accuracy</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-val text-accent" id="anaBookmarksCount">0</div>
+              <div class="metric-lbl">Bookmarked Questions</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-val text-warning" id="anaMocksCount">0</div>
+              <div class="metric-lbl">Mocks Completed</div>
+            </div>
+          </div>
+
+          <!-- Section Mastery Progress Bars -->
+          <div class="section-mastery-card">
+            <h3>Subject / Section Mastery</h3>
+            <div class="mastery-bars-list" id="anaMasteryBars">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+          <!-- Danger Zone: Reset Progress -->
+          <div class="reset-data-box">
+            <span>Want to restart your prep from scratch?</span>
+            <button class="btn-danger-outline" id="btnResetAllProgress">Reset All Local Progress</button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Modals -->
+    <!-- Keyboard Shortcuts Modal -->
+    <div id="shortcutsModal" class="modal-overlay hidden">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3>Keyboard Shortcuts</h3>
+          <button id="btnCloseShortcuts" class="close-btn">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="shortcut-item"><kbd>&larr;</kbd> <span>Previous Question</span></div>
+          <div class="shortcut-item"><kbd>&rarr;</kbd> <span>Next Question</span></div>
+          <div class="shortcut-item"><kbd>1</kbd> - <kbd>4</kbd> <span>Select Option 1 to 4</span></div>
+          <div class="shortcut-item"><kbd>E</kbd> <span>Toggle Solution / Explanation</span></div>
+          <div class="shortcut-item"><kbd>B</kbd> <span>Bookmark / Unbookmark Question</span></div>
+          <div class="shortcut-item"><kbd>Space</kbd> <span>Flip Flashcard (in Flashcards mode)</span></div>
+          <div class="shortcut-item"><kbd>Esc</kbd> <span>Close Modal</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Submit Confirmation Modal -->
+    <div id="submitModal" class="modal-overlay hidden">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3>Confirm Test Submission</h3>
+          <button id="btnCloseSubmitModal" class="close-btn">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="cbt-summary-box">
+            <div class="summary-stat-row">
+              <span>Total Questions:</span>
+              <strong id="modalTotalQ">75</strong>
+            </div>
+            <div class="summary-stat-row text-success">
+              <span>Answered:</span>
+              <strong id="modalAnsweredQ">0</strong>
+            </div>
+            <div class="summary-stat-row text-warning">
+              <span>Marked for Review:</span>
+              <strong id="modalMarkedQ">0</strong>
+            </div>
+            <div class="summary-stat-row text-danger">
+              <span>Not Answered:</span>
+              <strong id="modalNotAnsweredQ">0</strong>
+            </div>
+          </div>
+          <p class="submit-warning">Are you sure you want to end this test? You will not be able to change answers after submission.</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-subtle" id="btnCancelSubmit">Continue Test</button>
+          <button class="btn-primary" id="btnConfirmSubmit">Confirm & Submit</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

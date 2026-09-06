@@ -40,13 +40,30 @@ export const MathRenderer: React.FC<MathRendererProps> = ({ text, className = ''
         }
         containerRef.current?.appendChild(span);
       } else {
-        // Regular text (handle newlines)
-        const textNode = document.createElement('span');
-        textNode.innerText = part;
-        containerRef.current?.appendChild(textNode);
+        // Regular text (handle newlines and **bold** syntax)
+        const textWrapper = document.createElement('span');
+        // If part contains **bold**, split and style
+        if (part.includes('**')) {
+          const boldParts = part.split(/(\*\*.*?\*\*)/g);
+          boldParts.forEach(bPart => {
+            if (bPart.startsWith('**') && bPart.endsWith('**')) {
+              const strong = document.createElement('strong');
+              strong.innerText = bPart.slice(2, -2);
+              strong.className = 'font-bold text-slate-900 dark:text-slate-100';
+              textWrapper.appendChild(strong);
+            } else {
+              const tSpan = document.createElement('span');
+              tSpan.innerText = bPart;
+              textWrapper.appendChild(tSpan);
+            }
+          });
+        } else {
+          textWrapper.innerText = part;
+        }
+        containerRef.current?.appendChild(textWrapper);
       }
     });
   }, [text]);
 
-  return <div ref={containerRef} className={`math-content ${className}`} style={{ whiteSpace: 'pre-wrap' }} />;
+  return <div ref={containerRef} className={`math-content leading-relaxed ${className}`} style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word' }} />;
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { PlayCircle, Zap } from 'lucide-react';
+import { PlayCircle } from 'lucide-react';
 import type { PaperMeta, TestMode } from '../types';
 
 interface HomeViewProps {
@@ -15,13 +15,8 @@ export const HomeView: React.FC<HomeViewProps> = ({ papers, onSelectPaper }) => 
     <div className="landing-view">
       {/* Hero Section */}
       <div className="hero-section">
-        <div className="hero-pill">
-          <Zap size={14} className="text-indigo-600" />
-          <span>Zero-Latency TypeScript Test Engine</span>
-        </div>
-
         <h1 className="hero-title">
-          Master <span>CUET PG MBA</span> with Real Previous Year Papers
+          <span>Anushka Portal</span>
         </h1>
 
         <p className="hero-desc">

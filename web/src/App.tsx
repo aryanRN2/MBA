@@ -3,6 +3,8 @@ import type { Question, OptionKey, PaperMeta, TestMode, LanguageView } from './t
 import { HomeView } from './components/HomeView';
 import { TestPlayer } from './components/TestPlayer';
 import { ScoreModal } from './components/ScoreModal';
+import { AuthGate } from './components/AuthGate';
+import { UserCheck, LogOut } from 'lucide-react';
 import './index.css';
 
 const PAPERS: PaperMeta[] = [
@@ -70,6 +72,32 @@ const PAPERS: PaperMeta[] = [
 ];
 
 export function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
+    try {
+      const saved = localStorage.getItem('anushka_portal_auth');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        return Boolean(parsed?.isAuthenticated);
+      }
+    } catch {
+      // Fallback
+    }
+    return false;
+  });
+
+  const [authenticatedUser, setAuthenticatedUser] = useState<string>(() => {
+    try {
+      const saved = localStorage.getItem('anushka_portal_auth');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        return parsed?.userId || 'Student';
+      }
+    } catch {
+      // Fallback
+    }
+    return 'Student';
+  });
+
   const [view, setView] = useState<'home' | 'player'>('home');
   const [currentPaper, setCurrentPaper] = useState<PaperMeta>(PAPERS[0]);
   const [questions, setQuestions] = useState<Question[]>([]);
@@ -83,6 +111,12 @@ export function App() {
   const [timerSeconds, setTimerSeconds] = useState(7200);
   const [examSubmitted, setExamSubmitted] = useState(false);
   const [showScoreModal, setShowScoreModal] = useState(false);
+
+  const handleLogout = () => {
+    localStorage.removeItem('anushka_portal_auth');
+    setIsAuthenticated(false);
+    setView('home');
+  };
 
   // Load questions for the selected paper
   const loadPaper = useCallback(async (paper: PaperMeta) => {
@@ -173,8 +207,35 @@ export function App() {
 
   const { score, correct, incorrect, unattempted, accuracy } = calculateScore();
 
+  if (!isAuthenticated) {
+    return (
+      <AuthGate
+        onLoginSuccess={(userId) => {
+          setAuthenticatedUser(userId);
+          setIsAuthenticated(true);
+        }}
+      />
+    );
+  }
+
   return (
     <div className="app-root">
+      {/* Top Floating User Status Bar */}
+      <header className="portal-top-bar">
+        <div className="portal-brand-mini">
+          <span className="portal-logo-dot"></span>
+          <span className="portal-name">Anushka Portal</span>
+        </div>
+        <div className="user-profile-badge">
+          <UserCheck size={15} style={{ color: '#9333ea' }} />
+          <span className="user-id-text">Student: {authenticatedUser}</span>
+          <button onClick={handleLogout} className="btn-logout" title="Log out">
+            <LogOut size={13} />
+            <span>Logout</span>
+          </button>
+        </div>
+      </header>
+
       {view === 'home' ? (
         <HomeView papers={PAPERS} onSelectPaper={handleSelectPaper} />
       ) : (
