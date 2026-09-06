@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useCallback } from 'react';
+import React, { useEffect, useMemo, useCallback, useState } from 'react';
 import {
   ArrowLeft,
   ArrowRight,
@@ -11,6 +11,9 @@ import {
   EyeOff,
   Hourglass,
   Lightbulb,
+  LayoutGrid,
+  ChevronDown,
+  ChevronUp,
 } from 'lucide-react';
 import type { Question, OptionKey, PaperMeta, TestMode, LanguageView } from '../types';
 import { MathRenderer } from './MathRenderer';
@@ -64,6 +67,8 @@ export const TestPlayer: React.FC<TestPlayerProps> = ({
   timerSeconds,
   examSubmitted,
 }) => {
+  const [isMobilePaletteOpen, setIsMobilePaletteOpen] = useState(false);
+
   // Filter questions based on section
   const filteredQuestions = useMemo(() => {
     if (selectedSection === 'ALL') return questions;
@@ -109,14 +114,23 @@ export const TestPlayer: React.FC<TestPlayerProps> = ({
   const handleNext = useCallback(() => {
     if (currentIndex < filteredQuestions.length - 1) {
       setCurrentIndex(currentIndex + 1);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }, [currentIndex, filteredQuestions.length, setCurrentIndex]);
 
   const handlePrev = useCallback(() => {
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }, [currentIndex, setCurrentIndex]);
+
+  // Select question from palette
+  const handlePaletteSelect = (idx: number) => {
+    setCurrentIndex(idx);
+    setIsMobilePaletteOpen(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   // Keyboard Shortcuts
   useEffect(() => {
@@ -168,7 +182,7 @@ export const TestPlayer: React.FC<TestPlayerProps> = ({
         
         {/* Player Top Navigation Bar */}
         <div className="player-top-bar">
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+          <div className="player-top-row-left">
             <button className="nav-home-btn" onClick={onBackToHome}>
               <ArrowLeft size={14} /> Home
             </button>
@@ -186,7 +200,7 @@ export const TestPlayer: React.FC<TestPlayerProps> = ({
             </select>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+          <div className="player-top-row-right">
             <div className="mode-toggle">
               <button
                 className={`mode-btn ${mode === 'practice' ? 'active' : ''}`}
@@ -235,7 +249,7 @@ export const TestPlayer: React.FC<TestPlayerProps> = ({
           </div>
 
           <div className="view-options">
-            <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase' }}>Lang:</span>
+            <span className="lang-label">Lang:</span>
             <button
               className={`lang-btn ${languageView === 'both' ? 'active' : ''}`}
               onClick={() => setLanguageView('both')}
@@ -373,6 +387,18 @@ export const TestPlayer: React.FC<TestPlayerProps> = ({
           </button>
         </div>
 
+        {/* Mobile Question Palette Toggle Banner */}
+        <button
+          className="mobile-palette-toggle-btn"
+          onClick={() => setIsMobilePaletteOpen(!isMobilePaletteOpen)}
+        >
+          <div className="mobile-palette-btn-left">
+            <LayoutGrid size={17} />
+            <span>Question Palette ({answeredCount}/{questions.length})</span>
+          </div>
+          {isMobilePaletteOpen ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+        </button>
+
         <div className="shortcut-hint">
           Keyboard Shortcuts: <kbd>1</kbd>–<kbd>4</kbd> or <kbd>A</kbd>–<kbd>D</kbd> Select Option | <kbd>R</kbd> Reveal Answer | <kbd>→</kbd> Next | <kbd>←</kbd> Prev | <kbd>M</kbd> Mark
         </div>
@@ -380,7 +406,7 @@ export const TestPlayer: React.FC<TestPlayerProps> = ({
       </main>
 
       {/* Side Question Palette */}
-      <aside className="palette-sidebar">
+      <aside className={`palette-sidebar ${isMobilePaletteOpen ? 'mobile-open' : ''}`}>
         <div className="palette-header">
           <h2 className="palette-title">Question Palette</h2>
           <div style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--primary)' }}>
@@ -423,7 +449,7 @@ export const TestPlayer: React.FC<TestPlayerProps> = ({
               <button
                 key={num}
                 className={btnClass}
-                onClick={() => setCurrentIndex(idx)}
+                onClick={() => handlePaletteSelect(idx)}
               >
                 {num}
               </button>
