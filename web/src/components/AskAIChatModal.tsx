@@ -10,6 +10,8 @@ import {
   Zap,
   HelpCircle,
   Calculator,
+  Maximize2,
+  Minimize2,
 } from 'lucide-react';
 import type { Question } from '../types';
 import { MathRenderer } from './MathRenderer';
@@ -33,6 +35,7 @@ const DEFAULT_NVIDIA_MODEL =
   (import.meta as any).env?.VITE_NVIDIA_MODEL || 'meta/llama-3.2-11b-vision-instruct';
 
 export const AskAIChatModal: React.FC<AskAIChatModalProps> = ({ question, onClose }) => {
+  const [isFullscreen, setIsFullscreen] = useState(true);
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 'init',
@@ -192,35 +195,45 @@ GUIDELINES FOR YOUR RESPONSES:
   };
 
   return (
-    <div className="ask-ai-modal-overlay" onClick={onClose}>
-      <div className="ask-ai-modal" onClick={e => e.stopPropagation()}>
+    <div className={`ask-ai-modal-overlay ${isFullscreen ? 'fullscreen-mode' : ''}`} onClick={onClose}>
+      <div className={`ask-ai-modal ${isFullscreen ? 'fullscreen-modal' : ''}`} onClick={e => e.stopPropagation()}>
         {/* Header */}
         <div className="ask-ai-header">
-          <div className="ask-ai-title-wrap">
-            <div className="ai-sparkle-icon">
-              <Sparkles size={18} />
+          <div className="ask-ai-header-inner">
+            <div className="ask-ai-title-wrap">
+              <div className="ai-sparkle-icon">
+                <Sparkles size={18} />
+              </div>
+              <div>
+                <h3 className="ask-ai-title">Ask AI Tutor — Q{question.question_number}</h3>
+              </div>
             </div>
-            <div>
-              <h3 className="ask-ai-title">Ask AI Tutor</h3>
-            </div>
-          </div>
 
-          <div className="ask-ai-header-actions">
-            <button
-              className="ai-btn-reset"
-              onClick={handleResetChat}
-              title="Reset conversation"
-            >
-              <RotateCcw size={14} />
-            </button>
-            <button className="ai-btn-close" onClick={onClose} title="Close AI Tutor">
-              <X size={18} />
-            </button>
+            <div className="ask-ai-header-actions">
+              <button
+                className="ai-btn-reset"
+                onClick={handleResetChat}
+                title="Reset conversation"
+              >
+                <RotateCcw size={14} />
+              </button>
+              <button
+                className="ai-btn-fullscreen"
+                onClick={() => setIsFullscreen(!isFullscreen)}
+                title={isFullscreen ? 'Exit Full Screen' : 'Full Screen'}
+              >
+                {isFullscreen ? <Minimize2 size={16} /> : <Maximize2 size={16} />}
+              </button>
+              <button className="ai-btn-close" onClick={onClose} title="Close AI Tutor">
+                <X size={18} />
+              </button>
+            </div>
           </div>
         </div>
 
         {/* Chat History */}
         <div className="ask-ai-chat-body">
+          <div className="ask-ai-content-container">
           {messages.map(msg => {
             const isBot = msg.role === 'assistant';
             return (
@@ -235,74 +248,79 @@ GUIDELINES FOR YOUR RESPONSES:
             );
           })}
 
-          {isLoading && (
-            <div className="chat-message-row bot-row">
-              <div className="chat-avatar bot-avatar">
-                <Bot size={16} />
+            {isLoading && (
+              <div className="chat-message-row bot-row">
+                <div className="chat-avatar bot-avatar">
+                  <Bot size={16} />
+                </div>
+                <div className="chat-bubble bot-bubble loading-bubble">
+                  <Loader2 size={16} className="spinner-icon" />
+                  <span>Thinking with Llama 3.2 Vision...</span>
+                </div>
               </div>
-              <div className="chat-bubble bot-bubble loading-bubble">
-                <Loader2 size={16} className="spinner-icon" />
-                <span>Thinking with Llama 3.2 Vision...</span>
-              </div>
-            </div>
-          )}
+            )}
 
-          <div ref={chatEndRef} />
+            <div ref={chatEndRef} />
+          </div>
         </div>
 
         {/* Quick Suggestion Chips */}
         <div className="ai-suggestions-row">
-          <button
-            className="ai-chip"
-            onClick={() => handleSendMessage('Please provide a detailed step-by-step solution for this question.')}
-            disabled={isLoading}
-          >
-            <Calculator size={13} />
-            <span>Step-by-step solution</span>
-          </button>
+          <div className="ai-suggestions-inner">
+            <button
+              className="ai-chip"
+              onClick={() => handleSendMessage('Please provide a detailed step-by-step solution for this question.')}
+              disabled={isLoading}
+            >
+              <Calculator size={13} />
+              <span>Step-by-step solution</span>
+            </button>
 
-          <button
-            className="ai-chip"
-            onClick={() => handleSendMessage('What is the fastest shortcut or elimination trick to solve this in under 45 seconds?')}
-            disabled={isLoading}
-          >
-            <Zap size={13} />
-            <span>Shortcut trick</span>
-          </button>
+            <button
+              className="ai-chip"
+              onClick={() => handleSendMessage('What is the fastest shortcut or elimination trick to solve this in under 45 seconds?')}
+              disabled={isLoading}
+            >
+              <Zap size={13} />
+              <span>Shortcut trick</span>
+            </button>
 
-          <button
-            className="ai-chip"
-            onClick={() => handleSendMessage(`Why is Option (${question.correct_option}) the correct answer and why are other options wrong?`)}
-            disabled={isLoading}
-          >
-            <HelpCircle size={13} />
-            <span>Explain correct option</span>
-          </button>
+            <button
+              className="ai-chip"
+              onClick={() => handleSendMessage(`Why is Option (${question.correct_option}) the correct answer and why are other options wrong?`)}
+              disabled={isLoading}
+            >
+              <HelpCircle size={13} />
+              <span>Explain correct option</span>
+            </button>
+          </div>
         </div>
 
         {/* Input Bar */}
         <div className="ask-ai-footer">
-          <div className="ai-input-wrap">
-            <input
-              ref={inputRef}
-              type="text"
-              className="ai-text-input"
-              placeholder="Ask any doubt about this question..."
-              value={input}
-              onChange={e => setInput(e.target.value)}
-              onKeyDown={handleKeyDown}
-              disabled={isLoading}
-            />
-            <button
-              className="btn-send-ai"
-              onClick={() => handleSendMessage()}
-              disabled={!input.trim() || isLoading}
-            >
-              {isLoading ? <Loader2 size={16} className="spinner-icon" /> : <Send size={16} />}
-            </button>
-          </div>
-          <div className="ai-footer-model-tag">
-            Powered by <strong>NVIDIA NIM</strong> • {DEFAULT_NVIDIA_MODEL.split('/')[1] || 'Llama 3.2'}
+          <div className="ask-ai-footer-inner">
+            <div className="ai-input-wrap">
+              <input
+                ref={inputRef}
+                type="text"
+                className="ai-text-input"
+                placeholder="Ask any doubt about this question..."
+                value={input}
+                onChange={e => setInput(e.target.value)}
+                onKeyDown={handleKeyDown}
+                disabled={isLoading}
+              />
+              <button
+                className="btn-send-ai"
+                onClick={() => handleSendMessage()}
+                disabled={!input.trim() || isLoading}
+              >
+                {isLoading ? <Loader2 size={16} className="spinner-icon" /> : <Send size={16} />}
+              </button>
+            </div>
+            <div className="ai-footer-model-tag">
+              Powered by <strong>NVIDIA NIM</strong> • {DEFAULT_NVIDIA_MODEL.split('/')[1] || 'Llama 3.2'}
+            </div>
           </div>
         </div>
       </div>
