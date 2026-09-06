@@ -172,6 +172,60 @@ export const TestPlayer: React.FC<TestPlayerProps> = ({
     return <div className="p-8 text-center text-gray-500">Loading questions...</div>;
   }
 
+  const renderPaletteContent = () => (
+    <>
+      <div className="palette-header">
+        <h2 className="palette-title">Question Palette</h2>
+        <div style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--primary)' }}>
+          <span>{answeredCount}</span> / <span>{questions.length}</span>
+        </div>
+      </div>
+
+      <div className="legend-grid">
+        <div className="legend-item">
+          <div className="legend-dot dot-current"></div>
+          <span>Current</span>
+        </div>
+        <div className="legend-item">
+          <div className="legend-dot dot-answered"></div>
+          <span>Answered</span>
+        </div>
+        <div className="legend-item">
+          <div className="legend-dot dot-flagged"></div>
+          <span>Flagged ({flaggedCount})</span>
+        </div>
+        <div className="legend-item">
+          <div className="legend-dot dot-unanswered"></div>
+          <span>Unanswered</span>
+        </div>
+      </div>
+
+      <div className="palette-grid">
+        {filteredQuestions.map((q, idx) => {
+          const num = q.question_number;
+          const isAnswered = !!selectedOptions[num];
+          const isFlag = !!flaggedQuestions[num];
+          const isCurrent = idx === currentIndex;
+
+          let btnClass = 'palette-btn';
+          if (isCurrent) btnClass += ' current';
+          else if (isFlag) btnClass += ' flagged';
+          else if (isAnswered) btnClass += ' answered';
+
+          return (
+            <button
+              key={num}
+              className={btnClass}
+              onClick={() => handlePaletteSelect(idx)}
+            >
+              {num}
+            </button>
+          );
+        })}
+      </div>
+    </>
+  );
+
   return (
     <div className="test-player-view">
       <main className="main-content">
@@ -227,7 +281,7 @@ export const TestPlayer: React.FC<TestPlayerProps> = ({
           </div>
         </div>
 
-        {/* Section Filters & Language View Bar */}
+        {/* Section Filters */}
         <div className="filter-bar">
           <div className="section-tabs">
             {['ALL', 'Language', 'Quantitative', 'Logical', 'Data Interpretation'].map(sec => (
@@ -243,6 +297,26 @@ export const TestPlayer: React.FC<TestPlayerProps> = ({
               </button>
             ))}
           </div>
+        </div>
+
+        {/* Mobile Question Palette Toggle Banner & Drawer (Upper Side on Mobile) */}
+        <div className="mobile-palette-container">
+          <button
+            className="mobile-palette-toggle-btn"
+            onClick={() => setIsMobilePaletteOpen(!isMobilePaletteOpen)}
+          >
+            <div className="mobile-palette-btn-left">
+              <LayoutGrid size={17} />
+              <span>Select Question ({answeredCount}/{questions.length} Answered)</span>
+            </div>
+            {isMobilePaletteOpen ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+          </button>
+
+          {isMobilePaletteOpen && (
+            <div className="mobile-palette-drawer">
+              {renderPaletteContent()}
+            </div>
+          )}
         </div>
 
         {/* Central Question Card */}
@@ -353,75 +427,15 @@ export const TestPlayer: React.FC<TestPlayerProps> = ({
           </button>
         </div>
 
-        {/* Mobile Question Palette Toggle Banner */}
-        <button
-          className="mobile-palette-toggle-btn"
-          onClick={() => setIsMobilePaletteOpen(!isMobilePaletteOpen)}
-        >
-          <div className="mobile-palette-btn-left">
-            <LayoutGrid size={17} />
-            <span>Question Palette ({answeredCount}/{questions.length})</span>
-          </div>
-          {isMobilePaletteOpen ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
-        </button>
-
         <div className="shortcut-hint">
           Keyboard Shortcuts: <kbd>1</kbd>–<kbd>4</kbd> or <kbd>A</kbd>–<kbd>D</kbd> Select Option | <kbd>R</kbd> Reveal Answer | <kbd>→</kbd> Next | <kbd>←</kbd> Prev | <kbd>M</kbd> Mark
         </div>
 
       </main>
 
-      {/* Side Question Palette */}
-      <aside className={`palette-sidebar ${isMobilePaletteOpen ? 'mobile-open' : ''}`}>
-        <div className="palette-header">
-          <h2 className="palette-title">Question Palette</h2>
-          <div style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--primary)' }}>
-            <span>{answeredCount}</span> / <span>{questions.length}</span>
-          </div>
-        </div>
-
-        <div className="legend-grid">
-          <div className="legend-item">
-            <div className="legend-dot dot-current"></div>
-            <span>Current</span>
-          </div>
-          <div className="legend-item">
-            <div className="legend-dot dot-answered"></div>
-            <span>Answered</span>
-          </div>
-          <div className="legend-item">
-            <div className="legend-dot dot-flagged"></div>
-            <span>Flagged ({flaggedCount})</span>
-          </div>
-          <div className="legend-item">
-            <div className="legend-dot dot-unanswered"></div>
-            <span>Unanswered</span>
-          </div>
-        </div>
-
-        <div className="palette-grid">
-          {filteredQuestions.map((q, idx) => {
-            const num = q.question_number;
-            const isAnswered = !!selectedOptions[num];
-            const isFlag = !!flaggedQuestions[num];
-            const isCurrent = idx === currentIndex;
-
-            let btnClass = 'palette-btn';
-            if (isCurrent) btnClass += ' current';
-            else if (isFlag) btnClass += ' flagged';
-            else if (isAnswered) btnClass += ' answered';
-
-            return (
-              <button
-                key={num}
-                className={btnClass}
-                onClick={() => handlePaletteSelect(idx)}
-              >
-                {num}
-              </button>
-            );
-          })}
-        </div>
+      {/* Desktop Side Question Palette */}
+      <aside className="palette-sidebar desktop-palette">
+        {renderPaletteContent()}
       </aside>
     </div>
   );

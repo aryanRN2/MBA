@@ -886,22 +886,31 @@ body {
   letter-spacing: 0.05em;
 }
 
-.mobile-palette-toggle-btn {
+.mobile-palette-container {
   display: none;
+  width: 100%;
+  flex-direction: column;
+  gap: 0.6rem;
+  box-sizing: border-box;
+}
+
+.mobile-palette-toggle-btn {
+  display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 0.8rem 1.1rem;
+  padding: 0.75rem 1rem;
   background: white;
   border: 1.5px solid var(--border-light);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   color: var(--primary);
   font-family: var(--font-main);
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   cursor: pointer;
   box-shadow: var(--shadow-sm);
   transition: all 0.2s ease;
+  box-sizing: border-box;
 }
 
 .mobile-palette-btn-left {
@@ -913,6 +922,20 @@ body {
 .mobile-palette-toggle-btn:hover {
   background: var(--primary-light);
   border-color: rgba(79, 70, 229, 0.3);
+}
+
+.mobile-palette-drawer {
+  background: white;
+  border: 1.5px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 1rem 0.9rem;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  animation: slideDown 0.2s ease-out;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 /* KaTeX Formula Responsive Wrapping & Markdown Tables */
@@ -1018,23 +1041,12 @@ body {
 }
 
 @media (max-width: 900px) {
-  .mobile-palette-toggle-btn {
+  .mobile-palette-container {
     display: flex;
   }
 
-  .palette-sidebar {
-    display: none;
-    width: 100%;
-    max-width: 100%;
-    background: white;
-    box-shadow: var(--shadow-lg);
-    border: 1.5px solid var(--border-light);
-    animation: slideDown 0.25s ease-out;
-    box-sizing: border-box;
-  }
-
-  .palette-sidebar.mobile-open {
-    display: flex;
+  .desktop-palette {
+    display: none !important;
   }
 
   .palette-grid {
