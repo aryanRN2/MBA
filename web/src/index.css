@@ -1187,9 +1187,9 @@ body {
 }
 
 .chat-bubble {
-  padding: 0.85rem 1.15rem;
+  padding: 0.95rem 1.2rem;
   border-radius: 14px;
-  font-size: 0.88rem;
+  font-size: 0.9rem;
   line-height: 1.6;
   word-break: break-word;
   overflow-wrap: break-word;
@@ -1202,30 +1202,103 @@ body {
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
 }
 
-.bot-bubble p {
+.bot-bubble p, .markdown-p {
   margin: 0 0 0.5rem 0;
+  line-height: 1.6;
 }
 
-.bot-bubble p:last-child {
+.bot-bubble p:last-child, .markdown-p:last-child {
   margin-bottom: 0;
 }
 
-.bot-bubble ul, .bot-bubble ol {
-  margin: 0.4rem 0 0.6rem 1.25rem;
+.markdown-heading {
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0.75rem 0 0.35rem 0;
+  line-height: 1.35;
+}
+
+.markdown-h1 {
+  font-size: 1.15rem;
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: 0.25rem;
+}
+
+.markdown-h2 {
+  font-size: 1.05rem;
+}
+
+.markdown-h3 {
+  font-size: 0.95rem;
+  color: #1e293b;
+}
+
+.markdown-h4, .markdown-h5, .markdown-h6 {
+  font-size: 0.9rem;
+  color: #334155;
+}
+
+.markdown-ul, .markdown-ol {
+  margin: 0.35rem 0 0.65rem 1.25rem;
   padding: 0;
 }
 
-.bot-bubble li {
-  margin-bottom: 0.3rem;
+.markdown-ul {
+  list-style-type: disc;
 }
 
-.bot-bubble code {
+.markdown-ol {
+  list-style-type: decimal;
+}
+
+.markdown-li {
+  margin-bottom: 0.35rem;
+  line-height: 1.55;
+}
+
+.markdown-spacer {
+  height: 0.5rem;
+}
+
+.markdown-blockquote {
+  border-left: 3px solid #6366f1;
+  background: rgba(99, 102, 241, 0.05);
+  padding: 0.4rem 0.75rem;
+  border-radius: 0 6px 6px 0;
+  margin: 0.5rem 0;
+  color: #475569;
+  font-style: italic;
+}
+
+.inline-code-pill {
   background: #f1f5f9;
-  padding: 0.15rem 0.35rem;
+  padding: 0.15rem 0.4rem;
   border-radius: 4px;
-  font-family: monospace;
   font-size: 0.85em;
+  font-family: monospace;
   color: #0f172a;
+  border: 1px solid #e2e8f0;
+}
+
+.markdown-code-block {
+  background: #0f172a;
+  color: #f8fafc;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-size: 0.82rem;
+  margin: 0.6rem 0;
+}
+
+.font-bold-text {
+  font-weight: 700;
+  color: inherit;
+}
+
+.markdown-hr {
+  border: none;
+  border-top: 1px solid var(--border-light);
+  margin: 0.75rem 0;
 }
 
 .user-bubble {
