@@ -14,8 +14,25 @@ export const MathRenderer: React.FC<MathRendererProps> = ({ text, className = ''
     if (!containerRef.current || !text) return;
     containerRef.current.innerHTML = '';
 
+    // Helper to auto-balance unclosed markdown tags before inline rendering
+    const normalizeInlineMarkdown = (s: string) => {
+      // If odd number of ** exist, close the dangling ** at colon or end
+      const boldCount = (s.match(/\*\*/g) || []).length;
+      if (boldCount % 2 !== 0) {
+        if (/(\*\*[^\*:]+:)/.test(s)) {
+          s = s.replace(/(\*\*[^\*:]+:)/, '$1**');
+        }
+        if ((s.match(/\*\*/g) || []).length % 2 !== 0) {
+          s += '**';
+        }
+      }
+      return s;
+    };
+
     // Helper to render inline formatting: KaTeX, inline code, bold, italic
-    const renderInline = (str: string, parent: HTMLElement) => {
+    const renderInline = (rawStr: string, parent: HTMLElement) => {
+      const str = normalizeInlineMarkdown(rawStr);
+
       // 1. Split by Block Math ($$...$$) and Inline Math ($...$)
       const mathParts = str.split(/(\$\$.*?\$\$|\$.*?\$)/g);
       mathParts.forEach(mPart => {
@@ -53,8 +70,8 @@ export const MathRenderer: React.FC<MathRendererProps> = ({ text, className = ''
               const boldParts = cPart.split(/(\*\*.*?\*\*|__.*?__)/g);
               boldParts.forEach(bPart => {
                 if (
-                  (bPart.startsWith('**') && bPart.endsWith('**') && bPart.length > 4) ||
-                  (bPart.startsWith('__') && bPart.endsWith('__') && bPart.length > 4)
+                  (bPart.startsWith('**') && bPart.endsWith('**') && bPart.length >= 4) ||
+                  (bPart.startsWith('__') && bPart.endsWith('__') && bPart.length >= 4)
                 ) {
                   const strong = document.createElement('strong');
                   strong.className = 'font-bold-text';

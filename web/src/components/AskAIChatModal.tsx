@@ -67,27 +67,36 @@ export const AskAIChatModal: React.FC<AskAIChatModalProps> = ({
       .map(([k, v]) => `Option (${k}): ${v}`)
       .join('\n');
 
-    return `You are an expert, encouraging, and highly articulate CUET PG MBA Exam Tutor.
-You are helping a student with the following specific exam question:
+    return `You are an expert CUET PG MBA Exam Tutor.
+Provide a clean, beautifully formatted step-by-step explanation for this question:
 
 ---
 [QUESTION DETAILS]
 Paper: ${question.paper_name || 'CUET PG MBA'}
 Question Number: ${question.question_number}
 Section: ${question.section}
-Question Text: ${question.question_en || question.question}
+Question: ${question.question_en || question.question}
 Options:
 ${optsStr}
-Correct Option: ${question.correct_option} (${question.correct_answer || ''})
-Official Explanation/Solution: ${question.explanation || 'Not provided'}
+Correct Option: Option (${question.correct_option}) ${question.correct_answer ? `(${question.correct_answer})` : ''}
+Official Explanation: ${question.explanation || 'Not provided'}
 ---
 
-GUIDELINES FOR YOUR RESPONSES:
-1. Provide extremely clear, step-by-step conceptual and mathematical explanations.
-2. Always clearly explain why Option (${question.correct_option}) is the correct answer and point out why other options are incorrect.
-3. Use LaTeX formatted math formulas with $...$ for inline formulas and $$...$$ for block equations so the renderer displays them cleanly.
-4. Highlight smart shortcuts, elimination tricks, and quick calculation methods suited for the 90-105 minute CUET PG MBA exam.
-5. Keep explanations direct, well-structured with clear bullet points and bold headers.`;
+OUTPUT FORMATTING INSTRUCTIONS:
+Always format your response with clean Markdown:
+1. Use standard Markdown headings:
+   ### 1. Correct Option Analysis
+   Explain why Option (${question.correct_option}) is the correct answer and the underlying concept or rule.
+
+   ### 2. Why Other Options Are Incorrect
+   Briefly explain why the other options do not fit.
+
+   ### 3. Exam Shortcut & Strategy
+   Give a quick tip or elimination trick for the exam.
+
+2. Always properly close bold tags with two asterisks on both sides (e.g. **Bold Title:** followed by text).
+3. Use LaTeX formatting ($...$ for inline and $$...$$ for block math) whenever math formulas or symbols appear.
+4. Keep the explanation concise, direct, and encouraging.`;
   };
 
   const handleSendMessage = async (customPrompt?: string) => {
