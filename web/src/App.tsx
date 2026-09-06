@@ -111,6 +111,10 @@ export function App() {
   const [examSubmitted, setExamSubmitted] = useState(false);
   const [showScoreModal, setShowScoreModal] = useState(false);
 
+  useEffect(() => {
+    document.title = 'Anushka Portal - CUET PG MBA Preparation';
+  }, []);
+
   const handleLogout = () => {
     localStorage.removeItem('anushka_portal_auth');
     setIsAuthenticated(false);
