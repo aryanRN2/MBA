@@ -1,5 +1,18 @@
 import React, { useState } from 'react';
-import { ArrowLeft, BookOpen, Search, Calculator, Brain, BookText, BarChart3, BookmarkCheck, Lightbulb } from 'lucide-react';
+import {
+  ArrowLeft,
+  BookOpen,
+  FileText,
+  ExternalLink,
+  Download,
+  Calculator,
+  Brain,
+  BookText,
+  BarChart3,
+  BookmarkCheck,
+  Search,
+  Lightbulb,
+} from 'lucide-react';
 import { MathRenderer } from './MathRenderer';
 
 interface NotesTopic {
@@ -269,9 +282,12 @@ interface NotesViewProps {
 }
 
 export const NotesView: React.FC<NotesViewProps> = ({ onBackToHome }) => {
+  const [activeTab, setActiveTab] = useState<'pdf' | 'cheatsheet'>('pdf');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [activeTopicId, setActiveTopicId] = useState<string>(NOTES_DATA[0].id);
+
+  const pdfUrl = '/notes/Abstract_Algebra_Dummit_Foote_Monograph.pdf';
 
   const categories = [
     { id: 'all', label: 'All Notes', icon: BookOpen },
@@ -300,96 +316,165 @@ export const NotesView: React.FC<NotesViewProps> = ({ onBackToHome }) => {
         <button className="nav-home-btn" onClick={onBackToHome}>
           <ArrowLeft size={16} /> Back to Home
         </button>
-        <div className="notes-brand-title">
-          <BookOpen size={18} style={{ color: 'var(--primary)' }} />
-          <span>CUET PG MBA Revision Notes & Formulas</span>
+
+        {/* View Switcher: PDF Document vs Quick Cheat Sheets */}
+        <div className="notes-view-mode-tabs">
+          <button
+            className={`notes-mode-tab ${activeTab === 'pdf' ? 'active' : ''}`}
+            onClick={() => setActiveTab('pdf')}
+          >
+            <FileText size={16} />
+            <span>Class Notes PDF</span>
+          </button>
+          <button
+            className={`notes-mode-tab ${activeTab === 'cheatsheet' ? 'active' : ''}`}
+            onClick={() => setActiveTab('cheatsheet')}
+          >
+            <BookOpen size={16} />
+            <span>Formula Cheat Sheets</span>
+          </button>
+        </div>
+
+        {/* External PDF Action Links */}
+        <div className="notes-top-actions">
+          <a
+            href={pdfUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="notes-action-btn"
+            title="Open in new window"
+          >
+            <ExternalLink size={15} />
+            <span>Open in New Tab</span>
+          </a>
+          <a
+            href={pdfUrl}
+            download="Abstract_Algebra_Dummit_Foote_Monograph.pdf"
+            className="notes-action-btn"
+            title="Download PDF"
+          >
+            <Download size={15} />
+            <span>Download</span>
+          </a>
         </div>
       </div>
 
-      {/* Category Tabs & Search Bar */}
-      <div className="notes-controls-bar">
-        <div className="notes-category-tabs">
-          {categories.map(cat => {
-            const Icon = cat.icon;
-            return (
-              <button
-                key={cat.id}
-                className={`notes-tab ${selectedCategory === cat.id ? 'active' : ''}`}
-                onClick={() => setSelectedCategory(cat.id)}
-              >
-                <Icon size={15} />
-                <span>{cat.label}</span>
-              </button>
-            );
-          })}
-        </div>
-
-        <div className="notes-search-wrapper">
-          <Search size={15} className="notes-search-icon" />
-          <input
-            type="text"
-            className="notes-search-input"
-            placeholder="Search formulas, shortcuts, rules..."
-            value={searchQuery}
-            onChange={e => setSearchQuery(e.target.value)}
-          />
-        </div>
-      </div>
-
-      {/* Main Split Layout: Topics Sidebar + Detailed Content */}
-      <div className="notes-layout">
-        {/* Topics Sidebar */}
-        <aside className="notes-sidebar">
-          <div className="notes-sidebar-header">
-            <span>Topics ({filteredTopics.length})</span>
-          </div>
-          <div className="notes-topic-list">
-            {filteredTopics.length === 0 ? (
-              <div className="p-4 text-center text-sm text-gray-400">No notes match your search.</div>
-            ) : (
-              filteredTopics.map(t => (
-                <div
-                  key={t.id}
-                  className={`notes-topic-card ${activeTopic?.id === t.id ? 'active' : ''}`}
-                  onClick={() => setActiveTopicId(t.id)}
-                >
-                  <h4 className="topic-card-title">{t.title}</h4>
-                  <p className="topic-card-summary">{t.summary}</p>
-                </div>
-              ))
-            )}
-          </div>
-        </aside>
-
-        {/* Detailed Note Reading Area */}
-        <main className="notes-content-panel">
-          {activeTopic ? (
-            <article className="notes-article">
-              <header className="notes-article-header">
-                <div className="notes-badge-tag">
-                  {activeTopic.category.toUpperCase()}
-                </div>
-                <h1 className="notes-article-title">{activeTopic.title}</h1>
-                <p className="notes-article-desc">{activeTopic.summary}</p>
-              </header>
-
-              <div className="notes-article-body">
-                <MathRenderer text={activeTopic.content} />
+      {/* PDF View Tab */}
+      {activeTab === 'pdf' && (
+        <div className="notes-pdf-container">
+          <div className="notes-pdf-header">
+            <div className="pdf-header-info">
+              <FileText size={20} style={{ color: 'var(--primary)' }} />
+              <div>
+                <h2 className="pdf-doc-title">Abstract Algebra — Dummit & Foote Monograph</h2>
+                <p className="pdf-doc-subtitle">Official Reference Class Notes Document</p>
               </div>
+            </div>
+            <a
+              href={pdfUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary-sm"
+            >
+              <ExternalLink size={14} /> Fullscreen Tab
+            </a>
+          </div>
 
-              <div className="notes-tip-box">
-                <Lightbulb size={18} style={{ color: '#d97706', flexShrink: 0 }} />
-                <div>
-                  <strong>Pro Tip for CUET PG MBA:</strong>
-                  <span> Practice questions immediately after reviewing formulas to lock in retention.</span>
-                </div>
+          <div className="pdf-viewer-frame-wrapper">
+            <iframe
+              src={`${pdfUrl}#toolbar=1&navpanes=0`}
+              title="Notes PDF Viewer"
+              className="notes-pdf-iframe"
+            />
+          </div>
+        </div>
+      )}
+
+      {/* Cheat Sheets & Formulas Tab */}
+      {activeTab === 'cheatsheet' && (
+        <>
+          <div className="notes-controls-bar">
+            <div className="notes-category-tabs">
+              {categories.map(cat => {
+                const Icon = cat.icon;
+                return (
+                  <button
+                    key={cat.id}
+                    className={`notes-tab ${selectedCategory === cat.id ? 'active' : ''}`}
+                    onClick={() => setSelectedCategory(cat.id)}
+                  >
+                    <Icon size={15} />
+                    <span>{cat.label}</span>
+                  </button>
+                );
+              })}
+            </div>
+
+            <div className="notes-search-wrapper">
+              <Search size={15} className="notes-search-icon" />
+              <input
+                type="text"
+                className="notes-search-input"
+                placeholder="Search formulas, shortcuts, rules..."
+                value={searchQuery}
+                onChange={e => setSearchQuery(e.target.value)}
+              />
+            </div>
+          </div>
+
+          <div className="notes-layout">
+            <aside className="notes-sidebar">
+              <div className="notes-sidebar-header">
+                <span>Topics ({filteredTopics.length})</span>
               </div>
-            </article>
-          ) : (
-            <div className="notes-empty-state">Select a topic from the left to view notes.</div>
-          )}
-        </main>
-      </div>
+              <div className="notes-topic-list">
+                {filteredTopics.length === 0 ? (
+                  <div className="p-4 text-center text-sm text-gray-400">No notes match your search.</div>
+                ) : (
+                  filteredTopics.map(t => (
+                    <div
+                      key={t.id}
+                      className={`notes-topic-card ${activeTopic?.id === t.id ? 'active' : ''}`}
+                      onClick={() => setActiveTopicId(t.id)}
+                    >
+                      <h4 className="topic-card-title">{t.title}</h4>
+                      <p className="topic-card-summary">{t.summary}</p>
+                    </div>
+                  ))
+                )}
+              </div>
+            </aside>
+
+            <main className="notes-content-panel">
+              {activeTopic ? (
+                <article className="notes-article">
+                  <header className="notes-article-header">
+                    <div className="notes-badge-tag">
+                      {activeTopic.category.toUpperCase()}
+                    </div>
+                    <h1 className="notes-article-title">{activeTopic.title}</h1>
+                    <p className="notes-article-desc">{activeTopic.summary}</p>
+                  </header>
+
+                  <div className="notes-article-body">
+                    <MathRenderer text={activeTopic.content} />
+                  </div>
+
+                  <div className="notes-tip-box">
+                    <Lightbulb size={18} style={{ color: '#d97706', flexShrink: 0 }} />
+                    <div>
+                      <strong>Pro Tip for CUET PG MBA:</strong>
+                      <span> Practice questions immediately after reviewing formulas to lock in retention.</span>
+                    </div>
+                  </div>
+                </article>
+              ) : (
+                <div className="notes-empty-state">Select a topic from the left to view notes.</div>
+              )}
+            </main>
+          </div>
+        </>
+      )}
     </div>
   );
 };
