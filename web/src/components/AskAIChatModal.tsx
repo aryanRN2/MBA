@@ -163,41 +163,61 @@ Always format your response with clean Markdown:
         throw new Error(errorData.error?.message || errorData.error || `API error (Status ${res.status})`);
       }
 
-      // Read streaming SSE body
+      // Read streaming SSE body with proper line buffering
       if (res.body) {
         const reader = res.body.getReader();
         const decoder = new TextDecoder();
         let accumulatedText = '';
         let isDone = false;
+        let lineBuffer = '';
 
         while (!isDone) {
           const { value, done } = await reader.read();
           if (done) break;
 
-          const chunk = decoder.decode(value, { stream: true });
-          const lines = chunk.split('\n');
+          lineBuffer += decoder.decode(value, { stream: true });
+          const lines = lineBuffer.split('\n');
+          // Retain any incomplete line in lineBuffer for the next network packet
+          lineBuffer = lines.pop() || '';
 
           for (const line of lines) {
             const trimmed = line.trim();
-            if (trimmed.startsWith('data: ')) {
-              const dataStr = trimmed.slice(6).trim();
-              if (dataStr === '[DONE]') {
-                isDone = true;
-                break;
-              }
-              try {
-                const parsed = JSON.parse(dataStr);
-                const delta = parsed.choices?.[0]?.delta?.content || '';
-                if (delta) {
-                  accumulatedText += delta;
-                  setMessages(prev =>
-                    prev.map(m => (m.id === botId ? { ...m, content: accumulatedText } : m))
-                  );
-                }
-              } catch {
-                // Ignore partial JSON chunks
-              }
+            if (!trimmed || !trimmed.startsWith('data:')) continue;
+
+            const dataStr = trimmed.replace(/^data:\s*/, '');
+            if (dataStr === '[DONE]') {
+              isDone = true;
+              break;
             }
+            try {
+              const parsed = JSON.parse(dataStr);
+              const delta = parsed.choices?.[0]?.delta?.content || '';
+              if (delta) {
+                accumulatedText += delta;
+                setMessages(prev =>
+                  prev.map(m => (m.id === botId ? { ...m, content: accumulatedText } : m))
+                );
+              }
+            } catch {
+              // Ignore invalid lines
+            }
+          }
+        }
+
+        // Process any trailing data in lineBuffer
+        if (lineBuffer.trim().startsWith('data:')) {
+          const dataStr = lineBuffer.trim().replace(/^data:\s*/, '');
+          if (dataStr !== '[DONE]') {
+            try {
+              const parsed = JSON.parse(dataStr);
+              const delta = parsed.choices?.[0]?.delta?.content || '';
+              if (delta) {
+                accumulatedText += delta;
+                setMessages(prev =>
+                  prev.map(m => (m.id === botId ? { ...m, content: accumulatedText } : m))
+                );
+              }
+            } catch {}
           }
         }
 
