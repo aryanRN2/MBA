@@ -99,7 +99,7 @@ export function App() {
   });
 
   const [view, setView] = useState<'home' | 'player'>('home');
-  const [currentPaper, setCurrentPaper] = useState<PaperMeta>(PAPERS[0]);
+  const [, setCurrentPaper] = useState<PaperMeta>(PAPERS[0]);
   const [questions, setQuestions] = useState<Question[]>([]);
   const [mode, setMode] = useState<TestMode>('practice');
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -233,7 +233,6 @@ export function App() {
       ) : (
         <TestPlayer
           questions={questions}
-          currentPaper={currentPaper}
           mode={mode}
           onBackToHome={() => setView('home')}
           onSubmitExam={handleSubmitExam}

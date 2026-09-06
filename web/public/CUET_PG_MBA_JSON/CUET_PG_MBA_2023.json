@@ -617,11 +617,11 @@
     "question_number": 37,
     "question_id": "68634025551",
     "section": "Quantitative Techniques",
-    "question": "If the price of rice falls by 2 ; %, a person can buy 9 kg more of rice for 71,260 than before. If the price had ‘ i . risen by 12 zs %, how much rice would he have bought for the same sum? wv kg an",
+    "question": "If the price of rice falls by 2.5%, a person can buy 9 kg more of rice for ₹1,260 than before. If the price had risen by 12.5%, how much rice would he have bought for the same sum?",
     "options": {
-      "1": "310kg",
-      "2": "31",
-      "3": "31",
+      "1": "310 kg",
+      "2": "312 kg",
+      "3": "315 kg",
       "4": "320 kg"
     },
     "correct_option": "2",
@@ -634,12 +634,12 @@
     "question_number": 38,
     "question_id": "68634025552",
     "section": "Quantitative Techniques",
-    "question": "2 1,820 are divided among A. B and C. The share of A is 2 of the combined share of B and C. Then A gets how much amount?",
+    "question": "₹1,820 is divided among A, B and C. The share of A is 2/5 of the combined share of B and C. Then A gets how much amount?",
     "options": {
-      "1": "2 420",
-      "2": "480",
-      "3": "3 500",
-      "4": "2520"
+      "1": "₹420",
+      "2": "₹480",
+      "3": "₹500",
+      "4": "₹520"
     },
     "correct_option": "4",
     "correct_answer": "₹520",

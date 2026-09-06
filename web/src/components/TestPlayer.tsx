@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useCallback, useState } from 'react';
+import React, { useEffect, useMemo, useCallback, useState, useRef } from 'react';
 import {
   ArrowLeft,
   ArrowRight,
@@ -13,12 +13,11 @@ import {
   ChevronDown,
   ChevronUp,
 } from 'lucide-react';
-import type { Question, OptionKey, PaperMeta, TestMode } from '../types';
+import type { Question, OptionKey, TestMode } from '../types';
 import { MathRenderer } from './MathRenderer';
 
 interface TestPlayerProps {
   questions: Question[];
-  currentPaper: PaperMeta;
   mode: TestMode;
   onBackToHome: () => void;
   onSubmitExam: () => void;
@@ -38,7 +37,6 @@ interface TestPlayerProps {
 
 export const TestPlayer: React.FC<TestPlayerProps> = ({
   questions,
-  currentPaper,
   mode,
   onBackToHome,
   onSubmitExam,
@@ -56,6 +54,13 @@ export const TestPlayer: React.FC<TestPlayerProps> = ({
   examSubmitted,
 }) => {
   const [isMobilePaletteOpen, setIsMobilePaletteOpen] = useState(false);
+  const questionCardRef = useRef<HTMLElement>(null);
+
+  const scrollToQuestionCard = () => {
+    if (questionCardRef.current) {
+      questionCardRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
 
   // Filter questions based on section
   const filteredQuestions = useMemo(() => {
@@ -102,14 +107,14 @@ export const TestPlayer: React.FC<TestPlayerProps> = ({
   const handleNext = useCallback(() => {
     if (currentIndex < filteredQuestions.length - 1) {
       setCurrentIndex(currentIndex + 1);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      scrollToQuestionCard();
     }
   }, [currentIndex, filteredQuestions.length, setCurrentIndex]);
 
   const handlePrev = useCallback(() => {
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      scrollToQuestionCard();
     }
   }, [currentIndex, setCurrentIndex]);
 
@@ -117,7 +122,7 @@ export const TestPlayer: React.FC<TestPlayerProps> = ({
   const handlePaletteSelect = (idx: number) => {
     setCurrentIndex(idx);
     setIsMobilePaletteOpen(false);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    scrollToQuestionCard();
   };
 
   // Keyboard Shortcuts
@@ -228,7 +233,6 @@ export const TestPlayer: React.FC<TestPlayerProps> = ({
             <button className="nav-home-btn" onClick={onBackToHome}>
               <ArrowLeft size={15} /> Back to Papers
             </button>
-            <span className="current-paper-title-badge">{currentPaper.title}</span>
           </div>
 
           <div className="player-top-row-right">
@@ -286,7 +290,7 @@ export const TestPlayer: React.FC<TestPlayerProps> = ({
         </div>
 
         {/* Central Question Card */}
-        <section className="question-card">
+        <section ref={questionCardRef} className="question-card">
           <div className="question-header">
             <div className="q-meta">
               <span className="q-number-badge">Question {qNum}</span>
