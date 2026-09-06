@@ -18,10 +18,6 @@ export const HomeView: React.FC<HomeViewProps> = ({ papers, onSelectPaper }) => 
         <h1 className="hero-title">
           <span>Anushka Portal</span>
         </h1>
-
-        <p className="hero-desc">
-          Practice 100% verified bilingual questions, KaTeX formula rendering, on-demand step-by-step mathematical explanations, and full-length timed mock tests.
-        </p>
       </div>
 
       {/* Clean Minimalist Black Button Launcher */}
