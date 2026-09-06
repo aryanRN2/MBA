@@ -316,17 +316,8 @@ export const TestPlayer: React.FC<TestPlayerProps> = ({
                 }
                 title="Explain why the correct option is right"
               >
-                <Lightbulb size={14} />
-                <span>AI Explain</span>
-              </button>
-
-              <button
-                className="action-btn-ai"
-                onClick={() => handleOpenAIWithPrompt()}
-                title="Ask AI Tutor about this problem"
-              >
                 <Sparkles size={14} />
-                <span>Ask AI</span>
+                <span>AI Explain</span>
               </button>
 
               <button
