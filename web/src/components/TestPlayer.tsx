@@ -12,9 +12,11 @@ import {
   LayoutGrid,
   ChevronDown,
   ChevronUp,
+  Sparkles,
 } from 'lucide-react';
 import type { Question, OptionKey, TestMode } from '../types';
 import { MathRenderer } from './MathRenderer';
+import { AskAIChatModal } from './AskAIChatModal';
 
 interface TestPlayerProps {
   questions: Question[];
@@ -54,6 +56,7 @@ export const TestPlayer: React.FC<TestPlayerProps> = ({
   examSubmitted,
 }) => {
   const [isMobilePaletteOpen, setIsMobilePaletteOpen] = useState(false);
+  const [isAskAIOpen, setIsAskAIOpen] = useState(false);
   const questionCardRef = useRef<HTMLElement>(null);
 
   const scrollToQuestionCard = () => {
@@ -299,6 +302,15 @@ export const TestPlayer: React.FC<TestPlayerProps> = ({
 
             <div className="q-actions">
               <button
+                className="action-btn-ai"
+                onClick={() => setIsAskAIOpen(true)}
+                title="Ask AI Tutor about this problem"
+              >
+                <Sparkles size={14} />
+                <span>Ask AI</span>
+              </button>
+
+              <button
                 className={`action-btn-sm ${isFlagged ? 'flagged' : ''}`}
                 onClick={toggleFlag}
               >
@@ -407,6 +419,14 @@ export const TestPlayer: React.FC<TestPlayerProps> = ({
       <aside className="palette-sidebar desktop-palette">
         {renderPaletteContent()}
       </aside>
+
+      {/* AI Tutor Chatbot Modal */}
+      {isAskAIOpen && (
+        <AskAIChatModal
+          question={currentQuestion}
+          onClose={() => setIsAskAIOpen(false)}
+        />
+      )}
     </div>
   );
 };
