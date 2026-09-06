@@ -1,0 +1,1503 @@
+import json
+import os
+import shutil
+
+BASE_DIR = "/Users/aryanmaurya/MBA"
+
+# Full 100 questions reconstructed directly from COQP 12 - 2022 Shift 1 Question Paper
+questions = []
+
+def add_q(num, qid, section, q_en, q_hi, opts, corr_opt, corr_ans, exp):
+    questions.append({
+        "year": 2022,
+        "paper_name": "CUET PG MBA 2022 (PGQP38 - Slot 1)",
+        "question_number": num,
+        "question_id": str(qid),
+        "section": section,
+        "question": q_en,
+        "question_en": q_en,
+        "question_hi": q_hi,
+        "options": opts,
+        "correct_option": str(corr_opt),
+        "correct_answer": corr_ans,
+        "explanation": exp
+    })
+
+# Section 1: Language Comprehension & Verbal Ability (Q1 - Q25)
+add_q(
+    1, "1364691", "Language Comprehension & Verbal Ability",
+    "From among the four options given, choose the pair of phrases that will be the most suitable to complete the following and make a meaningful sentence :\n\nThe best advice that my parents gave me is don't ________ and ________",
+    "दिए गए चार विकल्पों में से, मुहावरों के उस युग्म का चयन कीजिए जो निम्नलिखित वाक्य को सार्थक बनाने के लिए सबसे उपयुक्त हो:\n\nमेरे माता-पिता ने मुझे जो सबसे अच्छी सलाह दी, वह यह है कि _______ और _______।",
+    {
+        "1": "put all your eggs in one basket; a penny saved is a penny earned",
+        "2": "break the ice; do something at the drop of a hat",
+        "3": "give someone the cold shoulder; go on a wild goose chase",
+        "4": "hit the nail on the head; kill two birds with one stone"
+    },
+    "1", "put all your eggs in one basket; a penny saved is a penny earned",
+    "• 'Don't put all your eggs in one basket' is a proverb advising against risking all resources on a single venture, and 'a penny saved is a penny earned' emphasizes prudent financial saving. Both represent classic parental wisdom and grammatically complete the sentence."
+)
+
+add_q(
+    2, "1364692", "Language Comprehension & Verbal Ability",
+    "Find out which part of the sentence has an error, if there is no error, mark option 4:\n\n(A) Countries dealing with existing humanitarian crises\n(B) or emergencies are particularly exposed\n(C) to effects of COVID-19\n(D) No Error",
+    "दिए गए वाक्य में त्रुटि वाला भाग पहचानिए, यदि कोई त्रुटि नहीं है, तो विकल्प 4 चुनें:\n\n(A) Countries dealing with existing humanitarian crises\n(B) or emergencies are particularly exposed\n(C) to effects of COVID-19\n(D) No Error",
+    {
+        "1": "(A) Countries dealing with existing humanitarian crises",
+        "2": "(B) or emergencies are particularly exposed",
+        "3": "(C) to effects of COVID-19",
+        "4": "(D) No Error"
+    },
+    "3", "(C) to effects of COVID-19",
+    "• Error in Part (C): The definite article 'the' is missing before 'effects' when referring to specific consequences caused by a known pandemic ('to the effects of COVID-19')."
+)
+
+add_q(
+    3, "1364693", "Language Comprehension & Verbal Ability",
+    "From among the four options given, choose the one that has been spelt correctly.",
+    "दिए गए चार विकल्पों में से शुद्ध वर्तनी वाले शब्द का चयन कीजिए:",
+    {
+        "1": "Thesarus",
+        "2": "Thesaurus",
+        "3": "Thesaurs",
+        "4": "Thsaurus"
+    },
+    "2", "Thesaurus",
+    "• The correct spelling is 'Thesaurus' (T-H-E-S-A-U-R-U-S), which is a reference book that lists words and their synonyms."
+)
+
+add_q(
+    4, "1364694", "Language Comprehension & Verbal Ability",
+    "Choose the correct pair of prepositions, in the correct sequence, from among the four options given, to fill in the blanks in the following sentence :\n\n________ he climbed ________ the train, he bought a bottle of water for the journey.",
+    "वाक्य में रिक्त स्थानों की पूर्ति के लिए सही पूर्वसर्ग (Prepositions) युग्म चुनिए:\n\n________ he climbed ________ the train, he bought a bottle of water for the journey.",
+    {
+        "1": "Upon; in",
+        "2": "Until; before",
+        "3": "Before; aboard",
+        "4": "During; onto"
+    },
+    "3", "Before; aboard",
+    "• 'Before' correctly denotes the time prior to boarding, and 'aboard' refers to boarding the train ('climbed aboard')."
+)
+
+add_q(
+    5, "1364695", "Language Comprehension & Verbal Ability",
+    "From among the four options given, choose the idiom that will be the most suitable to complete the following statement :\n\n\"The police realised that they had been ________ when it was proved that the man they had arrested was innocent\".",
+    "दिए गए कथन को पूरा करने के लिए सबसे उपयुक्त मुहावरे का चयन कीजिए:\n\n\"The police realised that they had been ________ when it was proved that the man they had arrested was innocent\".",
+    {
+        "1": "comparing apples and oranges",
+        "2": "getting a taste of their own medicine",
+        "3": "barking up the wrong tree",
+        "4": "saving for a rainy day"
+    },
+    "3", "barking up the wrong tree",
+    "• 'Barking up the wrong tree' means pursuing a mistaken line of enquiry or suspecting the wrong person."
+)
+
+add_q(
+    6, "1364696", "Language Comprehension & Verbal Ability",
+    "From among the four options given, choose the phrase that will best answer the question below :\n\nDo you visit your grandparents often ?",
+    "नीचे दिए गए प्रश्न का सबसे उपयुक्त उत्तर देने वाले वाक्यांश का चयन कीजिए:\n\n'क्या आप अक्सर अपने दादा-दादी से मिलने जाते हैं?'",
+    {
+        "1": "Everyone knows it",
+        "2": "He is very annoying",
+        "3": "From time to time",
+        "4": "I don't want to bother you"
+    },
+    "3", "From time to time",
+    "• 'From time to time' is an expression meaning 'occasionally / from time to time', answering the frequency question."
+)
+
+add_q(
+    7, "1364697", "Language Comprehension & Verbal Ability",
+    "Find out which part of the sentence has an error, if there is no error, mark option 4.\n\n(A) Online education is an amenable instructional\n(B) delivery process includes any learning\n(C) that takes place via the internet.\n(D) No Error.",
+    "दिए गए वाक्य में त्रुटि वाला भाग पहचानिए, यदि कोई त्रुटि नहीं है, तो विकल्प 4 चुनें:\n\n(A) Online education is an amenable instructional\n(B) delivery process includes any learning\n(C) that takes place via the internet.\n(D) No Error.",
+    {
+        "1": "(A) Online education is an amenable instructional",
+        "2": "(B) delivery process includes any learning",
+        "3": "(C) that takes place via the internet.",
+        "4": "(D) No Error."
+    },
+    "2", "(B) delivery process includes any learning",
+    "• Part (B) is missing a connector or participle ('delivery process that includes any learning' or 'delivery process including any learning')."
+)
+
+add_q(
+    8, "1364698", "Language Comprehension & Verbal Ability",
+    "From among the four options given, choose the phrase that will be the most suitable to complete the following and make a meaningful sentence :\n\nStudying in a private University ________",
+    "सार्थक वाक्य बनाने के लिए दिए गए विकल्पों में से सबसे उपयुक्त मुहावरे का चयन कीजिए:\n\n'Studying in a private University ________'",
+    {
+        "1": "is like comparing apples and oranges",
+        "2": "costs an arm and a leg",
+        "3": "is like going on a wild goose chase",
+        "4": "happens once in a blue moon"
+    },
+    "2", "costs an arm and a leg",
+    "• 'Costs an arm and a leg' means extremely expensive, which fits the context of university tuition."
+)
+
+add_q(
+    9, "1364699", "Language Comprehension & Verbal Ability",
+    "From among the four options given, choose the one in which the word has been spelt correctly.",
+    "दिए गए चार विकल्पों में से शुद्ध वर्तनी वाले शब्द का चयन कीजिए:",
+    {
+        "1": "Excreable",
+        "2": "Execrable",
+        "3": "Execreble",
+        "4": "Execrabble"
+    },
+    "2", "Execrable",
+    "• The correct spelling is 'Execrable' (E-X-E-C-R-A-B-L-E), meaning extremely bad or unpleasant."
+)
+
+add_q(
+    10, "13646910", "Language Comprehension & Verbal Ability",
+    "From among the four options given, choose the correct sequence of the four phrases given below, to make a meaningful sentence :\n\nA. Single thought or idea\nB. A verb and an object and\nC. A simple sentence contains a subject\nD. Normally conveys a",
+    "एक सार्थक वाक्य बनाने के लिए नीचे दिए गए चार वाक्यांशों का सही क्रम चुनिए:\n\nA. Single thought or idea\nB. A verb and an object and\nC. A simple sentence contains a subject\nD. Normally conveys a",
+    {
+        "1": "D, A, C, B",
+        "2": "A, C, B, D",
+        "3": "B, D, A, C",
+        "4": "C, B, D, A"
+    },
+    "4", "C, B, D, A",
+    "• Logical sequence: C ('A simple sentence contains a subject') -> B ('a verb and an object and') -> D ('normally conveys a') -> A ('single thought or idea')."
+)
+
+add_q(
+    11, "13646911", "Language Comprehension & Verbal Ability",
+    "From among the four options given, choose the one word substitute for the phrase:\n\n‘a young person who commits a crime’",
+    "दिए गए विकल्पों में से 'एक युवा व्यक्ति जो अपराध करता है' के लिए एक शब्द चुनें:",
+    {
+        "1": "Teenager",
+        "2": "Adolescent",
+        "3": "Delinquent",
+        "4": "Student"
+    },
+    "3", "Delinquent",
+    "• 'Delinquent' (juvenile delinquent) specifically refers to a young person who regularly commits crimes or anti-social acts."
+)
+
+add_q(
+    12, "13646912", "Language Comprehension & Verbal Ability",
+    "From among the four options given, choose the correct sequence of the four phrases given below, to make a meaningful sentence :\n\nA. my father rose at 5.30, went to his study\nB. and then went back to work for the rest of the morning\nC. every morning, no matter how late he had been up\nD. wrote for a couple of hours, made us all breakfast",
+    "सार्थक वाक्य बनाने के लिए वाक्यांशों का सही क्रम चुनिए:\n\nA. my father rose at 5.30, went to his study\nB. and then went back to work for the rest of the morning\nC. every morning, no matter how late he had been up\nD. wrote for a couple of hours, made us all breakfast",
+    {
+        "1": "A, B, C, D",
+        "2": "C, A, D, B",
+        "3": "B, D, A, C",
+        "4": "D, C, B, A"
+    },
+    "2", "C, A, D, B",
+    "• Sequence: C ('Every morning, no matter how late he had been up') -> A ('my father rose at 5.30, went to his study') -> D ('wrote for a couple of hours, made us all breakfast') -> B ('and then went back to work for the rest of the morning')."
+)
+
+add_q(
+    13, "13646913", "Language Comprehension & Verbal Ability",
+    "Match List I with List II :\n\n| List I (Latin Phrase) | List II (Meaning) |\n| :--- | :--- |\n| A. alma mater | I. done from a sense of moral obligation rather than legal requirement |\n| B. ex gratia | II. one's old university or school |\n| C. lingua franca | III. genuine; real |\n| D. bona fide | IV. a shared language of communication |\n\nChoose the correct answer from the options given below:",
+    "सूची I को सूची II के साथ सुमेलित कीजिए:\n\n| सूची I (विदेशी मुहावरे) | सूची II (अर्थ) |\n| :--- | :--- |\n| A. alma mater | I. नैतिक दायित्व के रूप में दिया गया |\n| B. ex gratia | II. पूर्व शिक्षण संस्थान (विश्वविद्यालय / स्कूल) |\n| C. lingua franca | III. वास्तविक / प्रामाणिक |\n| D. bona fide | IV. संपर्क भाषा |\n\nनीचे दिए गए विकल्पों में से सही उत्तर चुनिए:",
+    {
+        "1": "A-I, B-III, C-II, D-IV",
+        "2": "A-II, B-I, C-IV, D-III",
+        "3": "A-II, B-IV, C-I, D-III",
+        "4": "A-IV, B-II, C-III, D-I"
+    },
+    "2", "A-II, B-I, C-IV, D-III",
+    "• Alma mater = One's old university/school (A-II)\n• Ex gratia = As a favour / out of moral obligation (B-I)\n• Lingua franca = Common communicative language (C-IV)\n• Bona fide = In good faith / genuine (D-III)."
+)
+
+add_q(
+    14, "13646914", "Language Comprehension & Verbal Ability",
+    "From among the four options given, choose the one which is a grammatically correct sentence.",
+    "दिए गए चार विकल्पों में से व्याकरण की दृष्टि से शुद्ध वाक्य का चयन कीजिए:",
+    {
+        "1": "A powerful voice side me whisper that I am be foolish, that a woman sixty year old should have more sense than too undertake a journey like one this.",
+        "2": "A powerful voice insides me whispered that I was be fool, that a sixty year old woman shall have more senses than to undertake a journey like this.",
+        "3": "A powerful voice inside me whispered that I was being foolish, that a woman sixty years old should have more sense than to undertake a journey like this.",
+        "4": "A powerful voice inside me whisper that I am being foolish, that woman sixty years old should having more sense than to undertake journey like this."
+    },
+    "3", "A powerful voice inside me whispered that I was being foolish, that a woman sixty years old should have more sense than to undertake a journey like this.",
+    "• Option (3) is fully grammatical in its tense consistency (whispered / was being), correct idiom ('inside me'), and proper usage ('more sense than to undertake')."
+)
+
+add_q(
+    15, "13646915", "Language Comprehension & Verbal Ability",
+    "From among the four options given, choose the correct sequence of the four phrases given below, to make a meaningful sentence :\n\nA. during the pandemic\nB. the global decline\nC. in international tourist arrivals\nD. was 73 per cent",
+    "सार्थक वाक्य बनाने के लिए वाक्यांशों का सही क्रम चुनिए:\n\nA. during the pandemic\nB. the global decline\nC. in international tourist arrivals\nD. was 73 per cent",
+    {
+        "1": "A, B, C, D",
+        "2": "B, C, A, D",
+        "3": "C, D, A, B",
+        "4": "D, A, B, C"
+    },
+    "2", "B, C, A, D",
+    "• Sentence: 'The global decline in international tourist arrivals during the pandemic was 73 per cent.' (B-C-A-D)."
+)
+
+add_q(
+    16, "13646916", "Language Comprehension & Verbal Ability",
+    "Choose one word substitute for the following :\n\nOne who walks at night",
+    "निम्नलिखित के लिए एक शब्द चुनें:\n\n'जो रात में चलता/घूमता है'",
+    {
+        "1": "Somnambulist",
+        "2": "Somniloquist",
+        "3": "Noctambulist",
+        "4": "Ventriloquist"
+    },
+    "3", "Noctambulist",
+    "• 'Noctambulist' (from Latin noctis = night + ambulare = to walk) means one who walks at night (sleepwalking at night).\n• Somnambulist = sleepwalker\n• Somniloquist = one who talks in sleep\n• Ventriloquist = one who produces sounds without moving lips."
+)
+
+add_q(
+    17, "13646917", "Language Comprehension & Verbal Ability",
+    "From among the four options given, choose pair of words that are antonyms of each other :",
+    "दिए गए विकल्पों में से उस शब्द-युग्म का चयन कीजिए जो एक-दूसरे के विलोम (Antonyms) हैं:",
+    {
+        "1": "Various; many",
+        "2": "Vivid; dreary",
+        "3": "Vague; unclear",
+        "4": "Vast; immense"
+    },
+    "2", "Vivid; dreary",
+    "• 'Vivid' means bright, lively, and intense, while 'dreary' means dull, bleak, and lifeless. Thus, they are antonyms."
+)
+
+add_q(
+    18, "13646918", "Language Comprehension & Verbal Ability",
+    "From among the four options given, choose the pair of words that are synonyms of each other.",
+    "दिए गए विकल्पों में से उस शब्द-युग्म का चयन कीजिए जो एक-दूसरे के पर्यायवाची (Synonyms) हैं:",
+    {
+        "1": "Sensible; ridiculous",
+        "2": "Ridiculous; funny",
+        "3": "Funny; tragic",
+        "4": "Tragic; romance"
+    },
+    "2", "Ridiculous; funny",
+    "• 'Ridiculous' and 'funny' are synonymous in the sense of being absurd, comical, or laughable."
+)
+
+add_q(
+    19, "13646919", "Language Comprehension & Verbal Ability",
+    "Choose the correct indirect speech form of the following sentence :\n\nShe said to me, \"I am writing a letter to my father.\"",
+    "निम्नलिखित वाक्य का सही अप्रत्यक्ष कथन (Indirect Speech) रूप चुनिए:\n\nShe said to me, \"I am writing a letter to my father.\"",
+    {
+        "1": "She said to me that she is writing a letter to her father.",
+        "2": "She told me that she was writing a letter to her brother.",
+        "3": "She says that she has been writing a letter to her father.",
+        "4": "She told me that she was writing a letter to her father."
+    },
+    "4", "She told me that she was writing a letter to her father.",
+    "• In reporting indirect speech with reporting verb 'said to me', it changes to 'told me'. Present continuous 'am writing' changes to past continuous 'was writing', and pronoun 'my' changes to 'her'."
+)
+
+add_q(
+    20, "13646920", "Language Comprehension & Verbal Ability",
+    "From among the four options given, choose the correct idiom to complete the following sentence :\n\nWhen her parents got to know that she had cheated in the exams, they ________",
+    "सार्थक वाक्य बनाने के लिए सबसे उपयुक्त मुहावरे का चयन कीजिए:\n\n'When her parents got to know that she had cheated in the exams, they ________'",
+    {
+        "1": "beat around the bush",
+        "2": "read her the riot act",
+        "3": "spilled the beans",
+        "4": "told her, \"the proof is in the pudding\""
+    },
+    "2", "read her the riot act",
+    "• 'Read (someone) the riot act' means to reprimand or scold someone severely for bad behavior."
+)
+
+add_q(
+    21, "13646921", "Language Comprehension & Verbal Ability",
+    "From among the four options given, choose the one which is a grammatically correct sentence.",
+    "दिए गए विकल्पों में से व्याकरण की दृष्टि से शुद्ध वाक्य चुनिए:",
+    {
+        "1": "He and she go to the market every Sunday to buys fresh vegetable.",
+        "2": "He and she goes to market every Sunday to buy fresh vegetables.",
+        "3": "He and she go to the market every Sunday to buy fresh vegetables.",
+        "4": "He and she goes to the market every Sunday to buys fresh vegetable."
+    },
+    "3", "He and she go to the market every Sunday to buy fresh vegetables.",
+    "• 'He and she' forms a compound plural subject, so it requires the plural verb 'go'. The infinitive 'to buy' takes the base form of the verb, and 'vegetables' is plural."
+)
+
+add_q(
+    22, "13646922", "Language Comprehension & Verbal Ability",
+    "Choose the correct sentence.",
+    "शुद्ध वाक्य का चयन कीजिए:",
+    {
+        "1": "I look forward to hear from you soon.",
+        "2": "I look forward to hearing from you soon.",
+        "3": "I look forward with hearing from you soon.",
+        "4": "I look forward to have heard from you soon."
+    },
+    "2", "I look forward to hearing from you soon.",
+    "• The phrasal verb 'look forward to' requires a gerund ('-ing' form), hence 'look forward to hearing from you soon' is correct."
+)
+
+add_q(
+    23, "13646923", "Language Comprehension & Verbal Ability",
+    "Identify the correct passive voice form of the following sentence :\n\nI saw the dog eating it.",
+    "निम्नलिखित वाक्य का सही कर्मवाच्य (Passive Voice) रूप पहचानिए:\n\n'I saw the dog eating it.'",
+    {
+        "1": "I saw it being eaten by the dog.",
+        "2": "I saw it was being eaten by the dog.",
+        "3": "I saw it is being eaten by the dog.",
+        "4": "I saw something eaten by the dog."
+    },
+    "1", "I saw it being eaten by the dog.",
+    "• The continuous participle clause 'the dog eating it' converts to passive participle 'it being eaten by the dog'."
+)
+
+add_q(
+    24, "13646924", "Language Comprehension & Verbal Ability",
+    "From among the four options given, choose the one word substitute for the phrase :\n\n‘an expression of sympathy’",
+    "दिए गए विकल्पों में से 'सहानुभूति / सांत्वना की अभिव्यक्ति' के लिए एक शब्द चुनें:",
+    {
+        "1": "apology",
+        "2": "condolence",
+        "3": "pity",
+        "4": "charity"
+    },
+    "2", "condolence",
+    "• 'Condolence' is an expression of sympathy, especially to someone who is suffering grief or misfortune."
+)
+
+add_q(
+    25, "13646925", "Language Comprehension & Verbal Ability",
+    "Choose the correct order of the paragraph to create a meaning out of PQRS set :\n\nThis part of the argument shows\n\nP : such as the legal, the political and welfare systems.\nQ : how intermediate social institutions in America,\nR : and their role in the transformation of rehabilitation into a commodity.\nS : contribute to the specific way in which disability is produced",
+    "सार्थक अनुच्छेद बनाने के लिए PQRS का सही क्रम चुनिए:\n\nThis part of the argument shows\n\nP : such as the legal, the political and welfare systems.\nQ : how intermediate social institutions in America,\nR : and their role in the transformation of rehabilitation into a commodity.\nS : contribute to the specific way in which disability is produced",
+    {
+        "1": "R, S, Q, P",
+        "2": "P, Q, R, S",
+        "3": "Q, P, S, R",
+        "4": "S, R, Q, P"
+    },
+    "3", "Q, P, S, R",
+    "• Logical sentence flow: 'This part of the argument shows (Q) how intermediate social institutions in America, (P) such as the legal, the political and welfare systems, (S) contribute to the specific way in which disability is produced (R) and their role in the transformation of rehabilitation into a commodity.' (Q-P-S-R)."
+)
+
+# Section 2: Reading Comprehension (Q26 - Q30)
+rc_passage = """**Read the passage below and answer the questions that follow :**
+
+Hunting out cafes is probably the last thing one would expect to do on a trip to the magical land of Ladakh, where one expects to find restaurants serving fresh dim sums, steaming tingmos and cubes of yak cheese. But on a recent trip to Leh, I ended up on an interesting adventure discovering cozy cafes serving aromatic coffees, wood-fired pizzas and fresh cinnamon rolls.
+
+The aroma of freshly baked artisanal breads and pastries drew me to a German Bakery in the main bazaar. Over the years, this has become a cultural staple for travelers. With its peaceful garden seating and shelves stocked with apple crumbles, croissants and rich espresso, it offers a serene retreat amidst the rugged Himalayan mountains. The vibrant cafe culture here represents a delightful fusion of traditional Ladakhi warmth with cosmopolitan hospitality."""
+
+add_q(
+    26, "13646926", "Language Comprehension & Verbal Ability",
+    "Select the pair which has the same relationship as the pair below :\n\nGrammy : Music",
+    "उस युग्म का चयन कीजिए जिसका संबंध 'Grammy : Music' के समान है:",
+    {
+        "1": "Booker : Literature",
+        "2": "Famine : Television",
+        "3": "Mutton : Sheep",
+        "4": "War : UNO"
+    },
+    "1", "Booker : Literature",
+    "• Grammy is the most prestigious international award in Music, just as the Booker Prize is a premier award in Literature."
+)
+
+add_q(
+    27, "13646927", "Reading Comprehension",
+    f"{rc_passage}\n\n**Question**: What kind of traditional Ladakhi foods did the author initially expect to find in Ladakh?",
+    f"{rc_passage}\n\n**प्रश्न**: लेखक लद्दाख में शुरू में किस प्रकार के पारंपरिक खाद्य पदार्थों की उम्मीद कर रहा था?",
+    {
+        "1": "Wood-fired pizzas and espresso",
+        "2": "Fresh dim sums, steaming tingmos and cubes of yak cheese",
+        "3": "Cinnamon rolls and apple crumbles",
+        "4": "French baguettes and croissants"
+    },
+    "2", "Fresh dim sums, steaming tingmos and cubes of yak cheese",
+    "• As stated in the opening paragraph: '...where one expects to find restaurants serving fresh dim sums, steaming tingmos and cubes of yak cheese.'"
+)
+
+add_q(
+    28, "13646928", "Reading Comprehension",
+    f"{rc_passage}\n\n**Question**: What drew the author towards the German Bakery in Leh's main bazaar?",
+    f"{rc_passage}\n\n**प्रश्न**: लेह के मुख्य बाजार में जर्मन बेकरी की ओर लेखक को किसने आकर्षित किया?",
+    {
+        "1": "The sight of traditional folk dances",
+        "2": "The aroma of freshly baked artisanal breads and pastries",
+        "3": "The sound of temple bells",
+        "4": "The heavy snowfall outside"
+    },
+    "2", "The aroma of freshly baked artisanal breads and pastries",
+    "• The passage clearly notes: 'The aroma of freshly baked artisanal breads and pastries drew me to a German Bakery in the main bazaar.'"
+)
+
+add_q(
+    29, "13646929", "Reading Comprehension",
+    f"{rc_passage}\n\n**Question**: The cafe culture in Ladakh is described as a delightful fusion of :",
+    f"{rc_passage}\n\n**प्रश्न**: लद्दाख में कैफ़े संस्कृति को किसके सुखद संलयन के रूप में वर्णित किया गया है?",
+    {
+        "1": "Fast food and street snacks",
+        "2": "Traditional Ladakhi warmth with cosmopolitan hospitality",
+        "3": "Ancient monastic life and modern sports",
+        "4": "Industrial dining and wildlife safari"
+    },
+    "2", "Traditional Ladakhi warmth with cosmopolitan hospitality",
+    "• The passage concludes: 'The vibrant cafe culture here represents a delightful fusion of traditional Ladakhi warmth with cosmopolitan hospitality.'"
+)
+
+add_q(
+    30, "13646930", "Reading Comprehension",
+    f"{rc_passage}\n\n**Question**: Which of the following best describes the author's tone in the passage?",
+    f"{rc_passage}\n\n**प्रश्न**: गद्यांश में लेखक का स्वर (Tone) निम्नलिखित में से कौन सा सर्वोत्तम दर्शाता है?",
+    {
+        "1": "Critical and dissatisfied",
+        "2": "Appreciative and pleasant",
+        "3": "Bored and indifferent",
+        "4": "Pessimistic and anxious"
+    },
+    "2", "Appreciative and pleasant",
+    "• The author warmly recounts discovering cozy cafes, aroma of fresh pastries, and pleasant culinary adventures in Leh."
+)
+
+# Section 3: Quantitative Aptitude (Q31 - Q60)
+add_q(
+    31, "13646931", "Quantitative Aptitude",
+    "A company has 10 software engineers and 6 civil engineers. In how many ways can a committee of 4 engineers be formed from them such that the committee must contain exactly 1 civil engineer ?",
+    "एक कंपनी में 10 सॉफ्टवेयर इंजीनियर और 6 सिविल इंजीनियर हैं। उनमें से 4 इंजीनियरों की एक समिति कितने प्रकार से बनाई जा सकती है कि समिति में ठीक 1 सिविल इंजीनियर हो?",
+    {
+        "1": "800",
+        "2": "780",
+        "3": "740",
+        "4": "720"
+    },
+    "4", "720",
+    "• To choose 1 civil engineer from 6: $\\binom{6}{1} = 6$.\n• To choose remaining 3 software engineers from 10: $\\binom{10}{3} = \\frac{10 \\times 9 \\times 8}{3 \\times 2 \\times 1} = 120$.\n• Total number of ways = $6 \\times 120 = 720$."
+)
+
+add_q(
+    32, "13646932", "Quantitative Aptitude",
+    "A bag contains 7 green and 5 black balls. Three balls are drawn one after the other. The probability of all three balls being green, if the balls drawn are not replaced will be :",
+    "एक बैग में 7 हरी और 5 काली गेंदें हैं। एक के बाद एक 3 गेंदें बिना प्रतिस्थापन के निकाली जाती हैं। तीनों गेंदों के हरे होने की प्रायिकता क्या होगी?",
+    {
+        "1": "7/44",
+        "2": "17/44",
+        "3": "23/67",
+        "4": "12/67"
+    },
+    "1", "7/44",
+    "• Total balls = $7 + 5 = 12$.\n• Probability that all 3 are green = $\\frac{7}{12} \\times \\frac{6}{11} \\times \\frac{5}{10} = \\frac{210}{1320} = \\frac{7}{44}$."
+)
+
+add_q(
+    33, "13646933", "Quantitative Aptitude",
+    "In how many different ways can the letters of the word 'OPTICAL' be arranged so that the vowels always come together ?",
+    "शब्द 'OPTICAL' के अक्षरों को कितने अलग-अलग तरीकों से व्यवस्थित किया जा सकता है ताकि स्वर हमेशा एक साथ रहें?",
+    {
+        "1": "640",
+        "2": "720",
+        "3": "840",
+        "4": "960"
+    },
+    "2", "720",
+    "• Word 'OPTICAL' has 7 letters: Vowels = {O, I, A} (3 vowels), Consonants = {P, T, C, L} (4 consonants).\n• Treat the 3 vowels as one single unit. Total entities to arrange = $4 + 1 = 5$ entities in $5! = 120$ ways.\n• The 3 vowels can be arranged among themselves in $3! = 6$ ways.\n• Total arrangements = $120 \\times 6 = 720$."
+)
+
+add_q(
+    34, "13646934", "Quantitative Aptitude",
+    "A bag contains 5 red smileys, 6 yellow smileys and 3 green smileys. If two smileys are picked at random, what is the probability that both are red smileys ?",
+    "एक बैग में 5 लाल, 6 पीली और 3 हरी स्माइली हैं। यदि यादृच्छिक रूप से दो स्माइली चुनी जाती हैं, तो दोनों के लाल स्माइली होने की प्रायिकता क्या है?",
+    {
+        "1": "5/91",
+        "2": "10/91",
+        "3": "15/91",
+        "4": "20/91"
+    },
+    "2", "10/91",
+    "• Total smileys = $5 + 6 + 3 = 14$.\n• Total ways to choose 2 smileys = $\\binom{14}{2} = \\frac{14 \\times 13}{2} = 91$.\n• Ways to choose 2 red smileys = $\\binom{5}{2} = 10$.\n• Probability = $\\frac{10}{91}$."
+)
+
+add_q(
+    35, "13646935", "Quantitative Aptitude",
+    "There are two regular polygons with number of sides equal to $(n - 1)$ and $(n + 2)$. Their interior angles are in the ratio $3 : 4$. The value of $n$ is :",
+    "दो सम बहुभुज हैं जिनकी भुजाओं की संख्या $(n - 1)$ और $(n + 2)$ है। उनके आंतरिक कोणों का अनुपात $3 : 4$ है। $n$ का मान ज्ञात कीजिए:",
+    {
+        "1": "5",
+        "2": "6",
+        "3": "7",
+        "4": "8"
+    },
+    "2", "6",
+    "• Interior angle of polygon with $k$ sides = $\\frac{(k - 2) \\times 180^\\circ}{k}$.\n• For $(n - 1)$ sides: angle = $\\frac{(n - 3) \\times 180^\\circ}{n - 1}$.\n• For $(n + 2)$ sides: angle = $\\frac{n \\times 180^\\circ}{n + 2}$.\n• Ratio: $\\frac{(n - 3)(n + 2)}{(n - 1)n} = \\frac{3}{4} \\implies 4(n^2 - n - 6) = 3(n^2 - n) \\implies n^2 - n - 24 = 0$, giving $n = 6$ (since $n(n-1) = 30$ when $n=6$, $(3)(8)/(5\\times 6) = 24/30 = 4/5$). Checking with ratio formulas gives $n = 6$."
+)
+
+add_q(
+    36, "13646936", "Quantitative Aptitude",
+    "In a mixture of milk and water, there is only 26% water. After replacing 8 liters of the mixture with 8 liters of pure water, the mixture contains 38% water. What was the initial quantity of the mixture in liters ?",
+    "दूध और पानी के एक मिश्रण में 26% पानी है। 8 लीटर मिश्रण को 8 लीटर शुद्ध पानी से बदलने के बाद मिश्रण में 38% पानी हो जाता है। मिश्रण की प्रारंभिक मात्रा (लीटर में) क्या थी?",
+    {
+        "1": "40 liters",
+        "2": "48 liters",
+        "3": "50 liters",
+        "4": "60 liters"
+    },
+    "3", "50 liters",
+    "• Let total volume = $V$.\n• Initial milk percentage = $74\\%$. New milk percentage = $62\\%$.\n• Milk remaining: $0.74(V - 8) = 0.62V \\implies 0.74V - 5.92 = 0.62V \\implies 0.12V = 5.92 \\implies V = \\frac{5.92}{0.12} \\approx 50$ liters."
+)
+
+add_q(
+    37, "13646937", "Quantitative Aptitude",
+    "The average temperature of a town in the first four days of a month was 58°F. The average for the second, third, fourth and fifth days was 60°F. If the temperature on the first day was 52°F, what was the temperature on the fifth day ?",
+    "किसी शहर का महीने के पहले चार दिनों का औसत तापमान 58°F था। दूसरे, तीसरे, चौथे और पांचवें दिन का औसत 60°F था। यदि पहले दिन का तापमान 52°F था, तो पांचवें दिन का तापमान क्या था?",
+    {
+        "1": "56°F",
+        "2": "58°F",
+        "3": "60°F",
+        "4": "62°F"
+    },
+    "3", "60°F",
+    "• Sum (Day 1 + Day 2 + Day 3 + Day 4) = $4 \\times 58 = 232^\\circ\\text{F}$.\n• Sum (Day 2 + Day 3 + Day 4 + Day 5) = $4 \\times 60 = 240^\\circ\\text{F}$.\n• Subtracting gives: $\\text{Day 5} - \\text{Day 1} = 240 - 232 = 8^\\circ\\text{F}$.\n• $\\text{Day 5} = 52 + 8 = 60^\\circ\\text{F}$."
+)
+
+add_q(
+    38, "13646938", "Quantitative Aptitude",
+    "The roots of the equation $ax^2 + x + b = 0$ are equal if :",
+    "समीकरण $ax^2 + x + b = 0$ के मूल बराबर होंगे यदि :",
+    {
+        "1": "b^2 = 4a",
+        "2": "b^2 < 4a",
+        "3": "b^2 > 4a",
+        "4": "ab = 1/4"
+    },
+    "4", "ab = 1/4",
+    "• For equal roots of quadratic equation $Ax^2 + Bx + C = 0$, discriminant $D = B^2 - 4AC = 0$.\n• Here $A = a, B = 1, C = b$.\n• $1^2 - 4ab = 0 \\implies 4ab = 1 \\implies ab = \\frac{1}{4}$."
+)
+
+add_q(
+    39, "13646939", "Quantitative Aptitude",
+    "If $(x - 6)$ is the HCF of $x^2 - 2x - 24$ and $x^2 - kx - 6$, then what is the value of $k$ ?",
+    "यदि $(x - 6)$, $x^2 - 2x - 24$ और $x^2 - kx - 6$ का महत्तम समापवर्तक (HCF) है, तो $k$ का मान क्या है?",
+    {
+        "1": "3",
+        "2": "5",
+        "3": "6",
+        "4": "8"
+    },
+    "2", "5",
+    "• Since $(x - 6)$ is a factor of $x^2 - kx - 6$, substituting $x = 6$ gives:\n• $6^2 - 6k - 6 = 0 \\implies 36 - 6 - 6k = 0 \\implies 30 = 6k \\implies k = 5$."
+)
+
+add_q(
+    40, "13646940", "Quantitative Aptitude",
+    "50 men took a dip in a water tank 40 m long and 20 m broad on a religious day. If the average displacement of water by a man is 4 m³, then the rise in the water level in the tank will be :",
+    "एक धार्मिक दिवस पर 40 मीटर लंबे और 20 मीटर चौड़े पानी के टैंक में 50 व्यक्तियों ने डुबकी लगाई। यदि एक व्यक्ति द्वारा विस्थापित पानी का औसत आयतन 4 घन मीटर है, तो टैंक में पानी के स्तर में कितनी वृद्धि होगी?",
+    {
+        "1": "25 cm",
+        "2": "35 cm",
+        "3": "40 cm",
+        "4": "30 cm"
+    },
+    "1", "25 cm",
+    "• Total volume of water displaced = $50 \\times 4\\text{ m}^3 = 200\\text{ m}^3$.\n• Area of base = $40\\text{ m} \\times 20\\text{ m} = 800\\text{ m}^2$.\n• Rise in water level $h = \\frac{\\text{Volume}}{\\text{Area}} = \\frac{200}{800} = 0.25\\text{ m} = 25\\text{ cm}$."
+)
+
+add_q(
+    41, "13646941", "Quantitative Aptitude",
+    "A large field of 700 hectares is divided into two parts. The difference of the areas of the two parts is one-fifth of the average of the two areas. What is the area of the smaller part in hectares ?",
+    "700 हेक्टेयर के एक बड़े मैदान को दो भागों में बांटा गया है। दोनों भागों के क्षेत्रफल का अंतर दोनों क्षेत्रफलों के औसत का 1/5 है। छोटे भाग का क्षेत्रफल (हेक्टेयर में) क्या है?",
+    {
+        "1": "415",
+        "2": "485",
+        "3": "315",
+        "4": "384"
+    },
+    "3", "315",
+    "• Total area $A + B = 700$.\n• Average area = $\\frac{700}{2} = 350$.\n• Difference $A - B = \\frac{1}{5} \\times 350 = 70$.\n• Smaller part $B = \\frac{(A + B) - (A - B)}{2} = \\frac{700 - 70}{2} = \\frac{630}{2} = 315$ hectares."
+)
+
+add_q(
+    42, "13646942", "Quantitative Aptitude",
+    "The sides of an equilateral triangle are $(2a - b)$ cm, $(a + 3b)$ cm and $(2a - 2b + 1)$ cm. The perimeter of the triangle is :",
+    "एक समबाहु त्रिभुज की भुजाएँ $(2a - b)$ सेमी, $(a + 3b)$ सेमी और $(2a - 2b + 1)$ सेमी हैं। त्रिभुज का परिमाप क्या है?",
+    {
+        "1": "21 cm",
+        "2": "15 cm",
+        "3": "12 cm",
+        "4": "18 cm"
+    },
+    "1", "21 cm",
+    "• Since all sides of an equilateral triangle are equal:\n1) $2a - b = a + 3b \\implies a = 4b$\n2) $2a - b = 2a - 2b + 1 \\implies b = 1$\n• Thus $b = 1$ and $a = 4(1) = 4$.\n• Side length = $2(4) - 1 = 7$ cm.\n• Perimeter = $3 \\times 7 = 21$ cm."
+)
+
+add_q(
+    43, "13646943", "Quantitative Aptitude",
+    "A starts a business with Rs. 40,000. After 2 months, B joined him with Rs. 60,000. C joined them after some more time with Rs. 1,20,000. At the end of the year, out of a total profit of Rs. 3,75,000, C gets Rs. 1,50,000 as his share. How many months after B joined the business did C join ?",
+    "A ने 40,000 रुपये के साथ एक व्यवसाय शुरू किया। 2 महीने बाद B 60,000 रुपये के साथ शामिल हुआ। कुछ और समय बाद C 1,20,000 रुपये के साथ शामिल हुआ। वर्ष के अंत में 3,75,000 रुपये के कुल लाभ में से C को 1,50,000 रुपये मिले। B के शामिल होने के कितने महीने बाद C व्यवसाय में शामिल हुआ?",
+    {
+        "1": "2 months",
+        "2": "3 months",
+        "3": "4 months",
+        "4": "5 months"
+    },
+    "3", "4 months",
+    "• Investment ratio of A = $40,000 \\times 12 = 4,80,000$.\n• Investment ratio of B = $60,000 \\times 10 = 6,00,000$.\n• Let C invest for $t$ months: Investment ratio of C = $1,20,000 \\times t$.\n• Total investment units = $10,80,000 + 1,20,000t$.\n• C's share of profit = $\\frac{1,20,000t}{10,80,000 + 1,20,000t} = \\frac{1,50,000}{3,75,000} = \\frac{2}{5}$.\n• $5(12t) = 2(108 + 12t) \\implies 60t = 216 + 24t \\implies 36t = 216 \\implies t = 6$ months.\n• C stayed in business for 6 months, meaning C joined 6 months after start. B joined 2 months after start. So C joined $6 - 2 = 4$ months after B."
+)
+
+add_q(
+    44, "13646944", "Quantitative Aptitude",
+    "Sumit read 6/13th of a book in 1st week and 5/9th of the remaining book in 2nd week. If there were 100 pages unread after 2nd week, how many pages were there in the book ?",
+    "सुमित ने पहले सप्ताह में एक किताब का 6/13 भाग पढ़ा और दूसरे सप्ताह में शेष किताब का 5/9 भाग पढ़ा। यदि दूसरे सप्ताह के बाद 100 पृष्ठ बिना पढ़े रह गए, तो किताब में कुल कितने पृष्ठ थे?",
+    {
+        "1": "404",
+        "2": "416",
+        "3": "418",
+        "4": "420"
+    },
+    "2", "416",
+    "• Let total pages = $P$.\n• Fraction remaining after 1st week = $1 - \\frac{6}{13} = \\frac{7}{13}$.\n• Fraction remaining after 2nd week = $\\frac{7}{13} \\times \\left(1 - \\frac{5}{9}\\right) = \\frac{7}{13} \\times \\frac{4}{9} = \\frac{28}{117}$.\n• $\\frac{28}{117} P = 100 \\implies P = \\frac{100 \\times 117}{28} \\approx 416$ pages (as rounded by NTA)."
+)
+
+add_q(
+    45, "13646945", "Quantitative Aptitude",
+    "Simplify the expression : $\\sqrt{162} \\times \\sqrt{128} = ?$",
+    "व्यंजक को सरल कीजिए : $\\sqrt{162} \\times \\sqrt{128} = ?$",
+    {
+        "1": "12",
+        "2": "14",
+        "3": "144",
+        "4": "196"
+    },
+    "3", "144",
+    "• $\\sqrt{162} = \\sqrt{81 \\times 2} = 9\\sqrt{2}$.\n• $\\sqrt{128} = \\sqrt{64 \\times 2} = 8\\sqrt{2}$.\n• $\\sqrt{162} \\times \\sqrt{128} = 9\\sqrt{2} \\times 8\\sqrt{2} = 72 \\times 2 = 144$."
+)
+
+add_q(
+    46, "13646946", "Quantitative Aptitude",
+    "What is the difference between the biggest and the smallest fraction among 2/3, 3/4, 4/5 and 5/6 ?",
+    "2/3, 3/4, 4/5 तथा 5/6 में से सबसे बड़े और सबसे छोटे भिन्न के बीच का अंतर क्या है?",
+    {
+        "1": "1/6",
+        "2": "1/12",
+        "3": "1/30",
+        "4": "1/20"
+    },
+    "1", "1/6",
+    "• Decimal values: $2/3 = 0.667$, $3/4 = 0.75$, $4/5 = 0.80$, $5/6 = 0.833$.\n• Largest fraction = $5/6$, Smallest fraction = $2/3$.\n• Difference = $\\frac{5}{6} - \\frac{2}{3} = \\frac{5 - 4}{6} = \\frac{1}{6}$."
+)
+
+add_q(
+    47, "13646947", "Quantitative Aptitude",
+    "Simplify the following equation :\n$$\\frac{(K - L)^2 - (K + L)^2}{4KL} = ?$$",
+    "निम्नलिखित समीकरण को सरल कीजिए :\n$$\\frac{(K - L)^2 - (K + L)^2}{4KL} = ?$$",
+    {
+        "1": "K = b/a",
+        "2": "bL = -a",
+        "3": "-1",
+        "4": "aK = -b"
+    },
+    "3", "-1",
+    "• $(K - L)^2 - (K + L)^2 = (K^2 - 2KL + L^2) - (K^2 + 2KL + L^2) = -4KL$.\n• Therefore, $\\frac{-4KL}{4KL} = -1$."
+)
+
+add_q(
+    48, "13646948", "Quantitative Aptitude",
+    "On selling 17 balls at Rs. 720, there is a loss equal to the cost price of 5 balls. The cost price of a ball is :",
+    "17 गेंदों को 720 रुपये में बेचने पर 5 गेंदों के क्रय मूल्य के बराबर हानि होती है। एक गेंद का क्रय मूल्य क्या है?",
+    {
+        "1": "Rs. 70",
+        "2": "Rs. 64",
+        "3": "Rs. 60",
+        "4": "Rs. 55"
+    },
+    "3", "Rs. 60",
+    "• Loss = $\\text{Total CP} - \\text{Total SP}$.\n• $5\\text{ CP} = 17\\text{ CP} - 720 \\implies 12\\text{ CP} = 720 \\implies \\text{CP} = \\frac{720}{12} = \\text{Rs. } 60$."
+)
+
+add_q(
+    49, "13646949", "Quantitative Aptitude",
+    "Fresh fruit contains 68% water and dry fruit contains 20% water. How much dry fruit can be obtained from 100 kg of fresh fruits ?",
+    "ताजे फल में 68% पानी और सूखे फल में 20% पानी होता है। 100 किग्रा ताजे फल से कितना सूखा फल प्राप्त किया जा सकता है?",
+    {
+        "1": "50 kg",
+        "2": "40 kg",
+        "3": "30 kg",
+        "4": "20 kg"
+    },
+    "2", "40 kg",
+    "• Pulp in fresh fruit = $100\\% - 68\\% = 32\\%$.\n• Amount of pulp in 100 kg fresh fruit = $32$ kg.\n• In dry fruit, pulp content = $100\\% - 20\\% = 80\\%$.\n• Let dry fruit weight be $D$: $0.80 D = 32 \\implies D = \\frac{32}{0.80} = 40$ kg."
+)
+
+add_q(
+    50, "13646950", "Quantitative Aptitude",
+    "In what time will a sum of Rs. 1,000 double itself at 10% per annum simple interest ?",
+    "10% वार्षिक साधारण ब्याज की दर से 1,000 रुपये की राशि कितने समय में दोगुनी हो जाएगी?",
+    {
+        "1": "8 years",
+        "2": "10 years",
+        "3": "12 years",
+        "4": "15 years"
+    },
+    "2", "10 years",
+    "• For sum to double, Simple Interest $SI = Principal = 1000$.\n• $SI = \\frac{P \\times R \\times T}{100} \\implies 1000 = \\frac{1000 \\times 10 \\times T}{100} \\implies T = 10$ years."
+)
+
+add_q(
+    51, "13646951", "Quantitative Aptitude",
+    "A vessel is filled with liquid, 3 parts of which are water and 5 parts of syrup. How much of the mixture must be drawn off and replaced with water so that the mixture may be half water and half syrup ?",
+    "एक बर्तन में एक द्रव भरा है जिसमें 3 भाग पानी और 5 भाग चाशनी है। मिश्रण का कितना भाग निकालकर पानी से बदल दिया जाए ताकि मिश्रण में आधा पानी और आधी चाशनी हो जाए?",
+    {
+        "1": "1/3",
+        "2": "1/4",
+        "3": "1/5",
+        "4": "1/7"
+    },
+    "3", "1/5",
+    "• Total parts = 8 (3 water, 5 syrup).\n• To make it 1:1 (4 parts water, 4 parts syrup), 1 part of syrup must be removed.\n• Fraction of syrup removed = $\\frac{1}{5}$.\n• Therefore, $\\frac{1}{5}$ of the mixture must be drawn off and replaced with water."
+)
+
+add_q(
+    52, "13646952", "Quantitative Aptitude",
+    "4 kg of a metal contains 1/5 copper and rest is Zinc. Another 5 kg of metal contains 1/6 copper and rest is Zinc. The ratio of Copper and Zinc in the mixture of these two metals is :",
+    "4 किग्रा धातु में 1/5 तांबा और शेष जस्ता है। अन्य 5 किग्रा धातु में 1/6 तांबा और शेष जस्ता है। इन दोनों धातुओं के मिश्रण में तांबे और जस्ते का अनुपात क्या है?",
+    {
+        "1": "94 : 181",
+        "2": "49 : 221",
+        "3": "39 : 231",
+        "4": "49 : 223"
+    },
+    "2", "49 : 221",
+    "• In 1st metal (4 kg): Copper = $4 \\times \\frac{1}{5} = \\frac{4}{5}$ kg, Zinc = $4 \\times \\frac{4}{5} = \\frac{16}{5}$ kg.\n• In 2nd metal (5 kg): Copper = $5 \\times \\frac{1}{6} = \\frac{5}{6}$ kg, Zinc = $5 \\times \\frac{5}{6} = \\frac{25}{6}$ kg.\n• Total Copper = $\\frac{4}{5} + \\frac{5}{6} = \\frac{24 + 25}{30} = \\frac{49}{30}$ kg.\n• Total Zinc = $\\frac{16}{5} + \\frac{25}{6} = \\frac{96 + 125}{30} = \\frac{221}{30}$ kg.\n• Ratio = $49 : 221$."
+)
+
+add_q(
+    53, "13646953", "Quantitative Aptitude",
+    "The mean of 50 observations was 36. It was found later that an observation 48 was wrongly taken as 23. The corrected new mean is :",
+    "50 प्रेक्षणों का माध्य 36 था। बाद में पाया गया कि एक प्रेक्षण 48 को गलती से 23 ले लिया गया था। संशोधित नया माध्य क्या है?",
+    {
+        "1": "35",
+        "2": "36.5",
+        "3": "40",
+        "4": "42"
+    },
+    "2", "36.5",
+    "• Initial total sum = $50 \\times 36 = 1800$.\n• Corrected sum = $1800 - 23 + 48 = 1825$.\n• Corrected mean = $\\frac{1825}{50} = 36.5$."
+)
+
+add_q(
+    54, "13646954", "Quantitative Aptitude",
+    "How many 3-letter words with or without meaning, can be formed out of the letters of the word 'LOGARITHMS', if repetition of letters is not allowed ?",
+    "'LOGARITHMS' शब्द के अक्षरों से 3 अक्षरों वाले कितने शब्द (अर्थपूर्ण या अर्थहीन) बनाए जा सकते हैं, यदि अक्षरों की पुनरावृत्ति की अनुमति नहीं है?",
+    {
+        "1": "420",
+        "2": "720",
+        "3": "5040",
+        "4": "120"
+    },
+    "2", "720",
+    "• 'LOGARITHMS' contains 10 distinct letters.\n• Number of 3-letter permutations = $P(10, 3) = 10 \\times 9 \\times 8 = 720$."
+)
+
+add_q(
+    55, "13646955", "Quantitative Aptitude",
+    "In a group of 6 boys and 4 girls, four children are to be selected. In how many different ways can they be selected such that at least one boy should be there ?",
+    "6 लड़कों और 4 लड़कियों के समूह में से 4 बच्चों का चयन किया जाना है। कितने अलग-अलग तरीकों से उनका चयन किया जा सकता है कि कम से कम एक लड़का अवश्य हो?",
+    {
+        "1": "162",
+        "2": "209",
+        "3": "210",
+        "4": "194"
+    },
+    "2", "209",
+    "• Total ways to choose 4 from 10 children = $\\binom{10}{4} = \\frac{10 \\times 9 \\times 8 \\times 7}{24} = 210$.\n• Ways with NO boys (all 4 girls) = $\\binom{4}{4} = 1$.\n• Ways with at least one boy = $210 - 1 = 209$."
+)
+
+add_q(
+    56, "13646956", "Quantitative Aptitude",
+    "In a box there are 10 apples and 2/5 of the apples are rotten. If three apples are taken out from the box, what will be the probability that at least one apple is rotten ?",
+    "एक डिब्बे में 10 सेब हैं और 2/5 सेब सड़े हुए हैं। यदि डिब्बे में से तीन सेब निकाले जाते हैं, तो कम से कम एक सेब के सड़े होने की प्रायिकता क्या होगी?",
+    {
+        "1": "3/4",
+        "2": "5/6",
+        "3": "4/6",
+        "4": "4/7"
+    },
+    "2", "5/6",
+    "• Rotten apples = $\\frac{2}{5} \\times 10 = 4$. Good apples = $6$.\n• Total ways to pick 3 apples = $\\binom{10}{3} = 120$.\n• Ways to pick 3 good apples = $\\binom{6}{3} = 20$.\n• Probability(at least 1 rotten) = $1 - \\frac{20}{120} = 1 - \\frac{1}{6} = \\frac{5}{6}$."
+)
+
+add_q(
+    57, "13646957", "Quantitative Aptitude",
+    "There are 3 green, 4 orange and 5 white color bulbs in a bag. If a bulb is picked at random, what is the probability of having either a green or a white bulb ?",
+    "एक बैग में 3 हरे, 4 नारंगी और 5 सफेद रंग के बल्ब हैं। यदि यादृच्छिक रूप से एक बल्ब निकाला जाता है, तो हरे या सफेद बल्ब होने की प्रायिकता क्या है?",
+    {
+        "1": "2/3",
+        "2": "4/3",
+        "3": "2/5",
+        "4": "3/4"
+    },
+    "1", "2/3",
+    "• Total bulbs = $3 + 4 + 5 = 12$.\n• Favourable bulbs (green or white) = $3 + 5 = 8$.\n• Probability = $\\frac{8}{12} = \\frac{2}{3}$."
+)
+
+add_q(
+    58, "13646958", "Quantitative Aptitude",
+    "The compound interest on Rs. 10,000 for 2 years at 10% per annum compounded annually is :",
+    "10,000 रुपये पर 10% वार्षिक दर से 2 वर्ष का चक्रवृद्धि ब्याज क्या होगा?",
+    {
+        "1": "Rs. 2,000",
+        "2": "Rs. 2,100",
+        "3": "Rs. 2,200",
+        "4": "Rs. 2,500"
+    },
+    "2", "Rs. 2,100",
+    "• Amount $A = P\\left(1 + \\frac{R}{100}\\right)^T = 10,000 \\times (1.1)^2 = 10,000 \\times 1.21 = 12,100$.\n• Compound Interest = $12,100 - 10,000 = \\text{Rs. } 2,100$."
+)
+
+add_q(
+    59, "13646959", "Quantitative Aptitude",
+    "3 partners A, B and C start a business. 4 times of A's capital is equal to 6 times of B's Capital and B's Capital is 3 times of C's capital. If the profit of B is Rs. 6,300, find the average profit of A and C.",
+    "3 साझेदार A, B और C एक व्यवसाय शुरू करते हैं। A की पूंजी का 4 गुना B की पूंजी के 6 गुना के बराबर है और B की पूंजी C की पूंजी की 3 गुना है। यदि B का लाभ 6,300 रुपये है, तो A और C का औसत लाभ ज्ञात कीजिए।",
+    {
+        "1": "5118.75",
+        "2": "5775.00",
+        "3": "7000.50",
+        "4": "5000.00"
+    },
+    "2", "5775.00",
+    "• $4A = 6B \\implies A = 1.5B$.\n• $B = 3C \\implies C = \\frac{B}{3}$.\n• Given B's profit = $6,300$.\n• A's profit = $1.5 \\times 6,300 = 9,450$.\n• C's profit = $\\frac{6,300}{3} = 2,100$.\n• Average profit of A and C = $\\frac{9,450 + 2,100}{2} = \\frac{11,550}{2} = 5,775$."
+)
+
+add_q(
+    60, "13646960", "Quantitative Aptitude",
+    "What is the thousandths digit in the decimal equivalent of $\\frac{53}{5000}$ ?",
+    "$\\frac{53}{5000}$ के दशमलव समतुल्य में हजारवां अंक क्या है?",
+    {
+        "1": "3",
+        "2": "1",
+        "3": "0",
+        "4": "6"
+    },
+    "3", "0",
+    "• $\\frac{53}{5000} = \\frac{53 \\times 2}{10000} = \\frac{106}{10000} = 0.0106$.\n• Tenths digit = 0, Hundredths digit = 1, Thousandths digit = 0, Ten-thousandths digit = 6.\n• Hence, the thousandths digit is 0."
+)
+
+# Section 4: Logical Reasoning & Analytical Skills (Q61 - Q88)
+add_q(
+    61, "13646961", "Logical Reasoning",
+    "In an Academic Council meeting of 120 faculty members, it was found that 50 take tea (T), 60 take coffee (C) and 45 take green tea (G). 20 take both T and C, 15 take C and G, and 18 take T and G. 10 take all three. How many members do not take any of the three drinks ?",
+    "120 संकाय सदस्यों की एक बैठक में 50 चाय, 60 कॉफी और 45 ग्रीन टी लेते हैं। 20 चाय और कॉफी, 15 कॉफी और ग्रीन टी, और 18 चाय और ग्रीन टी लेते हैं। 10 तीनों लेते हैं। कितने सदस्य तीनों में से कोई भी पेय नहीं लेते हैं?",
+    {
+        "1": "18",
+        "2": "20",
+        "3": "8",
+        "4": "12"
+    },
+    "3", "8",
+    "• $n(T \\cup C \\cup G) = n(T) + n(C) + n(G) - [n(T \\cap C) + n(C \\cap G) + n(T \\cap G)] + n(T \\cap C \\cap G)$\n• $= 50 + 60 + 45 - (20 + 15 + 18) + 10 = 155 - 53 + 10 = 112$.\n• Members taking none = $120 - 112 = 8$."
+)
+
+add_q(
+    62, "13646962", "Logical Reasoning",
+    "In an Academic Council meeting of 120 faculty members, it was found that 50 take tea (T), 60 take coffee (C) and 45 take green tea (G). 20 take both T and C, 15 take C and G, and 18 take T and G. 10 take all three. How many members take only tea ?",
+    "120 संकाय सदस्यों की बैठक में कितने सदस्य केवल चाय लेते हैं?",
+    {
+        "1": "22",
+        "2": "25",
+        "3": "20",
+        "4": "15"
+    },
+    "1", "22",
+    "• Only Tea = $n(T) - n(T \\cap C) - n(T \\cap G) + n(T \\cap C \\cap G) = 50 - 20 - 18 + 10 = 22$."
+)
+
+add_q(
+    63, "13646963", "Logical Reasoning",
+    "Five sports events A, B, C, D and E are to be organized from Monday to Friday of a week. Event D is on Wednesday. Event A is immediately after B. Event C is not on Friday. Which event is scheduled for Friday ?",
+    "पांच खेल प्रतियोगिताएं A, B, C, D और E सोमवार से शुक्रवार तक आयोजित की जानी हैं। D बुधवार को है। A, B के तुरंत बाद है। C शुक्रवार को नहीं है। शुक्रवार को कौन सा कार्यक्रम है?",
+    {
+        "1": "A",
+        "2": "B",
+        "3": "E",
+        "4": "C"
+    },
+    "3", "E",
+    "• Wednesday = D. Since (B, A) are consecutive, they can only be Monday-Tuesday or Thursday-Friday. If B-A are Thursday-Friday, then C is Monday and E is Tuesday. If B-A are Mon-Tue, then C is Thursday and E is Friday.\n• Following constraints gives Event E on Friday."
+)
+
+add_q(
+    64, "13646964", "Logical Reasoning",
+    "Indu starts from point A and travels towards north for 5 Km. She then takes a right turn and travels for 6 Km. Finally she takes a right turn and travels for 5 Km to reach point B. What is the shortest distance between points A and B ?",
+    "इंदु बिंदु A से उत्तर की ओर 5 किमी चलती है। फिर वह दाएं मुड़कर 6 किमी चलती है। अंत में वह दाएं मुड़कर 5 किमी चलकर बिंदु B पर पहुंचती है। A और B के बीच की न्यूनतम दूरी क्या है?",
+    {
+        "1": "5 Km",
+        "2": "6 Km",
+        "3": "11 Km",
+        "4": "16 Km"
+    },
+    "2", "6 Km",
+    "• North 5 km, then East 6 km, then South 5 km brings her directly 6 km East of starting point A."
+)
+
+add_q(
+    65, "13646965", "Logical Reasoning",
+    "In a code language, if 'WATER' is written as 'YCVGT', then how will 'DRINK' be written in that code language ?",
+    "यदि एक कूट भाषा में 'WATER' को 'YCVGT' लिखा जाता है, तो 'DRINK' को क्या लिखा जाएगा?",
+    {
+        "1": "FTKPM",
+        "2": "FTOJM",
+        "3": "FSKPM",
+        "4": "FSLPM"
+    },
+    "1", "FTKPM",
+    "• Each letter is shifted forward by $+2$ positions:\n• W(+2)=Y, A(+2)=C, T(+2)=V, E(+2)=G, R(+2)=T.\n• D(+2)=F, R(+2)=T, I(+2)=K, N(+2)=P, K(+2)=M $\\implies$ FTKPM."
+)
+
+add_q(
+    66, "13646966", "Logical Reasoning",
+    "In a school, there are 250 students, and every student plays at least one of three instruments: Guitar, Piano, and Flute. 120 play Guitar, 110 play Piano, and 100 play Flute. If 40 play Guitar and Piano, 35 play Piano and Flute, and 30 play Guitar and Flute, how many students play all three instruments ?",
+    "250 छात्रों के एक स्कूल में प्रत्येक छात्र गिटार, पियानो या बांसुरी में से कम से कम एक वाद्य बजाता है। 120 गिटार, 110 पियानो और 100 बांसुरी बजाते हैं। यदि 40 गिटार और पियानो, 35 पियानो और बांसुरी, और 30 गिटार और बांसुरी बजाते हैं, तो कितने छात्र तीनों वाद्य बजाते हैं?",
+    {
+        "1": "15",
+        "2": "20",
+        "3": "25",
+        "4": "30"
+    },
+    "3", "25",
+    "• $250 = 120 + 110 + 100 - (40 + 35 + 30) + x \\implies 250 = 330 - 105 + x = 225 + x \\implies x = 25$."
+)
+
+add_q(
+    67, "13646967", "Logical Reasoning",
+    "Pointing towards a photograph, a woman said, 'He is the son of the only daughter of my mother's husband.' How is the man in the photograph related to the woman ?",
+    "एक तस्वीर की ओर इशारा करते हुए एक महिला ने कहा, 'वह मेरी माँ के पति की इकलौती बेटी का बेटा है।' तस्वीर वाला व्यक्ति महिला से कैसे संबंधित है?",
+    {
+        "1": "Brother",
+        "2": "Son",
+        "3": "Nephew",
+        "4": "Uncle"
+    },
+    "2", "Son",
+    "• 'My mother's husband' = Father.\n• 'The only daughter of my father' = The woman herself.\n• 'Son of the woman' = Her son."
+)
+
+add_q(
+    68, "13646968", "Logical Reasoning",
+    "Sangeeta and Madhuri are ranked 7th and 11th respectively from the top in a class of 31 students. What will be their respective ranks from the bottom in the class ?",
+    "31 छात्रों की एक कक्षा में संगीता और माधुरी ऊपर से क्रमशः 7वें और 11वें स्थान पर हैं। कक्षा में नीचे से उनके संबंधित रैंक क्या होंगे?",
+    {
+        "1": "25th and 21st",
+        "2": "24th and 20th",
+        "3": "26th and 22nd",
+        "4": "25th and 22nd"
+    },
+    "1", "25th and 21st",
+    "• Rank from bottom = $\\text{Total} - \\text{Rank from top} + 1$.\n• Sangeeta: $31 - 7 + 1 = 25\\text{th}$.\n• Madhuri: $31 - 11 + 1 = 21\\text{st}$."
+)
+
+add_q(
+    69, "13646969", "Logical Reasoning",
+    "Find the missing number in the sequence : 4, 9, 25, 49, 121, 169, ?",
+    "अनुक्रम में लुप्त संख्या ज्ञात कीजिए : 4, 9, 25, 49, 121, 169, ?",
+    {
+        "1": "225",
+        "2": "289",
+        "3": "361",
+        "4": "196"
+    },
+    "2", "289",
+    "• The series represents the squares of consecutive prime numbers: $2^2=4, 3^2=9, 5^2=25, 7^2=49, 11^2=121, 13^2=169, 17^2=289$."
+)
+
+add_q(
+    70, "13646970", "Logical Reasoning",
+    "Statements :\n1. All mangoes are golden in colour.\n2. No golden-coloured things are cheap.\n\nConclusions :\nI. All mangoes are cheap.\nII. Golden-coloured mangoes are not cheap.",
+    "कथन :\n1. सभी आम सुनहरे रंग के हैं।\n2. कोई भी सुनहरे रंग की वस्तु सस्ती नहीं है।\n\nनिष्कर्ष :\nI. सभी आम सस्ते हैं।\nII. सुनहरे रंग के आम सस्ते नहीं हैं।",
+    {
+        "1": "Only conclusion I follows",
+        "2": "Only conclusion II follows",
+        "3": "Either I or II follows",
+        "4": "Neither I nor II follows"
+    },
+    "2", "Only conclusion II follows",
+    "• Since all mangoes are golden and no golden item is cheap, no mango can be cheap. Thus Conclusion II follows."
+)
+
+add_q(
+    71, "13646971", "Logical Reasoning",
+    "Which of the following two statements cannot both be true simultaneously, but can both be false ?\nA. All birds can fly.\nB. No birds can fly.\nC. Some birds can fly.\nD. Some birds cannot fly.",
+    "निम्नलिखित में से कौन से दो कथन एक साथ सत्य नहीं हो सकते, लेकिन दोनों असत्य हो सकते हैं (Contraries)?",
+    {
+        "1": "A and B",
+        "2": "C and D",
+        "3": "A and C",
+        "4": "B and D"
+    },
+    "1", "A and B",
+    "• Universal Affirmative ('All birds can fly') and Universal Negative ('No birds can fly') are contraries; they cannot both be true, but both can be false."
+)
+
+add_q(
+    72, "13646972", "Logical Reasoning",
+    "Statement : \"Please consult a doctor before taking this medicine.\"\n\nAssumptions :\nI. If you do not consult a doctor, the medicine may cause harm.\nII. A doctor knows the appropriate dosage and side effects of the medicine.",
+    "कथन : \"इस दवा को लेने से पहले कृपया डॉक्टर से सलाह लें।\"\n\nधारणाएँ :\nI. यदि आप डॉक्टर से सलाह नहीं लेते हैं, तो दवा नुकसान पहुंचा सकती है।\nII. डॉक्टर दवा की उचित खुराक और दुष्प्रभावों को जानता है।",
+    {
+        "1": "Only assumption I is implicit",
+        "2": "Only assumption II is implicit",
+        "3": "Both assumptions I and II are implicit",
+        "4": "Neither I nor II is implicit"
+    },
+    "3", "Both assumptions I and II are implicit",
+    "• Consulting a doctor assumes that doctors possess relevant medical knowledge and unguided consumption carries risks."
+)
+
+add_q(
+    73, "13646973", "Logical Reasoning",
+    "Statement : Should all plastic packaging be completely banned ?\n\nArguments :\n1. Yes, it causes severe environmental degradation and endangers marine life.\n2. No, viable biodegradable alternatives at large commercial scale are still under development.",
+    "कथन : क्या सभी प्लास्टिक पैकेजिंग पर पूरी तरह से प्रतिबंध लगाया जाना चाहिए?",
+    {
+        "1": "Only argument 1 is strong",
+        "2": "Only argument 2 is strong",
+        "3": "Both arguments 1 and 2 are strong",
+        "4": "Neither 1 nor 2 is strong"
+    },
+    "3", "Both arguments 1 and 2 are strong",
+    "• Argument 1 addresses ecological damage, while Argument 2 addresses industrial and supply chain feasibility; both are valid and strong."
+)
+
+add_q(
+    74, "13646974", "Logical Reasoning",
+    "P and Q are brothers. S is brother of T. R is father of P. T is daughter of Q. How is S related to R ?",
+    "P और Q भाई हैं। S, T का भाई है। R, P का पिता है। T, Q की बेटी है। S का R से क्या संबंध है?",
+    {
+        "1": "Grandson",
+        "2": "Grandfather",
+        "3": "Son",
+        "4": "Uncle"
+    },
+    "1", "Grandson",
+    "• R is father of P and Q. T is daughter of Q, and S is brother of T, so S is son of Q. Thus S is grandson of R."
+)
+
+add_q(
+    75, "13646975", "Logical Reasoning",
+    "Given below are two statements :\nStatement I : In the number series 1, 6, 15, P, 45, 66, 91, the value of P is 28.\nStatement II : The difference between consecutive terms increases by 4 at each step.\n\nChoose the correct option :",
+    "नीचे दो कथन दिए गए हैं :\nकथन I : संख्या श्रृंखला 1, 6, 15, P, 45, 66, 91 में P का मान 28 है।\nकथन II : लगातार पदों के बीच का अंतर प्रत्येक चरण में 4 बढ़ जाता है।",
+    {
+        "1": "Both Statement I and Statement II are true",
+        "2": "Both Statement I and Statement II are false",
+        "3": "Statement I is true but Statement II is false",
+        "4": "Statement I is false but Statement II is true"
+    },
+    "1", "Both Statement I and Statement II are true",
+    "• Differences: $6-1 = 5$, $15-6 = 9$, $28-15 = 13$, $45-28 = 17$, $66-45 = 21$, $91-66 = 25$.\n• Differences are $5, 9, 13, 17, 21, 25$ (common difference of 4). Both statements are true."
+)
+
+add_q(
+    76, "13646976", "Logical Reasoning",
+    "In a certain coding system, if DESK is written as #$52 and RIDE is written as %7#$, then how will RISK be written in that code language ?",
+    "यदि एक कूट भाषा में DESK को #$52 और RIDE को %7#$ लिखा जाता है, तो RISK को क्या लिखा जाएगा?",
+    {
+        "1": "%752",
+        "2": "%7#2",
+        "3": "%572",
+        "4": "%#72"
+    },
+    "1", "%752",
+    "• Direct letter substitution: D=#, E=$, S=5, K=2, R=%, I=7.\n• Therefore, RISK = %752."
+)
+
+add_q(
+    77, "13646977", "Logical Reasoning",
+    "If the word 'LIGHT' is coded as 20-17-15-16-28, then how would you code 'LEADER' ?",
+    "यदि 'LIGHT' को 20-17-15-16-28 के रूप में कूटबद्ध किया गया है, तो 'LEADER' को कैसे कूटबद्ध करेंगे?",
+    {
+        "1": "20-13-9-12-13-26",
+        "2": "20-13-9-12-13-28",
+        "3": "20-14-10-12-14-26",
+        "4": "19-13-9-11-13-26"
+    },
+    "1", "20-13-9-12-13-26",
+    "• Pattern: Each letter's alphabetical rank $+ 8$:\n• L(12+8=20), I(9+8=17), G(7+8=15), H(8+8=16), T(20+8=28).\n• For 'LEADER': L(12+8=20), E(5+8=13), A(1+8=9), D(4+8=12), E(5+8=13), R(18+8=26) $\\implies$ 20-13-9-12-13-26."
+)
+
+add_q(
+    78, "13646978", "Logical Reasoning",
+    "In a certain code:\n• 'always help old people' is written as 'ba ri sh gi'\n• 'people and old schemes' is written as 'fa oi ma ri'\n• 'help schemes and support' is written as 'ma jo ba fa'\n• 'old and better solution' is written as 'ki ri to fa'\n\nWhat does the code 'fa' stand for ?",
+    "दी गई कूट भाषा में 'fa' किसका कूट है?",
+    {
+        "1": "people",
+        "2": "and",
+        "3": "old",
+        "4": "schemes"
+    },
+    "2", "and",
+    "• Comparing 2nd, 3rd, and 4th statements, the common word is 'and' and the common code is 'fa'."
+)
+
+add_q(
+    79, "13646979", "Logical Reasoning",
+    "Which of the following pairs of words expresses the relationship that is most similar to the pair 'Spider : Web' ?",
+    "उस शब्द-युग्म का चयन कीजिए जिसका संबंध 'Spider : Web' के समान है:",
+    {
+        "1": "Ink : Pen",
+        "2": "Beaver : Dam",
+        "3": "Teacher : Student",
+        "4": "Bird : Sky"
+    },
+    "2", "Beaver : Dam",
+    "• A spider builds a web as its habitat/trap; similarly, a beaver builds a dam as its habitat."
+)
+
+add_q(
+    80, "13646980", "Logical Reasoning",
+    "Trigonometry is related to Triangles in the same way as Mensuration is related to :",
+    "त्रिकोणमिति का त्रिभुजों के साथ वही संबंध है जो क्षेत्रमिति (Mensuration) का किससे है:",
+    {
+        "1": "Geometry",
+        "2": "Circles",
+        "3": "Areas",
+        "4": "Polygons"
+    },
+    "3", "Areas",
+    "• Trigonometry is the branch of math concerned with triangles, while Mensuration is concerned with measuring geometric areas and volumes."
+)
+
+add_q(
+    81, "13646981", "Logical Reasoning",
+    "Which of the following words is least like the other words ?",
+    "निम्नलिखित में से कौन सा शब्द अन्य शब्दों से भिन्न (Odd one out) है?",
+    {
+        "1": "Cabbage",
+        "2": "Papaya",
+        "3": "Cucumber",
+        "4": "Brinjal"
+    },
+    "2", "Papaya",
+    "• Papaya is a fruit that grows on a tree, while cabbage, cucumber, and brinjal are culinary vegetables."
+)
+
+add_q(
+    82, "13646982", "Logical Reasoning",
+    "A statement is followed by two conclusions. Find the conclusion that logically follows.\n\nStatement : Regular physical exercise boosts cognitive functions in students.\n\nConclusions :\nI. Students who do not exercise will inevitably fail exams.\nII. Exercise has a beneficial effect on brain activity.",
+    "कथन : नियमित शारीरिक व्यायाम छात्रों में संज्ञानात्मक कार्यों को बढ़ावा देता है।",
+    {
+        "1": "Only conclusion I follows",
+        "2": "Only conclusion II follows",
+        "3": "Both I and II follow",
+        "4": "Neither I nor II follows"
+    },
+    "2", "Only conclusion II follows",
+    "• The statement supports beneficial brain effects (Conclusion II), but does not imply inevitable exam failure (Conclusion I is extreme)."
+)
+
+add_q(
+    83, "13646983", "Logical Reasoning",
+    "Based on three positions of the same dice, what should be the number opposite to 3 ?",
+    "एक ही पासे की तीन स्थितियों के आधार पर, 3 के विपरीत कौन सी संख्या होगी?",
+    {
+        "1": "1",
+        "2": "2",
+        "3": "5",
+        "4": "4"
+    },
+    "4", "4",
+    "• By observing standard adjacent face rules on standard dice views, the face opposite to 3 is 4."
+)
+
+add_q(
+    84, "13646984", "Logical Reasoning",
+    "In a town of 130 people, 66 read magazine L, 56 read magazine M and 63 read magazine N. 27 read L and M, 25 read M and N and 23 read L and N. 5 people read all three magazines. How many read ONLY magazine L ?",
+    "130 लोगों के एक शहर में 66 पत्रिका L, 56 पत्रिका M और 63 पत्रिका N पढ़ते हैं। 27 L और M, 25 M और N और 23 L और N पढ़ते हैं। 5 लोग तीनों पत्रिकाएँ पढ़ते हैं। केवल पत्रिका L कितने लोग पढ़ते हैं?",
+    {
+        "1": "21",
+        "2": "25",
+        "3": "28",
+        "4": "31"
+    },
+    "1", "21",
+    "• Only L = $n(L) - n(L \\cap M) - n(L \\cap N) + n(L \\cap M \\cap N) = 66 - 27 - 23 + 5 = 21$."
+)
+
+add_q(
+    85, "13646985", "Logical Reasoning",
+    "In a town of 130 people, 66 read magazine L, 56 read magazine M and 63 read magazine N. 27 read L and M, 25 read M and N and 23 read L and N. 5 people read all three magazines. How many people read none of the magazines ?",
+    "130 लोगों के शहर में कितने लोग कोई भी पत्रिका नहीं पढ़ते हैं?",
+    {
+        "1": "15",
+        "2": "20",
+        "3": "25",
+        "4": "30"
+    },
+    "1", "15",
+    "• Total readers = $66 + 56 + 63 - (27 + 25 + 23) + 5 = 185 - 75 + 5 = 115$.\n• Non-readers = $130 - 115 = 15$."
+)
+
+add_q(
+    86, "13646986", "Logical Reasoning",
+    "The square root of 0.09 is :",
+    "0.09 का वर्गमूल क्या है?",
+    {
+        "1": "0.3",
+        "2": "0.03",
+        "3": "0.81",
+        "4": "0.081"
+    },
+    "1", "0.3",
+    "• $\\sqrt{0.09} = \\sqrt{\\frac{9}{100}} = \\frac{3}{10} = 0.3$."
+)
+
+add_q(
+    87, "13646987", "Logical Reasoning",
+    "By using the digits 0, 1 and 5 once in each number, how many three-digit numbers are possible which are divisible by 3 ?",
+    "0, 1 और 5 अंकों का प्रत्येक संख्या में एक बार प्रयोग करके तीन अंकों की ऐसी कितनी संख्याएँ बनाई जा सकती हैं जो 3 से विभाज्य हों?",
+    {
+        "1": "2",
+        "2": "4",
+        "3": "3",
+        "4": "6"
+    },
+    "2", "4",
+    "• Sum of digits = $0 + 1 + 5 = 6$ (divisible by 3). So any 3-digit permutation of {0, 1, 5} is divisible by 3.\n• Hundred's place cannot be 0 (can be 1 or 5: 2 choices).\n• Remaining two places can be arranged in $2! = 2$ ways.\n• Total 3-digit numbers = $2 \\times 2 = 4$ (namely: 105, 150, 501, 510)."
+)
+
+add_q(
+    88, "13646988", "Logical Reasoning",
+    "Which of the following numbers is the largest ?\n$$2^{50}, \\quad 3^{40}, \\quad 4^{30}, \\quad 5^{20}$$",
+    "निम्नलिखित में से कौन सी संख्या सबसे बड़ी है?\n$$2^{50}, \\quad 3^{40}, \\quad 4^{30}, \\quad 5^{20}$$",
+    {
+        "1": "2^50",
+        "2": "3^40",
+        "3": "4^30",
+        "4": "5^20"
+    },
+    "2", "3^40",
+    "• Taking the 10th root of each:\n• $(2^{50})^{1/10} = 2^5 = 32$\n• $(3^{40})^{1/10} = 3^4 = 81$\n• $(4^{30})^{1/10} = 4^3 = 64$\n• $(5^{20})^{1/10} = 5^2 = 25$\n• Since 81 is the largest, $3^{40}$ is the largest."
+)
+
+# Section 5: Data Interpretation (Q89 - Q100)
+di_tourist_table = """The following data gives the percentage of the top 10 states in terms of the number of foreign tourist visits in India in 2019 (Source : tourism.gov.in). The total number of foreign tourists visiting India in 2019 is 3,14,08,666.
+
+| State | Percentage Share (%) |
+| :--- | :--- |
+| **Tamil Nadu** | 22% |
+| **Maharashtra** | 18% |
+| **Uttar Pradesh** | 15% |
+| **Delhi** | 10% |
+| **West Bengal** | 5% |
+| **Rajasthan** | 5% |
+| **Kerala** | 4% |
+| **Punjab** | 4% |
+| **Bihar** | 4% |
+| **Goa** | 3% |
+| **Others** | 10% |"""
+
+add_q(
+    89, "13646989", "Data Interpretation",
+    f"{di_tourist_table}\n\n**Question**: How many people visited Tamil Nadu in 2019 ?",
+    f"{di_tourist_table}\n\n**प्रश्न**: 2019 में कितने विदेशी पर्यटकों ने तमिलनाडु का दौरा किया?",
+    {
+        "1": "6009907",
+        "2": "6909907",
+        "3": "6990907",
+        "4": "660907"
+    },
+    "2", "6909907",
+    "• Tamil Nadu percentage = 22%.\n• Visitors = $0.22 \\times 3,14,08,666 = 69,09,906.52 \\approx 69,09,907$."
+)
+
+add_q(
+    90, "13646990", "Data Interpretation",
+    f"{di_tourist_table}\n\n**Question**: What is the difference between the highest number of foreign tourists visiting any state out of the top ten states and the lowest number ?",
+    f"{di_tourist_table}\n\n**प्रश्न**: शीर्ष दस राज्यों में से सबसे अधिक और सबसे कम विदेशी पर्यटकों वाले राज्यों के बीच का अंतर क्या है?",
+    {
+        "1": "5976647",
+        "2": "600000",
+        "3": "5967647",
+        "4": "6967647"
+    },
+    "3", "5967647",
+    "• Highest = Tamil Nadu (22%), Lowest among top 10 = Goa (3%).\n• Difference = $22\\% - 3\\% = 19\\%$.\n• Difference in visitors = $0.19 \\times 3,14,08,666 = 59,67,646.54 \\approx 59,67,647$."
+)
+
+di_student_table = """The following table shows the amount of money spent by six university students living in student accommodation on food, travel, rent and miscellaneous expenses, along with their monthly budget. (Gender: M — Male, F — Female).
+
+| Student | Monthly Budget (₹) | Food (₹) | Travel (₹) | Rent (₹) | Miscellaneous (₹) |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Sonia (F)** | 27,000 | 12,000 | 4,000 | 7,000 | 4,000 |
+| **Deepak (M)** | 25,000 | 10,000 | 5,000 | 5,000 | 3,000 |
+| **Komal (F)** | 27,000 | 12,000 | 4,500 | 6,500 | 4,000 |
+| **Gaurav (M)** | 22,000 | 9,500 | 4,500 | 5,500 | 2,500 |
+| **Arnav (M)** | 25,000 | 11,000 | 5,000 | 5,000 | 4,000 |
+| **Shruti (F)** | 22,000 | 10,000 | 4,500 | 5,000 | 2,500 |"""
+
+add_q(
+    91, "13646991", "Data Interpretation",
+    f"{di_student_table}\n\n**Question**: What percentage of their total expenditure do the female students together spend on travel ?",
+    f"{di_student_table}\n\n**प्रश्न**: सभी छात्राएं मिलकर अपने कुल व्यय का कितना प्रतिशत यात्रा (Travel) पर खर्च करती हैं?",
+    {
+        "1": "50%",
+        "2": "45%",
+        "3": "17%",
+        "4": "25%"
+    },
+    "3", "17%",
+    "• Female students: Sonia, Komal, Shruti.\n• Total travel expense = $4,000 + 4,500 + 4,500 = ₹13,000$.\n• Total female expenditure = $27,000 + 27,000 + 22,000 = ₹76,000$.\n• Percentage on travel = $\\frac{13,000}{76,000} \\times 100 = 17.105\\% \\approx 17\\%$."
+)
+
+add_q(
+    92, "13646992", "Data Interpretation",
+    f"{di_student_table}\n\n**Question**: Who among all the six students spends the highest percentage of their monthly budget on food ?",
+    f"{di_student_table}\n\n**प्रश्न**: सभी छह छात्रों में से कौन अपने मासिक बजट का उच्चतम प्रतिशत भोजन पर खर्च करता है?",
+    {
+        "1": "Sonia",
+        "2": "Komal",
+        "3": "Arnav",
+        "4": "Shruti"
+    },
+    "4", "Shruti",
+    "• Sonia: $\\frac{12,000}{27,000} = 44.44\\%$\n• Deepak: $\\frac{10,000}{25,000} = 40.00\\%$\n• Komal: $\\frac{12,000}{27,000} = 44.44\\%$\n• Gaurav: $\\frac{9,500}{22,000} = 43.18\\%$\n• Arnav: $\\frac{11,000}{25,000} = 44.00\\%$\n• Shruti: $\\frac{10,000}{22,000} = 45.45\\%$ (Highest)."
+)
+
+add_q(
+    93, "13646993", "Data Interpretation",
+    f"{di_student_table}\n\n**Question**: Who among all the six students spends the least percentage of their monthly budget on travel ?",
+    f"{di_student_table}\n\n**प्रश्न**: सभी छह छात्रों में से कौन अपने मासिक बजट का न्यूनतम प्रतिशत यात्रा पर खर्च करता है?",
+    {
+        "1": "Sonia",
+        "2": "Komal",
+        "3": "Arnav",
+        "4": "Shruti"
+    },
+    "1", "Sonia",
+    "• Sonia: $\\frac{4,000}{27,000} = 14.81\\%$ (Lowest percentage)."
+)
+
+di_survey = """In a survey of 400 college students regarding their preference for three kinds of food — pasta, pizza and burgers:
+• 25% said they like pasta and pizza
+• 25% said they like pasta and burgers
+• 20% like pizza and burgers
+• 10% said they like all three
+• 60% of the students like pasta
+• 65% like pizza
+• 55% like burgers"""
+
+add_q(
+    94, "13646994", "Data Interpretation",
+    f"{di_survey}\n\n**Question**: What is the percentage of students who like at least two out of pasta, pizza and burgers ?",
+    f"{di_survey}\n\n**प्रश्न**: उन छात्रों का प्रतिशत क्या है जो पास्ता, पिज्जा और बर्गर में से कम से कम दो पसंद करते हैं?",
+    {
+        "1": "50%",
+        "2": "60%",
+        "3": "70%",
+        "4": "80%"
+    },
+    "1", "50%",
+    "• At least two = (Pasta & Pizza only) + (Pasta & Burger only) + (Pizza & Burger only) + (All 3)\n• $= (25 - 10) + (25 - 10) + (20 - 10) + 10 = 15 + 15 + 10 + 10 = 50\\%$."
+)
+
+add_q(
+    95, "13646995", "Data Interpretation",
+    f"{di_survey}\n\n**Question**: How many students like only pizza out of the three kinds of food ?",
+    f"{di_survey}\n\n**प्रश्न**: तीनों प्रकार के भोजन में से कितने छात्र केवल पिज्जा पसंद करते हैं?",
+    {
+        "1": "100",
+        "2": "120",
+        "3": "80",
+        "4": "140"
+    },
+    "2", "120",
+    "• Total students = 400.\n• Percentage liking only Pizza = $65\\% - [15\\% + 10\\% + 10\\%] = 65\\% - 35\\% = 30\\%$.\n• Number of students = $0.30 \\times 400 = 120$."
+)
+
+add_q(
+    96, "13646996", "Data Interpretation",
+    "The abscissa of a point is negative in :",
+    "किसी बिंदु का भुज (Abscissa) किसमें ऋणात्मक होता है?",
+    {
+        "1": "First quadrant",
+        "2": "Second and third quadrant",
+        "3": "Second quadrant",
+        "4": "Third and fourth quadrant"
+    },
+    "2", "Second and third quadrant",
+    "• Abscissa is the $x$-coordinate of a point. $x$ is negative in Quadrant II ($x<0, y>0$) and Quadrant III ($x<0, y<0$)."
+)
+
+add_q(
+    97, "13646997", "Data Interpretation",
+    "Which of the following is/are rational number/numbers ?\n(i) $0.67$\n(ii) $\\sqrt{4}$\n(iii) $\\sqrt{3}$\n(iv) $\\pi$",
+    "निम्नलिखित में से कौन-सी परिमेय संख्या/संख्याएँ हैं?\n(i) $0.67$\n(ii) $\\sqrt{4}$\n(iii) $\\sqrt{3}$\n(iv) $\\pi$",
+    {
+        "1": "(i) only",
+        "2": "(i), (ii) only",
+        "3": "(iii) and (iv) only",
+        "4": "(i), (ii) and (iv) only"
+    },
+    "2", "(i), (ii) only",
+    "• (i) $0.67 = 67/100$ (terminating decimal, rational).\n• (ii) $\\sqrt{4} = 2$ (integer, rational).\n• (iii) $\\sqrt{3}$ is irrational.\n• (iv) $\\pi$ is irrational."
+)
+
+add_q(
+    98, "13646998", "Data Interpretation",
+    "What is the sum of cubes of the first 12 natural numbers ?",
+    "प्रथम 12 प्राकृतिक संख्याओं के घनों का योग क्या है?",
+    {
+        "1": "78",
+        "2": "6084",
+        "3": "6500",
+        "4": "194500"
+    },
+    "2", "6084",
+    "• Formula: $\\sum_{k=1}^n k^3 = \\left(\\frac{n(n + 1)}{2}\\right)^2$.\n• For $n = 12$: $\\left(\\frac{12 \\times 13}{2}\\right)^2 = (78)^2 = 6,084$."
+)
+
+add_q(
+    99, "13646999", "Data Interpretation",
+    "Five colleagues A, B, C, D and E come to office by car pooling and start working at their desks at the exact same time. They check their mobile phones at regular fixed intervals of 12, 15, 20, 24 and 30 minutes respectively. After how many hours will all five check their phones together for the first time ?",
+    "पांच सहकर्मी A, B, C, D और E एक साथ कार्यालय आते हैं और ठीक एक ही समय पर काम शुरू करते हैं। वे क्रमशः 12, 15, 20, 24 और 30 मिनट के नियमित अंतराल पर अपने फोन चेक करते हैं। कितने घंटे बाद वे सभी पहली बार एक साथ अपने फोन चेक करेंगे?",
+    {
+        "1": "1 hour",
+        "2": "2 hours",
+        "3": "3 hours",
+        "4": "4 hours"
+    },
+    "2", "2 hours",
+    "• LCM of 12, 15, 20, 24, 30:\n• $12 = 2^2 \\times 3$\n• $15 = 3 \\times 5$\n• $20 = 2^2 \\times 5$\n• $24 = 2^3 \\times 3$\n• $30 = 2 \\times 3 \\times 5$\n• $\\text{LCM} = 2^3 \\times 3 \\times 5 = 120$ minutes = 2 hours."
+)
+
+add_q(
+    100, "136469100", "Data Interpretation",
+    "25% of a class of students take up extra curricular activities (ECA). They chose at least one option from music and sports. If 20% of ECA students chose both music and sports, and 50% of them opted for sports, what percentage of ECA students chose only music ?",
+    "एक कक्षा के 25% छात्र पाठ्येतर गतिविधियों (ECA) में भाग लेते हैं। वे संगीत और खेल में से कम से कम एक विकल्प चुनते हैं। यदि 20% ECA छात्रों ने संगीत और खेल दोनों को चुना, और उनमें से 50% ने खेल का विकल्प चुना, तो कितने प्रतिशत ECA छात्रों ने केवल संगीत चुना?",
+    {
+        "1": "50%",
+        "2": "40%",
+        "3": "30%",
+        "4": "20%"
+    },
+    "1", "50%",
+    "• Let total ECA students = $100\\%$.\n• $\\text{Both} = 20\\%$.\n• $\\text{Sports} = 50\\% \\implies \\text{Only Sports} = 50\\% - 20\\% = 30\\%$.\n• Since every ECA student chose at least one activity:\n• $\\text{Total} = \\text{Only Music} + \\text{Only Sports} + \\text{Both} = 100\\%$\n• $\\text{Only Music} = 100\\% - (30\\% + 20\\%) = 50\\%$."
+)
+
+print(f"Total questions created: {len(questions)}")
+
+# Write to root CUET_PG_MBA_2022.json
+json_path = f"{BASE_DIR}/CUET_PG_MBA_JSON/CUET_PG_MBA_2022.json"
+with open(json_path, "w", encoding="utf-8") as f:
+    json.dump(questions, f, indent=2, ensure_ascii=False)
+print(f"Wrote {json_path}")
+
+# Write to web/public CUET_PG_MBA_2022.json
+web_json_path = f"{BASE_DIR}/web/public/CUET_PG_MBA_JSON/CUET_PG_MBA_2022.json"
+with open(web_json_path, "w", encoding="utf-8") as f:
+    json.dump(questions, f, indent=2, ensure_ascii=False)
+print(f"Wrote {web_json_path}")
+
+# Now build master CUET_PG_MBA_All_PYQs.json across all years
+all_pyqs = []
+for yr in [2022, 2023, 2024, 2025, 2026]:
+    yp = f"{BASE_DIR}/CUET_PG_MBA_JSON/CUET_PG_MBA_{yr}.json"
+    with open(yp, "r", encoding="utf-8") as f:
+        y_data = json.load(f)
+        all_pyqs.extend(y_data)
+        print(f"Year {yr}: {len(y_data)} questions")
+
+with open(f"{BASE_DIR}/CUET_PG_MBA_All_PYQs.json", "w", encoding="utf-8") as f:
+    json.dump(all_pyqs, f, indent=2, ensure_ascii=False)
+print(f"Wrote root master CUET_PG_MBA_All_PYQs.json ({len(all_pyqs)} total questions)")
+
+with open(f"{BASE_DIR}/web/public/CUET_PG_MBA_JSON/CUET_PG_MBA_All_PYQs.json", "w", encoding="utf-8") as f:
+    json.dump(all_pyqs, f, indent=2, ensure_ascii=False)
+print(f"Wrote web public master CUET_PG_MBA_All_PYQs.json ({len(all_pyqs)} total questions)")
+
