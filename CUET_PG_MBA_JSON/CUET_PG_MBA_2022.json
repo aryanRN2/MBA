@@ -5,18 +5,18 @@
     "question_number": 1,
     "question_id": "1163001",
     "section": "Language Comprehension & Verbal Ability",
-    "question": "From among the four options given, choose the pair of phrases that will be the most suitable to complete the following and make a meaningful sentence:\n\nWhen the police offered him a lighter punishment if he gave them the names of his accomplices, the robber decided to _______ and _______.\n\nनिम्नलिखित में से 'संप्रदान तत्पुरुष समास' का उदाहरण कौन सा है?",
-    "question_en": "From among the four options given, choose the pair of phrases that will be the most suitable to complete the following and make a meaningful sentence:\n\nWhen the police offered him a lighter punishment if he gave them the names of his accomplices, the robber decided to _______ and _______.",
-    "question_hi": "निम्नलिखित में से 'संप्रदान तत्पुरुष समास' का उदाहरण कौन सा है?",
+    "question": "From among the four options given, choose the pair of phrases that will be the most suitable to complete the following and make a meaningful sentence :\n\nThe best advice that my parents gave me is don't _________ and _________\n\n'वृषल' शब्द का संबंध किससे नहीं है?",
+    "question_en": "From among the four options given, choose the pair of phrases that will be the most suitable to complete the following and make a meaningful sentence :\n\nThe best advice that my parents gave me is don't _________ and _________",
+    "question_hi": "'वृषल' शब्द का संबंध किससे नहीं है?",
     "options": {
-      "1": "bite the bullet; break a leg",
-      "2": "call it a day; go back to the drawing board",
-      "3": "it’s the best thing since sliced bread; sit on the fence",
-      "4": "spill the beans; call it a day"
+      "1": "put all your eggs in one basket; a penny saved is a penny earned",
+      "2": "break the ice; do something at the drop of a hat",
+      "3": "give someone the cold shoulder; go on a wild goose chase",
+      "4": "hit the nail on the head; kill two birds with one stone"
     },
-    "correct_option": "4",
-    "correct_answer": "spill the beans; call it a day",
-    "explanation": "• English Analysis: 'Spill the beans' is an idiom meaning to disclose confidential or secret information (such as confessing to police and revealing accomplices). 'Call it a day' means to stop doing something or conclude work. Hence, Option (4) is the grammatically and semantically correct choice.\n• Hindi Section (वैकल्पिक हिंदी): 'गुरु के लिए दक्षिणा' (गुरुदक्षिणा) में संप्रदान कारक की विभक्ति 'के लिए' का प्रयोग हुआ है, अतः यह संप्रदान तत्पुरुष समास का शुद्ध उदाहरण है।"
+    "correct_option": "1",
+    "correct_answer": "put all your eggs in one basket; a penny saved is a penny earned",
+    "explanation": "• English Section: 'Don't put all your eggs in one basket' is a well-known proverb meaning not to risk everything on a single venture, and 'a penny saved is a penny earned' emphasizes the wisdom of saving money. Together, they form classic parental advice and fit the sentence structure perfectly.\n• Hindi Section (वैकल्पिक): 'वृषल' शब्द का अर्थ शूद्र, अधार्मिक या पापी व्यक्ति, तथा बैल (वृष) से संबंधित होता है।"
   },
   {
     "year": 2022,
