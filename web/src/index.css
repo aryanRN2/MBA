@@ -939,7 +939,7 @@ body {
   border-color: rgba(79, 70, 229, 0.3);
 }
 
-/* KaTeX Formula Responsive Wrapping */
+/* KaTeX Formula Responsive Wrapping & Markdown Tables */
 .katex-display {
   overflow-x: auto;
   overflow-y: hidden;
@@ -954,6 +954,34 @@ body {
   white-space: normal;
 }
 
+.question-text-en table,
+.question-text-hi table,
+.explanation-content table {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-collapse: collapse;
+  margin: 0.75rem 0;
+}
+
+.question-text-en th, .question-text-en td,
+.question-text-hi th, .question-text-hi td,
+.explanation-content th, .explanation-content td {
+  padding: 0.45rem 0.75rem;
+  border: 1px solid var(--border-light);
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.question-text-en th,
+.question-text-hi th,
+.explanation-content th {
+  background: #f1f5f9;
+  font-weight: 700;
+}
+
 .lang-label {
   font-size: 0.75rem;
   font-weight: 700;
@@ -962,17 +990,28 @@ body {
 }
 
 /* =========================================
-   COMPREHENSIVE RESPONSIVE DESIGN FOR MOBILE
+   COMPREHENSIVE RESPONSIVE DESIGN FOR MOBILE & TABLET
    ========================================= */
 @media (max-width: 1024px) {
   .test-player-view {
     flex-direction: column;
-    padding: 1rem;
+    padding: 0.85rem 0.85rem 2.5rem;
     gap: 1rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  .main-content {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
   }
   .palette-sidebar {
     width: 100%;
+    max-width: 100%;
     position: static;
+    box-sizing: border-box;
   }
   .palette-grid {
     grid-template-columns: repeat(10, 1fr);
@@ -987,10 +1026,13 @@ body {
 
   .palette-sidebar {
     display: none;
+    width: 100%;
+    max-width: 100%;
     background: white;
     box-shadow: var(--shadow-lg);
     border: 1.5px solid var(--border-light);
     animation: slideDown 0.25s ease-out;
+    box-sizing: border-box;
   }
 
   .palette-sidebar.mobile-open {
@@ -1003,120 +1045,30 @@ body {
   }
 }
 
-@media (max-width: 640px) {
-  body {
-    background-attachment: scroll;
-  }
-
-  .portal-top-bar {
-    padding: 0.55rem 0.85rem;
-  }
-
-  .portal-name {
-    font-size: 0.9rem;
-  }
-
-  .user-profile-badge {
-    padding: 0.25rem 0.55rem;
-    font-size: 0.75rem;
-    gap: 0.35rem;
-  }
-
-  .user-profile-badge .user-id-text {
-    max-width: 90px;
-  }
-
-  .landing-view {
-    padding: 2.5rem 1rem 3rem;
-    gap: 1.75rem;
-  }
-
-  .hero-title {
-    font-size: 2rem;
-    line-height: 1.15;
-  }
-
-  .btn-black-pyq.main-pyq {
-    width: 100%;
-    max-width: 290px;
-    padding: 0.95rem 1.5rem;
-    font-size: 1.05rem;
-  }
-
-  .other-pyq-row {
-    width: 100%;
-    gap: 0.5rem;
-  }
-
-  .btn-black-pyq.secondary-pyq {
-    padding: 0.5rem 0.85rem;
-    font-size: 0.8rem;
-  }
-
-  .test-player-view {
-    padding: 0.6rem 0.6rem 2.5rem;
-    gap: 0.75rem;
-  }
-
-  .player-top-bar {
-    padding: 0.65rem 0.75rem;
+@media (max-width: 768px) {
+  .filter-bar {
     flex-direction: column;
     align-items: stretch;
     gap: 0.6rem;
-  }
-
-  .player-top-row-left, .player-top-row-right {
+    padding: 0.6rem 0.75rem;
     width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .paper-select {
-    flex: 1;
-    min-width: 0;
-    padding: 0.45rem 0.65rem;
-    font-size: 0.8rem;
-  }
-
-  .nav-home-btn {
-    padding: 0.45rem 0.65rem;
-    font-size: 0.78rem;
-  }
-
-  .mode-toggle {
-    flex: 1;
-  }
-
-  .mode-btn {
-    flex: 1;
-    justify-content: center;
-    padding: 0.35rem 0.4rem;
-    font-size: 0.74rem;
-  }
-
-  .timer-box {
-    padding: 0.35rem 0.6rem;
-    font-size: 0.85rem;
-  }
-
-  .filter-bar {
-    padding: 0.55rem 0.7rem;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.55rem;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
   }
 
   .section-tabs {
     display: flex;
     gap: 0.35rem;
+    width: 100%;
+    max-width: 100%;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     -ms-overflow-style: none;
     flex-wrap: nowrap;
-    padding-bottom: 2px;
+    padding-bottom: 3px;
+    box-sizing: border-box;
   }
 
   .section-tabs::-webkit-scrollbar {
@@ -1126,8 +1078,8 @@ body {
   .section-tab {
     white-space: nowrap;
     flex-shrink: 0;
-    padding: 0.38rem 0.7rem;
-    font-size: 0.75rem;
+    padding: 0.4rem 0.75rem;
+    font-size: 0.76rem;
   }
 
   .view-options {
@@ -1135,7 +1087,8 @@ body {
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    gap: 0.3rem;
+    gap: 0.35rem;
+    box-sizing: border-box;
   }
 
   .lang-btn {
@@ -1144,62 +1097,255 @@ body {
     padding: 0.35rem 0.4rem;
     font-size: 0.75rem;
   }
+}
 
-  .question-card {
-    padding: 1rem 0.85rem;
-    border-radius: var(--radius-lg);
-    gap: 1rem;
+@media (max-width: 640px) {
+  html, body, #root, .app-root {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
 
-  .question-header {
-    padding-bottom: 0.65rem;
+  body {
+    background-attachment: scroll;
+  }
+
+  .portal-top-bar {
+    padding: 0.5rem 0.75rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .portal-name {
+    font-size: 0.88rem;
+  }
+
+  .user-profile-badge {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.72rem;
+    gap: 0.3rem;
+  }
+
+  .user-profile-badge .user-id-text {
+    max-width: 80px;
+  }
+
+  .landing-view {
+    padding: 2rem 0.85rem 3rem;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .hero-title {
+    font-size: 1.85rem;
+    line-height: 1.15;
+  }
+
+  .btn-black-pyq.main-pyq {
+    width: 100%;
+    max-width: 290px;
+    padding: 0.9rem 1.25rem;
+    font-size: 1rem;
+  }
+
+  .other-pyq-row {
+    width: 100%;
     gap: 0.4rem;
   }
 
-  .q-number-badge {
+  .btn-black-pyq.secondary-pyq {
+    padding: 0.45rem 0.75rem;
+    font-size: 0.78rem;
+  }
+
+  .test-player-view {
+    padding: 0.45rem 0.45rem 2.5rem;
+    gap: 0.65rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+
+  .player-top-bar {
+    padding: 0.55rem 0.65rem;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .player-top-row-left, .player-top-row-right {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.45rem;
+    box-sizing: border-box;
+  }
+
+  .paper-select {
+    flex: 1;
+    min-width: 0;
+    padding: 0.4rem 0.55rem;
+    font-size: 0.78rem;
+  }
+
+  .nav-home-btn {
+    padding: 0.4rem 0.55rem;
+    font-size: 0.75rem;
+    flex-shrink: 0;
+  }
+
+  .mode-toggle {
+    flex: 1;
+  }
+
+  .mode-btn {
+    flex: 1;
+    justify-content: center;
+    padding: 0.35rem 0.35rem;
+    font-size: 0.72rem;
+  }
+
+  .timer-box {
+    padding: 0.3rem 0.55rem;
     font-size: 0.82rem;
-    padding: 0.25rem 0.6rem;
+  }
+
+  .filter-bar {
+    padding: 0.5rem 0.6rem;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .section-tabs {
+    display: flex;
+    gap: 0.3rem;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    flex-wrap: nowrap;
+    padding-bottom: 2px;
+    box-sizing: border-box;
+  }
+
+  .section-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .section-tab {
+    white-space: nowrap;
+    flex-shrink: 0;
+    padding: 0.35rem 0.65rem;
+    font-size: 0.74rem;
+  }
+
+  .view-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 0.3rem;
+    box-sizing: border-box;
+  }
+
+  .lang-btn {
+    flex: 1;
+    text-align: center;
+    padding: 0.32rem 0.35rem;
+    font-size: 0.72rem;
+  }
+
+  .question-card {
+    padding: 0.85rem 0.75rem;
+    border-radius: var(--radius-lg);
+    gap: 0.85rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+
+  .question-header {
+    padding-bottom: 0.55rem;
+    gap: 0.35rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .q-number-badge {
+    font-size: 0.78rem;
+    padding: 0.2rem 0.5rem;
   }
 
   .q-section-badge {
-    font-size: 0.7rem;
-    padding: 0.25rem 0.5rem;
+    font-size: 0.68rem;
+    padding: 0.2rem 0.45rem;
   }
 
   .action-btn-sm {
-    font-size: 0.75rem;
-    padding: 0.3rem 0.6rem;
+    font-size: 0.72rem;
+    padding: 0.25rem 0.5rem;
   }
 
   .question-text-en {
-    font-size: 0.98rem;
-    line-height: 1.55;
+    font-size: 0.95rem;
+    line-height: 1.5;
     word-break: break-word;
+    overflow-wrap: anywhere;
   }
 
   .question-text-hi {
-    font-size: 0.95rem;
-    line-height: 1.6;
+    font-size: 0.92rem;
+    line-height: 1.55;
     word-break: break-word;
+    overflow-wrap: anywhere;
   }
 
   .chart-container {
-    padding: 0.6rem;
+    padding: 0.5rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .chart-image {
-    max-height: 260px;
+    max-height: 240px;
+    width: 100%;
   }
 
   .options-list {
-    gap: 0.65rem;
+    gap: 0.55rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .option-item {
-    padding: 0.8rem 0.85rem;
-    gap: 0.7rem;
+    padding: 0.75rem 0.75rem;
+    gap: 0.65rem;
     border-radius: 12px;
-    min-height: 46px;
+    min-height: 44px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .option-item:hover {
@@ -1207,27 +1353,36 @@ body {
   }
 
   .option-key {
-    width: 28px;
-    height: 28px;
-    font-size: 0.8rem;
+    width: 26px;
+    height: 26px;
+    font-size: 0.76rem;
   }
 
   .option-text {
-    font-size: 0.92rem;
-    line-height: 1.45;
+    font-size: 0.88rem;
+    line-height: 1.4;
     word-break: break-word;
+    overflow-wrap: anywhere;
+    min-width: 0;
   }
 
   .explanation-box {
-    padding: 0.9rem;
-    font-size: 0.88rem;
+    padding: 0.8rem 0.75rem;
+    font-size: 0.85rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-wrap: anywhere;
   }
 
   .nav-footer {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0.5rem;
-    padding: 0.75rem 0.8rem;
+    gap: 0.45rem;
+    padding: 0.65rem 0.65rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .btn-reveal {
@@ -1235,15 +1390,15 @@ body {
     width: 100%;
     justify-content: center;
     order: -1;
-    padding: 0.65rem 0.8rem;
-    font-size: 0.82rem;
+    padding: 0.6rem 0.75rem;
+    font-size: 0.8rem;
   }
 
   .btn-secondary, .btn-primary {
     width: 100%;
     justify-content: center;
-    padding: 0.65rem 0.8rem;
-    font-size: 0.82rem;
+    padding: 0.6rem 0.75rem;
+    font-size: 0.8rem;
   }
 
   .shortcut-hint {
@@ -1252,61 +1407,61 @@ body {
 
   .palette-grid {
     grid-template-columns: repeat(6, 1fr);
-    gap: 0.4rem;
+    gap: 0.35rem;
   }
 
   .palette-btn {
-    height: 36px;
-    font-size: 0.8rem;
+    height: 34px;
+    font-size: 0.78rem;
   }
 
   .legend-grid {
     grid-template-columns: 1fr 1fr;
-    font-size: 0.7rem;
-    gap: 0.4rem;
+    font-size: 0.68rem;
+    gap: 0.35rem;
   }
 
   .auth-minimal-box {
-    padding: 1.75rem 1.25rem;
-    max-width: 92%;
+    padding: 1.5rem 1rem;
+    max-width: 94%;
     border-radius: 20px;
   }
 
   .auth-minimal-title {
-    font-size: 1.45rem;
+    font-size: 1.35rem;
   }
 
   .auth-minimal-input {
     font-size: 16px;
-    padding: 0.85rem 1rem 0.85rem 2.5rem;
+    padding: 0.8rem 0.9rem 0.8rem 2.25rem;
   }
 
   .auth-minimal-btn {
-    padding: 0.85rem;
-    font-size: 0.95rem;
+    padding: 0.8rem;
+    font-size: 0.9rem;
   }
 
   .modal-card {
-    padding: 1.25rem 1rem;
+    padding: 1.1rem 0.85rem;
     border-radius: var(--radius-lg);
-    gap: 1.1rem;
+    gap: 1rem;
   }
 
   .score-stats {
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 0.45rem;
+    gap: 0.35rem;
   }
 
   .stat-box {
-    padding: 0.6rem 0.3rem;
+    padding: 0.5rem 0.25rem;
   }
 
   .stat-val {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 
   .stat-label {
-    font-size: 0.65rem;
+    font-size: 0.62rem;
   }
 }
 
