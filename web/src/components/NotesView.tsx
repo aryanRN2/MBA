@@ -38,6 +38,13 @@ const SUBJECTS_LIST: SubjectItem[] = [
         pdfUrl: '/notes/Abstract_Algebra_Dummit_Foote_Monograph.pdf',
         size: '562 KB',
       },
+      {
+        id: 'dummit-foote-syllabus-extracted',
+        title: 'Abstract Algebra — Dummit & Foote (Original Book / Syllabus Extracted)',
+        filename: 'Dummit_Foote_Syllabus_Extracted.pdf',
+        pdfUrl: '/notes/Dummit_Foote_Syllabus_Extracted.pdf',
+        size: '24.4 MB',
+      },
     ],
   },
   {
