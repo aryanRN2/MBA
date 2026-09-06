@@ -37,7 +37,7 @@ export const AskAIChatModal: React.FC<AskAIChatModalProps> = ({ question, onClos
     {
       id: 'init',
       role: 'assistant',
-      content: `Hello! I'm your **CUET PG MBA AI Tutor**. I have loaded **Question ${question.question_number}** (*${question.section}*).\n\nWhat doubt do you have regarding this problem? You can click a shortcut prompt below or type your question!`,
+      content: `Hello! I'm your AI Tutor for **Question ${question.question_number}**. What would you like help with? You can choose a quick action below or type any doubt!`,
     },
   ]);
   const [input, setInput] = useState('');
@@ -52,10 +52,23 @@ export const AskAIChatModal: React.FC<AskAIChatModalProps> = ({ question, onClos
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, isLoading]);
 
-  // Focus input on mount
+  // Lock body & html scroll completely and focus input on mount
   useEffect(() => {
     inputRef.current?.focus();
+    const originalBodyOverflow = document.body.style.overflow;
+    const originalHtmlOverflow = document.documentElement.style.overflow;
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.overflow = originalBodyBody(originalBodyOverflow);
+      document.documentElement.style.overflow = originalHtmlOverflow;
+    };
   }, []);
+
+  function originalBodyBody(val: string) {
+    return val || '';
+  }
 
   // Construct context-rich system prompt for the specific question
   const buildSystemPrompt = () => {
@@ -82,7 +95,7 @@ GUIDELINES FOR YOUR RESPONSES:
 1. Provide extremely clear, step-by-step conceptual and mathematical explanations.
 2. Use LaTeX formatted math formulas with $...$ for inline formulas and $$...$$ for block equations so the renderer displays them cleanly.
 3. Highlight smart shortcuts, elimination tricks, and quick calculation methods suited for the 90-105 minute CUET PG MBA exam.
-4. Be polite, concise, and directly address the student's specific doubt.`;
+4. Be concise, direct, and avoid repeating the whole question text unless necessary.`;
   };
 
   const handleSendMessage = async (customPrompt?: string) => {
@@ -188,8 +201,7 @@ GUIDELINES FOR YOUR RESPONSES:
               <Sparkles size={18} />
             </div>
             <div>
-              <h3 className="ask-ai-title">Ask AI Tutor — Q{question.question_number}</h3>
-              <span className="ask-ai-subtitle">{question.section}</span>
+              <h3 className="ask-ai-title">Ask AI Tutor</h3>
             </div>
           </div>
 
@@ -204,14 +216,6 @@ GUIDELINES FOR YOUR RESPONSES:
             <button className="ai-btn-close" onClick={onClose} title="Close AI Tutor">
               <X size={18} />
             </button>
-          </div>
-        </div>
-
-        {/* Question Context Banner */}
-        <div className="ai-question-summary-banner">
-          <span className="ai-banner-label">Active Question:</span>
-          <div className="ai-banner-text">
-            <MathRenderer text={question.question_en || question.question} />
           </div>
         </div>
 
