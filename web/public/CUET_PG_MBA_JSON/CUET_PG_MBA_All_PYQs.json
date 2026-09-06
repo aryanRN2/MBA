@@ -5,9 +5,9 @@
     "question_number": 1,
     "question_id": "1163001",
     "section": "Language Comprehension & Verbal Ability",
-    "question": "From among the four options given, choose the pair of phrases that will be the most suitable to complete the following and make a meaningful sentence :\n\nThe best advice that my parents gave me is don't _________ and _________\n\n'वृषल' शब्द का संबंध किससे नहीं है?",
-    "question_en": "From among the four options given, choose the pair of phrases that will be the most suitable to complete the following and make a meaningful sentence :\n\nThe best advice that my parents gave me is don't _________ and _________",
-    "question_hi": "'वृषल' शब्द का संबंध किससे नहीं है?",
+    "question": "From among the four options given, choose the pair of phrases that will be the most suitable to complete the following and make a meaningful sentence :\n\nThe best advice that my parents gave me is don't ________ and ________",
+    "question_en": "From among the four options given, choose the pair of phrases that will be the most suitable to complete the following and make a meaningful sentence :\n\nThe best advice that my parents gave me is don't ________ and ________",
+    "question_hi": "दिए गए चार विकल्पों में से, मुहावरों के उस युग्म का चयन कीजिए जो निम्नलिखित वाक्य को सार्थक बनाने के लिए सबसे उपयुक्त हो:\n\nमेरे माता-पिता ने मुझे जो सबसे अच्छी सलाह दी, वह यह है कि _______ और _______।",
     "options": {
       "1": "put all your eggs in one basket; a penny saved is a penny earned",
       "2": "break the ice; do something at the drop of a hat",
@@ -16,7 +16,7 @@
     },
     "correct_option": "1",
     "correct_answer": "put all your eggs in one basket; a penny saved is a penny earned",
-    "explanation": "• English Section: 'Don't put all your eggs in one basket' is a well-known proverb meaning not to risk everything on a single venture, and 'a penny saved is a penny earned' emphasizes the wisdom of saving money. Together, they form classic parental advice and fit the sentence structure perfectly.\n• Hindi Section (वैकल्पिक): 'वृषल' शब्द का अर्थ शूद्र, अधार्मिक या पापी व्यक्ति, तथा बैल (वृष) से संबंधित होता है।"
+    "explanation": "• English Section: 'Don't put all your eggs in one basket' is a well-known proverb meaning not to risk everything on a single venture, and 'a penny saved is a penny earned' emphasizes the wisdom of saving money. Together, they form classic parental advice and fit the sentence structure perfectly.\n• वाक्य का सही अर्थ: 'मेरे माता-पिता ने मुझे जो सबसे अच्छी सलाह दी, वह यह है कि सारे अंडे एक ही टोकरी में मत रखो (एक ही जगह सारा जोखिम मत लो) और एक-एक पैसे की बचत ही कमाई है।'"
   },
   {
     "year": 2022,
