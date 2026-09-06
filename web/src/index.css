@@ -361,13 +361,11 @@ body {
 .filter-bar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   background: white;
   padding: 0.6rem 1rem;
   border-radius: var(--radius-lg);
   border: 1px solid var(--border-light);
   box-shadow: var(--shadow-sm);
-  flex-wrap: wrap;
   gap: 0.5rem;
 }
 
@@ -375,6 +373,7 @@ body {
   display: flex;
   gap: 0.4rem;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 .section-tab {
@@ -398,29 +397,6 @@ body {
   background: var(--primary-light);
   color: var(--primary);
   border-color: rgba(79, 70, 229, 0.2);
-}
-
-.view-options {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.lang-btn {
-  padding: 0.35rem 0.75rem;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border-light);
-  background: white;
-  font-size: 0.75rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.15s;
-}
-
-.lang-btn.active {
-  background: #334155;
-  color: white;
-  border-color: #334155;
 }
 
 /* Question Card */
@@ -1081,22 +1057,6 @@ body {
     padding: 0.4rem 0.75rem;
     font-size: 0.76rem;
   }
-
-  .view-options {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    gap: 0.35rem;
-    box-sizing: border-box;
-  }
-
-  .lang-btn {
-    flex: 1;
-    text-align: center;
-    padding: 0.35rem 0.4rem;
-    font-size: 0.75rem;
-  }
 }
 
 @media (max-width: 640px) {
@@ -1255,22 +1215,6 @@ body {
     flex-shrink: 0;
     padding: 0.35rem 0.65rem;
     font-size: 0.74rem;
-  }
-
-  .view-options {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    gap: 0.3rem;
-    box-sizing: border-box;
-  }
-
-  .lang-btn {
-    flex: 1;
-    text-align: center;
-    padding: 0.32rem 0.35rem;
-    font-size: 0.72rem;
   }
 
   .question-card {

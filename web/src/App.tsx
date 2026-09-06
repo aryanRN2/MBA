@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import type { Question, OptionKey, PaperMeta, TestMode, LanguageView } from './types';
+import type { Question, OptionKey, PaperMeta, TestMode } from './types';
 import { HomeView } from './components/HomeView';
 import { TestPlayer } from './components/TestPlayer';
 import { ScoreModal } from './components/ScoreModal';
@@ -107,7 +107,6 @@ export function App() {
   const [revealedAnswers, setRevealedAnswers] = useState<Record<number, boolean>>({});
   const [flaggedQuestions, setFlaggedQuestions] = useState<Record<number, boolean>>({});
   const [selectedSection, setSelectedSection] = useState('ALL');
-  const [languageView, setLanguageView] = useState<LanguageView>('both');
   const [timerSeconds, setTimerSeconds] = useState(7200);
   const [examSubmitted, setExamSubmitted] = useState(false);
   const [showScoreModal, setShowScoreModal] = useState(false);
@@ -258,8 +257,6 @@ export function App() {
           setFlaggedQuestions={setFlaggedQuestions}
           selectedSection={selectedSection}
           setSelectedSection={setSelectedSection}
-          languageView={languageView}
-          setLanguageView={setLanguageView}
           timerSeconds={timerSeconds}
           examSubmitted={examSubmitted}
         />

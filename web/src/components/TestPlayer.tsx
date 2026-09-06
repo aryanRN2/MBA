@@ -15,7 +15,7 @@ import {
   ChevronDown,
   ChevronUp,
 } from 'lucide-react';
-import type { Question, OptionKey, PaperMeta, TestMode, LanguageView } from '../types';
+import type { Question, OptionKey, PaperMeta, TestMode } from '../types';
 import { MathRenderer } from './MathRenderer';
 
 interface TestPlayerProps {
@@ -37,8 +37,6 @@ interface TestPlayerProps {
   setFlaggedQuestions: React.Dispatch<React.SetStateAction<Record<number, boolean>>>;
   selectedSection: string;
   setSelectedSection: (sec: string) => void;
-  languageView: LanguageView;
-  setLanguageView: (lang: LanguageView) => void;
   timerSeconds: number;
   examSubmitted: boolean;
 }
@@ -62,8 +60,6 @@ export const TestPlayer: React.FC<TestPlayerProps> = ({
   setFlaggedQuestions,
   selectedSection,
   setSelectedSection,
-  languageView,
-  setLanguageView,
   timerSeconds,
   examSubmitted,
 }) => {
@@ -247,28 +243,6 @@ export const TestPlayer: React.FC<TestPlayerProps> = ({
               </button>
             ))}
           </div>
-
-          <div className="view-options">
-            <span className="lang-label">Lang:</span>
-            <button
-              className={`lang-btn ${languageView === 'both' ? 'active' : ''}`}
-              onClick={() => setLanguageView('both')}
-            >
-              Bilingual
-            </button>
-            <button
-              className={`lang-btn ${languageView === 'en' ? 'active' : ''}`}
-              onClick={() => setLanguageView('en')}
-            >
-              English
-            </button>
-            <button
-              className={`lang-btn ${languageView === 'hi' ? 'active' : ''}`}
-              onClick={() => setLanguageView('hi')}
-            >
-              Hindi
-            </button>
-          </div>
         </div>
 
         {/* Central Question Card */}
@@ -290,19 +264,11 @@ export const TestPlayer: React.FC<TestPlayerProps> = ({
             </div>
           </div>
 
-          {/* Question Text with KaTeX */}
+          {/* Question Text with KaTeX (English Only) */}
           <div className="question-body">
-            {(languageView === 'both' || languageView === 'en' || !currentQuestion.question_hi) && (
-              <div className="question-text-en">
-                <MathRenderer text={currentQuestion.question_en || currentQuestion.question} />
-              </div>
-            )}
-
-            {(languageView === 'both' || languageView === 'hi') && currentQuestion.question_hi && (
-              <div className="question-text-hi">
-                <MathRenderer text={currentQuestion.question_hi} />
-              </div>
-            )}
+            <div className="question-text-en">
+              <MathRenderer text={currentQuestion.question_en || currentQuestion.question} />
+            </div>
 
             {/* High-Resolution Data Interpretation Chart */}
             {currentQuestion.chart_image && (
