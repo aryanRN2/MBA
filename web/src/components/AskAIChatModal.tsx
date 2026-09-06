@@ -50,6 +50,7 @@ export const AskAIChatModal: React.FC<AskAIChatModalProps> = ({
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [streamingMessageId, setStreamingMessageId] = useState<string | null>(null);
   const [, setError] = useState<string | null>(null);
 
   const chatEndRef = useRef<HTMLDivElement>(null);
@@ -59,7 +60,7 @@ export const AskAIChatModal: React.FC<AskAIChatModalProps> = ({
   // Auto-scroll on new messages
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages, isLoading]);
+  }, [messages, isLoading, streamingMessageId]);
 
   // Construct context-rich system prompt for the specific question
   const buildSystemPrompt = () => {
@@ -119,6 +120,7 @@ IMPORTANT:
     const botId = `bot-${Date.now()}`;
     // Insert placeholder bot message for real-time streaming
     setMessages(prev => [...prev, { id: botId, role: 'assistant', content: '' }]);
+    setStreamingMessageId(botId);
 
     try {
       // Build conversation payload
@@ -134,7 +136,7 @@ IMPORTANT:
           ...conversationHistory,
         ],
         temperature: 0.3,
-        max_tokens: 1024,
+        max_tokens: 2048,
         stream: true,
       };
 
@@ -246,6 +248,7 @@ IMPORTANT:
       );
     } finally {
       setIsLoading(false);
+      setStreamingMessageId(null);
     }
   };
 
@@ -341,6 +344,12 @@ IMPORTANT:
                   </div>
                   <div className={`chat-bubble ${isBot ? 'bot-bubble' : 'user-bubble'}`}>
                     <MathRenderer text={msg.content} />
+                    {isBot && isLoading && msg.id === streamingMessageId && (
+                      <div className="streaming-indicator">
+                        <span className="streaming-pulse-dot" />
+                        <span className="streaming-text">Generating explanation...</span>
+                      </div>
+                    )}
                   </div>
                 </div>
               );
