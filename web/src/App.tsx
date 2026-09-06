@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import type { Question, OptionKey, PaperMeta, TestMode } from './types';
 import { HomeView } from './components/HomeView';
 import { TestPlayer } from './components/TestPlayer';
+import { NotesView } from './components/NotesView';
 import { ScoreModal } from './components/ScoreModal';
 import { AuthGate } from './components/AuthGate';
 import { UserCheck, LogOut } from 'lucide-react';
@@ -98,7 +99,7 @@ export function App() {
     return 'Student';
   });
 
-  const [view, setView] = useState<'home' | 'player'>('home');
+  const [view, setView] = useState<'home' | 'player' | 'notes'>('home');
   const [, setCurrentPaper] = useState<PaperMeta>(PAPERS[0]);
   const [questions, setQuestions] = useState<Question[]>([]);
   const [mode, setMode] = useState<TestMode>('practice');
@@ -232,9 +233,27 @@ export function App() {
         </div>
       </header>
 
-      {view === 'home' ? (
-        <HomeView papers={PAPERS} onSelectPaper={handleSelectPaper} />
-      ) : (
+      {view === 'home' && (
+        <HomeView
+          papers={PAPERS}
+          onSelectPaper={handleSelectPaper}
+          onOpenNotes={() => {
+            setView('notes');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+        />
+      )}
+
+      {view === 'notes' && (
+        <NotesView
+          onBackToHome={() => {
+            setView('home');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+        />
+      )}
+
+      {view === 'player' && (
         <TestPlayer
           questions={questions}
           mode={mode}

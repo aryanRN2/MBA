@@ -1,13 +1,14 @@
 import React from 'react';
-import { PlayCircle } from 'lucide-react';
+import { PlayCircle, BookOpen } from 'lucide-react';
 import type { PaperMeta, TestMode } from '../types';
 
 interface HomeViewProps {
   papers: PaperMeta[];
   onSelectPaper: (filename: string, mode: TestMode) => void;
+  onOpenNotes: () => void;
 }
 
-export const HomeView: React.FC<HomeViewProps> = ({ papers, onSelectPaper }) => {
+export const HomeView: React.FC<HomeViewProps> = ({ papers, onSelectPaper, onOpenNotes }) => {
   const paper2022 = papers.find(p => p.year === 2022) || papers[0];
   const otherPapers = papers.filter(p => p.year !== 2022);
 
@@ -22,13 +23,23 @@ export const HomeView: React.FC<HomeViewProps> = ({ papers, onSelectPaper }) => 
 
       {/* Clean Minimalist Black Button Launcher */}
       <div className="papers-button-group">
-        <button
-          className="btn-black-pyq main-pyq"
-          onClick={() => onSelectPaper(paper2022.filename, 'practice')}
-        >
-          <PlayCircle size={22} />
-          <span>2022 PYQ</span>
-        </button>
+        <div className="primary-launch-row">
+          <button
+            className="btn-black-pyq main-pyq"
+            onClick={() => onSelectPaper(paper2022.filename, 'practice')}
+          >
+            <PlayCircle size={22} />
+            <span>2022 PYQ</span>
+          </button>
+
+          <button
+            className="btn-black-pyq notes-launch-btn"
+            onClick={onOpenNotes}
+          >
+            <BookOpen size={20} />
+            <span>Notes</span>
+          </button>
+        </div>
 
         <div className="other-pyq-row">
           {otherPapers.map(paper => (
