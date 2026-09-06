@@ -145,13 +145,6 @@ export function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Change paper inside player
-  const handlePaperChange = async (filename: string) => {
-    const paper = PAPERS.find(p => p.filename === filename) || PAPERS[0];
-    setCurrentPaper(paper);
-    await loadPaper(paper);
-  };
-
   // Exam Countdown Timer
   useEffect(() => {
     let interval: ReturnType<typeof setInterval> | null = null;
@@ -241,10 +234,7 @@ export function App() {
         <TestPlayer
           questions={questions}
           currentPaper={currentPaper}
-          allPapers={PAPERS}
           mode={mode}
-          onPaperChange={handlePaperChange}
-          onModeChange={setMode}
           onBackToHome={() => setView('home')}
           onSubmitExam={handleSubmitExam}
           currentIndex={currentIndex}

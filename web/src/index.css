@@ -272,6 +272,19 @@ body {
   border-color: rgba(79, 70, 229, 0.3);
 }
 
+.current-paper-title-badge {
+  display: inline-flex;
+  align-items: center;
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: var(--text-primary);
+  background: #f8fafc;
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-light);
+  letter-spacing: -0.01em;
+}
+
 .paper-select {
   padding: 0.5rem 1rem;
   border-radius: var(--radius-md);

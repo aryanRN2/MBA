@@ -4,9 +4,7 @@ import {
   ArrowRight,
   Bookmark,
   BookmarkCheck,
-  BookOpen,
   CheckCircle,
-  Clock,
   Eye,
   EyeOff,
   Hourglass,
@@ -21,10 +19,7 @@ import { MathRenderer } from './MathRenderer';
 interface TestPlayerProps {
   questions: Question[];
   currentPaper: PaperMeta;
-  allPapers: PaperMeta[];
   mode: TestMode;
-  onPaperChange: (filename: string) => void;
-  onModeChange: (mode: TestMode) => void;
   onBackToHome: () => void;
   onSubmitExam: () => void;
   currentIndex: number;
@@ -44,10 +39,7 @@ interface TestPlayerProps {
 export const TestPlayer: React.FC<TestPlayerProps> = ({
   questions,
   currentPaper,
-  allPapers,
   mode,
-  onPaperChange,
-  onModeChange,
   onBackToHome,
   onSubmitExam,
   currentIndex,
@@ -230,42 +222,16 @@ export const TestPlayer: React.FC<TestPlayerProps> = ({
     <div className="test-player-view">
       <main className="main-content">
         
-        {/* Player Top Navigation Bar */}
+        {/* Player Top Navigation Bar (Clean Back & Current Title) */}
         <div className="player-top-bar">
           <div className="player-top-row-left">
             <button className="nav-home-btn" onClick={onBackToHome}>
-              <ArrowLeft size={14} /> Home
+              <ArrowLeft size={15} /> Back to Papers
             </button>
-
-            <select
-              className="paper-select"
-              value={currentPaper.filename}
-              onChange={(e) => onPaperChange(e.target.value)}
-            >
-              {allPapers.map(p => (
-                <option key={p.id} value={p.filename}>
-                  {p.title}
-                </option>
-              ))}
-            </select>
+            <span className="current-paper-title-badge">{currentPaper.title}</span>
           </div>
 
           <div className="player-top-row-right">
-            <div className="mode-toggle">
-              <button
-                className={`mode-btn ${mode === 'practice' ? 'active' : ''}`}
-                onClick={() => onModeChange('practice')}
-              >
-                <BookOpen size={14} /> Practice
-              </button>
-              <button
-                className={`mode-btn ${mode === 'exam' ? 'active' : ''}`}
-                onClick={() => onModeChange('exam')}
-              >
-                <Clock size={14} /> Timed Exam
-              </button>
-            </div>
-
             {mode === 'exam' && (
               <div className="timer-box">
                 <Hourglass size={16} />
