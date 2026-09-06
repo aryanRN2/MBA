@@ -1307,13 +1307,36 @@ body {
   border-bottom-right-radius: 4px;
 }
 
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner-icon {
+  animation: spin 0.85s linear infinite !important;
+  color: #6366f1;
+  display: inline-block;
+  flex-shrink: 0;
+  transform-origin: center center;
+}
+
 .loading-bubble {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.6rem;
   color: var(--text-secondary);
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   font-weight: 500;
+  padding: 0.85rem 1.15rem;
+}
+
+.loading-bubble .spinner-icon {
+  animation: spin 0.85s linear infinite !important;
+  color: #6366f1;
 }
 
 .ai-suggestions-row {
