@@ -199,11 +199,38 @@ body {
   background: #18181b;
   color: #d4d4d8;
   font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-.btn-black-pyq.secondary-pyq:hover {
+.btn-black-pyq.secondary-pyq:hover:not(:disabled) {
   background: #27272a;
   color: #ffffff;
+}
+
+.btn-black-pyq.secondary-pyq:disabled,
+.btn-black-pyq.secondary-pyq.disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  background: #18181b;
+  border-color: #27272a;
+  color: #a1a1aa;
+  box-shadow: none;
+  transform: none;
+}
+
+.soon-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: rgba(245, 158, 11, 0.18);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  padding: 0.15rem 0.45rem;
+  border-radius: 9999px;
+  line-height: 1;
 }
 
 /* ================= TEST PLAYER LAYOUT ================= */

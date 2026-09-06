@@ -34,10 +34,12 @@ export const HomeView: React.FC<HomeViewProps> = ({ papers, onSelectPaper }) => 
           {otherPapers.map(paper => (
             <button
               key={paper.id}
-              className="btn-black-pyq secondary-pyq"
-              onClick={() => onSelectPaper(paper.filename, 'practice')}
+              className="btn-black-pyq secondary-pyq disabled"
+              disabled
+              title="Coming Soon"
             >
-              {paper.title}
+              <span>{paper.title}</span>
+              <span className="soon-badge">Soon</span>
             </button>
           ))}
         </div>
