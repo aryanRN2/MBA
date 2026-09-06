@@ -450,164 +450,199 @@ body {
   color: var(--text-primary);
 }
 
-/* --- Subject Hero Welcome --- */
-.notes-subject-hero {
-  text-align: center;
-  padding: 1rem 0 0.5rem 0;
-}
-
-.subject-hero-title {
-  font-size: 1.75rem;
-  font-weight: 800;
-  color: var(--text-primary);
-  letter-spacing: -0.025em;
-  margin-bottom: 0.4rem;
-}
-
-.subject-hero-desc {
-  font-size: 0.95rem;
-  color: var(--text-secondary);
-  max-width: 600px;
-  margin: 0 auto;
-  line-height: 1.5;
-}
-
-/* --- 4 Subject Selection Grid --- */
-.subject-cards-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.25rem;
-  margin-top: 0.5rem;
-}
-
-@media (max-width: 768px) {
-  .subject-cards-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.subject-card {
-  background: white;
-  border: 1.5px solid var(--border-light);
-  border-radius: var(--radius-lg);
-  padding: 1.5rem;
-  cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+/* --- Clean Minimalist Expandable List --- */
+.notes-list-container {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: 1.25rem;
+  gap: 0.85rem;
+  max-width: 850px;
+  width: 100%;
+  margin: 1.5rem auto 0 auto;
+}
+
+.notes-list-item {
+  background: white;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
-  position: relative;
   overflow: hidden;
+  transition: all 0.2s ease;
 }
 
-.subject-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--primary), #a855f7);
-  opacity: 0;
-  transition: opacity 0.25s;
-}
-
-.subject-card:hover {
-  transform: translateY(-3px);
+.notes-list-item:hover {
   border-color: #cbd5e1;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
 }
 
-.subject-card:hover::before {
-  opacity: 1;
+.notes-list-item.expanded {
+  border-color: var(--primary);
+  box-shadow: 0 4px 20px rgba(79, 70, 229, 0.08);
 }
 
-.subject-card-top {
+.notes-list-header-btn {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 1.15rem 1.4rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s ease;
 }
 
-.subject-icon-box {
-  width: 52px;
-  height: 52px;
-  border-radius: 14px;
+.notes-list-header-btn:hover {
+  background: #f8fafc;
+}
+
+.notes-list-header-left {
   display: flex;
   align-items: center;
-  justify-content: center;
-  border: 1.5px solid transparent;
-  transition: transform 0.2s;
+  gap: 0.85rem;
+  flex-wrap: wrap;
 }
 
-.subject-card:hover .subject-icon-box {
-  transform: scale(1.06);
+.notes-subject-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
 }
 
-.subject-badge-code {
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.05em;
+.notes-count-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
   color: var(--text-secondary);
   background: #f1f5f9;
-  padding: 0.25rem 0.6rem;
-  border-radius: 6px;
   border: 1px solid var(--border-light);
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
 }
 
-.subject-card-body {
+.notes-list-item.expanded .notes-count-badge {
+  background: var(--primary-light);
+  color: var(--primary);
+  border-color: rgba(79, 70, 229, 0.2);
+}
+
+.notes-list-header-right {
+  color: #64748b;
+  display: flex;
+  align-items: center;
+}
+
+.notes-list-body {
+  border-top: 1px solid var(--border-light);
+  padding: 1rem 1.4rem;
+  background: #fbfcfe;
+  animation: fadeIn 0.2s ease;
+}
+
+.notes-empty-row {
+  font-size: 0.86rem;
+  color: #94a3b8;
+  padding: 0.75rem 0;
+  font-style: italic;
+}
+
+.notes-docs-sublist {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.75rem;
 }
 
-.subject-card-title {
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: var(--text-primary);
-  letter-spacing: -0.015em;
-  margin: 0;
-}
-
-.subject-card-desc {
-  font-size: 0.86rem;
-  color: var(--text-secondary);
-  line-height: 1.5;
-  margin: 0;
-}
-
-.subject-card-footer {
+.note-doc-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 0.85rem;
-  border-top: 1px solid var(--border-light);
+  background: white;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1.1rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+  transition: all 0.2s;
 }
 
-.subject-status {
+.note-doc-item:hover {
+  border-color: #cbd5e1;
+  box-shadow: var(--shadow-sm);
+}
+
+.note-doc-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 1;
+  min-width: 200px;
+}
+
+.doc-icon {
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+.doc-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.doc-title {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.doc-size {
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+.note-doc-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-read-doc {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
-  font-size: 0.78rem;
-  font-weight: 700;
-  color: #059669;
-}
-
-.btn-open-subject {
-  background: transparent;
-  border: 1.5px solid currentColor;
-  padding: 0.35rem 0.85rem;
+  gap: 0.4rem;
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 0.45rem 0.9rem;
   border-radius: var(--radius-md);
   font-size: 0.82rem;
-  font-weight: 700;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
 }
 
-.subject-card:hover .btn-open-subject {
-  background: currentColor;
-  color: white !important;
+.btn-read-doc:hover {
+  background: var(--primary-hover);
+  box-shadow: 0 4px 12px var(--primary-glow);
+}
+
+.btn-link-doc {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: #f8fafc;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.btn-link-doc:hover {
+  background: var(--primary-light);
+  color: var(--primary);
+  border-color: rgba(79, 70, 229, 0.3);
 }
 
 /* ================= TEST PLAYER LAYOUT ================= */

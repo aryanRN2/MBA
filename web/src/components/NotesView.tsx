@@ -1,77 +1,62 @@
 import React, { useState } from 'react';
 import {
   ArrowLeft,
+  ChevronDown,
+  ChevronUp,
   FileText,
   ExternalLink,
   Download,
-  Folder,
-  Layers,
-  Compass,
-  Cpu,
-  CheckCircle2,
+  BookOpen,
+  Eye,
 } from 'lucide-react';
 
-interface SubjectNote {
+interface NoteDoc {
+  id: string;
+  title: string;
+  filename: string;
+  pdfUrl: string;
+  size?: string;
+}
+
+interface SubjectItem {
   id: string;
   title: string;
   code: string;
-  description: string;
-  pdfUrl?: string;
-  isAvailable: boolean;
-  docCount: number;
-  icon: React.ComponentType<{ size?: number; className?: string; style?: React.CSSProperties }>;
-  accentColor: string;
-  tags: string[];
+  documents: NoteDoc[];
 }
 
-const SUBJECTS_DATA: SubjectNote[] = [
+const SUBJECTS_LIST: SubjectItem[] = [
   {
     id: 'abstract-algebra',
     title: 'Abstract Algebra',
     code: 'MATH-AA',
-    description: 'Dummit & Foote Monograph — Comprehensive notes on Groups, Subgroups, Rings, Fields, Homomorphisms and Ideals.',
-    pdfUrl: '/notes/Abstract_Algebra_Dummit_Foote_Monograph.pdf',
-    isAvailable: true,
-    docCount: 1,
-    icon: Layers,
-    accentColor: '#6366f1',
-    tags: ['Group Theory', 'Ring Theory', 'Fields', 'Dummit & Foote'],
+    documents: [
+      {
+        id: 'dummit-foote-monograph',
+        title: 'Abstract Algebra — Dummit & Foote Monograph',
+        filename: 'Abstract_Algebra_Dummit_Foote_Monograph.pdf',
+        pdfUrl: '/notes/Abstract_Algebra_Dummit_Foote_Monograph.pdf',
+        size: '562 KB',
+      },
+    ],
   },
   {
     id: 'numerical-analysis',
     title: 'Numerical Analysis',
     code: 'MATH-NA',
-    description: 'Error analysis, Root Finding (Newton-Raphson, Bisection), Interpolation (Newton/Lagrange), Numerical Integration and ODEs.',
-    pdfUrl: '/notes/Abstract_Algebra_Dummit_Foote_Monograph.pdf',
-    isAvailable: true,
-    docCount: 1,
-    icon: Cpu,
-    accentColor: '#0ea5e9',
-    tags: ['Root Finding', 'Interpolation', 'Integration', 'ODEs'],
+    documents: [],
   },
   {
     id: 'metric-spaces',
     title: 'Metric Spaces',
     code: 'MATH-MS',
-    description: 'Metrics, Open and Closed Sets, Convergence, Completeness (Banach Fixed Point), Compactness, and Connectedness.',
-    pdfUrl: '/notes/Abstract_Algebra_Dummit_Foote_Monograph.pdf',
-    isAvailable: true,
-    docCount: 1,
-    icon: Compass,
-    accentColor: '#f59e0b',
-    tags: ['Topology', 'Completeness', 'Compactness', 'Continuity'],
+    documents: [],
   },
   {
     id: 'analytical-geometry',
     title: 'Analytical Geometry',
     code: 'MATH-AG',
-    description: '2D and 3D Coordinate Geometry, Straight Lines, Planes, Conic Sections (Parabola, Ellipse, Hyperbola), Spheres and Cones.',
-    pdfUrl: '/notes/Abstract_Algebra_Dummit_Foote_Monograph.pdf',
-    isAvailable: true,
-    docCount: 1,
-    icon: Folder,
-    accentColor: '#ec4899',
-    tags: ['3D Geometry', 'Conic Sections', 'Planes', 'Spheres'],
+    documents: [],
   },
 ];
 
@@ -80,33 +65,33 @@ interface NotesViewProps {
 }
 
 export const NotesView: React.FC<NotesViewProps> = ({ onBackToHome }) => {
-  const [selectedSubjectId, setSelectedSubjectId] = useState<string | null>(null);
+  const [expandedSubjectId, setExpandedSubjectId] = useState<string | null>('abstract-algebra');
+  const [activeDoc, setActiveDoc] = useState<NoteDoc | null>(null);
 
-  const activeSubject = SUBJECTS_DATA.find(s => s.id === selectedSubjectId);
+  const toggleExpand = (id: string) => {
+    setExpandedSubjectId(prev => (prev === id ? null : id));
+  };
 
-  // If a subject is selected, render the PDF Viewer for that subject
-  if (activeSubject && activeSubject.pdfUrl) {
+  // If a document is currently active/open in viewer:
+  if (activeDoc) {
     return (
       <div className="notes-view-root">
-        {/* PDF Top Navigation Bar */}
+        {/* Top Header */}
         <div className="notes-top-bar">
           <div className="notes-top-nav-group">
-            <button className="nav-home-btn" onClick={() => setSelectedSubjectId(null)}>
-              <ArrowLeft size={16} /> Back to Subjects
-            </button>
-            <button className="nav-home-subtle-btn" onClick={onBackToHome}>
-              Home
+            <button className="nav-home-btn" onClick={() => setActiveDoc(null)}>
+              <ArrowLeft size={16} /> Back to Notes List
             </button>
           </div>
 
           <div className="notes-brand-title">
-            <activeSubject.icon size={18} style={{ color: activeSubject.accentColor }} />
-            <span>{activeSubject.title} — Class Notes</span>
+            <FileText size={18} style={{ color: 'var(--primary)' }} />
+            <span>{activeDoc.title}</span>
           </div>
 
           <div className="notes-top-actions">
             <a
-              href={activeSubject.pdfUrl}
+              href={activeDoc.pdfUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="notes-action-btn"
@@ -116,8 +101,8 @@ export const NotesView: React.FC<NotesViewProps> = ({ onBackToHome }) => {
               <span>Open in New Tab</span>
             </a>
             <a
-              href={activeSubject.pdfUrl}
-              download={`${activeSubject.title.replace(/\s+/g, '_')}_Notes.pdf`}
+              href={activeDoc.pdfUrl}
+              download={activeDoc.filename}
               className="notes-action-btn"
               title="Download PDF"
             >
@@ -127,31 +112,12 @@ export const NotesView: React.FC<NotesViewProps> = ({ onBackToHome }) => {
           </div>
         </div>
 
-        {/* PDF Container */}
+        {/* Embedded PDF View */}
         <div className="notes-pdf-container">
-          <div className="notes-pdf-header">
-            <div className="pdf-header-info">
-              <FileText size={22} style={{ color: activeSubject.accentColor }} />
-              <div>
-                <h2 className="pdf-doc-title">{activeSubject.title} Notes</h2>
-                <p className="pdf-doc-subtitle">{activeSubject.description}</p>
-              </div>
-            </div>
-            <a
-              href={activeSubject.pdfUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary-sm"
-              style={{ background: activeSubject.accentColor }}
-            >
-              <ExternalLink size={14} /> Fullscreen Tab
-            </a>
-          </div>
-
           <div className="pdf-viewer-frame-wrapper">
             <iframe
-              src={`${activeSubject.pdfUrl}#toolbar=1&navpanes=0`}
-              title={`${activeSubject.title} PDF Viewer`}
+              src={`${activeDoc.pdfUrl}#toolbar=1&navpanes=0`}
+              title={activeDoc.title}
               className="notes-pdf-iframe"
             />
           </div>
@@ -160,7 +126,7 @@ export const NotesView: React.FC<NotesViewProps> = ({ onBackToHome }) => {
     );
   }
 
-  // Otherwise, render the 4 Subject Selection Boxes Grid
+  // Minimalist Expandable List View
   return (
     <div className="notes-view-root">
       {/* Top Header */}
@@ -169,60 +135,87 @@ export const NotesView: React.FC<NotesViewProps> = ({ onBackToHome }) => {
           <ArrowLeft size={16} /> Back to Home
         </button>
         <div className="notes-brand-title">
-          <Folder size={18} style={{ color: 'var(--primary)' }} />
-          <span>Class Notes & Study Materials</span>
+          <BookOpen size={18} style={{ color: 'var(--primary)' }} />
+          <span>Notes & Study Materials</span>
         </div>
       </div>
 
-      {/* Hero Welcome / Prompt */}
-      <div className="notes-subject-hero">
-        <h2 className="subject-hero-title">Select a Subject to View Notes</h2>
-        <p className="subject-hero-desc">
-          Browse verified university class notes, monographs, formula summaries, and solved examples.
-        </p>
-      </div>
+      {/* Clean Minimalist Expandable List */}
+      <div className="notes-list-container">
+        {SUBJECTS_LIST.map(subject => {
+          const isExpanded = expandedSubjectId === subject.id;
+          const count = subject.documents.length;
 
-      {/* 4 Subject Boxes Grid */}
-      <div className="subject-cards-grid">
-        {SUBJECTS_DATA.map(subj => {
-          const Icon = subj.icon;
           return (
-            <div
-              key={subj.id}
-              className="subject-card"
-              onClick={() => setSelectedSubjectId(subj.id)}
-            >
-              <div className="subject-card-top">
-                <div
-                  className="subject-icon-box"
-                  style={{
-                    background: `${subj.accentColor}18`,
-                    color: subj.accentColor,
-                    borderColor: `${subj.accentColor}35`,
-                  }}
-                >
-                  <Icon size={26} />
+            <div key={subject.id} className={`notes-list-item ${isExpanded ? 'expanded' : ''}`}>
+              {/* Header Row (Click to Expand) */}
+              <button
+                className="notes-list-header-btn"
+                onClick={() => toggleExpand(subject.id)}
+              >
+                <div className="notes-list-header-left">
+                  <span className="notes-subject-title">{subject.title}</span>
+                  <span className="notes-count-badge">
+                    {count === 0 ? '0 contents' : count === 1 ? '1 content' : `${count} contents`}
+                  </span>
                 </div>
-                <span className="subject-badge-code">{subj.code}</span>
-              </div>
 
-              <div className="subject-card-body">
-                <h3 className="subject-card-title">{subj.title}</h3>
-                <p className="subject-card-desc">{subj.description}</p>
-              </div>
-
-              <div className="subject-card-footer">
-                <div className="subject-status">
-                  <CheckCircle2 size={15} style={{ color: '#10b981' }} />
-                  <span>PDF Available</span>
+                <div className="notes-list-header-right">
+                  {isExpanded ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
                 </div>
-                <button
-                  className="btn-open-subject"
-                  style={{ borderColor: subj.accentColor, color: subj.accentColor }}
-                >
-                  View Notes &rarr;
-                </button>
-              </div>
+              </button>
+
+              {/* Expanded Body Content */}
+              {isExpanded && (
+                <div className="notes-list-body">
+                  {count === 0 ? (
+                    <div className="notes-empty-row">
+                      <span>No documents available yet for this subject.</span>
+                    </div>
+                  ) : (
+                    <div className="notes-docs-sublist">
+                      {subject.documents.map(doc => (
+                        <div key={doc.id} className="note-doc-item">
+                          <div className="note-doc-info">
+                            <FileText size={18} className="doc-icon" />
+                            <div className="doc-text">
+                              <span className="doc-title">{doc.title}</span>
+                              {doc.size && <span className="doc-size">{doc.size}</span>}
+                            </div>
+                          </div>
+
+                          <div className="note-doc-actions">
+                            <button
+                              className="btn-read-doc"
+                              onClick={() => setActiveDoc(doc)}
+                            >
+                              <Eye size={14} />
+                              <span>View PDF</span>
+                            </button>
+                            <a
+                              href={doc.pdfUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="btn-link-doc"
+                              title="Open in new tab"
+                            >
+                              <ExternalLink size={14} />
+                            </a>
+                            <a
+                              href={doc.pdfUrl}
+                              download={doc.filename}
+                              className="btn-link-doc"
+                              title="Download PDF"
+                            >
+                              <Download size={14} />
+                            </a>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           );
         })}
