@@ -57,7 +57,13 @@ export const TestPlayer: React.FC<TestPlayerProps> = ({
 }) => {
   const [isMobilePaletteOpen, setIsMobilePaletteOpen] = useState(false);
   const [isAskAIOpen, setIsAskAIOpen] = useState(false);
+  const [aiInitialPrompt, setAiInitialPrompt] = useState<string | undefined>(undefined);
   const questionCardRef = useRef<HTMLElement>(null);
+
+  const handleOpenAIWithPrompt = (prompt?: string) => {
+    setAiInitialPrompt(prompt);
+    setIsAskAIOpen(true);
+  };
 
   const scrollToQuestionCard = () => {
     if (questionCardRef.current) {
@@ -302,8 +308,21 @@ export const TestPlayer: React.FC<TestPlayerProps> = ({
 
             <div className="q-actions">
               <button
+                className="action-btn-ai-explain"
+                onClick={() =>
+                  handleOpenAIWithPrompt(
+                    `Please explain Question ${qNum} in detail and clearly explain why Option (${currentQuestion.correct_option}) is the correct answer and why the other options are wrong.`
+                  )
+                }
+                title="Explain why the correct option is right"
+              >
+                <Lightbulb size={14} />
+                <span>AI Explain</span>
+              </button>
+
+              <button
                 className="action-btn-ai"
-                onClick={() => setIsAskAIOpen(true)}
+                onClick={() => handleOpenAIWithPrompt()}
                 title="Ask AI Tutor about this problem"
               >
                 <Sparkles size={14} />
@@ -420,11 +439,16 @@ export const TestPlayer: React.FC<TestPlayerProps> = ({
         {renderPaletteContent()}
       </aside>
 
-      {/* AI Tutor Chatbot Modal */}
+      {/* AI Tutor Chatbot Drawer */}
       {isAskAIOpen && (
         <AskAIChatModal
+          key={`${currentQuestion.question_number}-${aiInitialPrompt || 'default'}`}
           question={currentQuestion}
-          onClose={() => setIsAskAIOpen(false)}
+          initialPrompt={aiInitialPrompt}
+          onClose={() => {
+            setIsAskAIOpen(false);
+            setAiInitialPrompt(undefined);
+          }}
         />
       )}
     </div>

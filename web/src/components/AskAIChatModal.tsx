@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import {
   Sparkles,
-  X,
   Send,
   Loader2,
   Bot,
@@ -10,6 +9,7 @@ import {
   Zap,
   HelpCircle,
   Calculator,
+  ChevronRight,
   Maximize2,
   Minimize2,
 } from 'lucide-react';
@@ -18,6 +18,7 @@ import { MathRenderer } from './MathRenderer';
 
 interface AskAIChatModalProps {
   question: Question;
+  initialPrompt?: string;
   onClose: () => void;
 }
 
@@ -34,13 +35,17 @@ const DEFAULT_NVIDIA_API_KEY =
 const DEFAULT_NVIDIA_MODEL =
   (import.meta as any).env?.VITE_NVIDIA_MODEL || 'meta/llama-3.2-11b-vision-instruct';
 
-export const AskAIChatModal: React.FC<AskAIChatModalProps> = ({ question, onClose }) => {
-  const [isFullscreen, setIsFullscreen] = useState(true);
+export const AskAIChatModal: React.FC<AskAIChatModalProps> = ({
+  question,
+  initialPrompt,
+  onClose,
+}) => {
+  const [isWide, setIsWide] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 'init',
       role: 'assistant',
-      content: `Hello! I'm your AI Tutor for **Question ${question.question_number}**. What would you like help with? You can choose a quick action below or type any doubt!`,
+      content: `Hello! I'm your AI Tutor for **Question ${question.question_number}**. How can I help you? Choose an action below or ask any doubt!`,
     },
   ]);
   const [input, setInput] = useState('');
@@ -49,29 +54,12 @@ export const AskAIChatModal: React.FC<AskAIChatModalProps> = ({ question, onClos
 
   const chatEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const hasAutoPrompted = useRef(false);
 
   // Auto-scroll on new messages
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, isLoading]);
-
-  // Lock body & html scroll completely and focus input on mount
-  useEffect(() => {
-    inputRef.current?.focus();
-    const originalBodyOverflow = document.body.style.overflow;
-    const originalHtmlOverflow = document.documentElement.style.overflow;
-    document.body.style.overflow = 'hidden';
-    document.documentElement.style.overflow = 'hidden';
-
-    return () => {
-      document.body.style.overflow = originalBodyBody(originalBodyOverflow);
-      document.documentElement.style.overflow = originalHtmlOverflow;
-    };
-  }, []);
-
-  function originalBodyBody(val: string) {
-    return val || '';
-  }
 
   // Construct context-rich system prompt for the specific question
   const buildSystemPrompt = () => {
@@ -96,9 +84,10 @@ Official Explanation/Solution: ${question.explanation || 'Not provided'}
 
 GUIDELINES FOR YOUR RESPONSES:
 1. Provide extremely clear, step-by-step conceptual and mathematical explanations.
-2. Use LaTeX formatted math formulas with $...$ for inline formulas and $$...$$ for block equations so the renderer displays them cleanly.
-3. Highlight smart shortcuts, elimination tricks, and quick calculation methods suited for the 90-105 minute CUET PG MBA exam.
-4. Be concise, direct, and avoid repeating the whole question text unless necessary.`;
+2. Always clearly explain why Option (${question.correct_option}) is the correct answer and point out why other options are incorrect.
+3. Use LaTeX formatted math formulas with $...$ for inline formulas and $$...$$ for block equations so the renderer displays them cleanly.
+4. Highlight smart shortcuts, elimination tricks, and quick calculation methods suited for the 90-105 minute CUET PG MBA exam.
+5. Keep explanations direct, well-structured with clear bullet points and bold headers.`;
   };
 
   const handleSendMessage = async (customPrompt?: string) => {
@@ -176,6 +165,14 @@ GUIDELINES FOR YOUR RESPONSES:
     }
   };
 
+  // Auto-trigger initial prompt if provided
+  useEffect(() => {
+    if (initialPrompt && !hasAutoPrompted.current) {
+      hasAutoPrompted.current = true;
+      handleSendMessage(initialPrompt);
+    }
+  }, [initialPrompt]);
+
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
@@ -195,39 +192,41 @@ GUIDELINES FOR YOUR RESPONSES:
   };
 
   return (
-    <div className={`ask-ai-modal-overlay ${isFullscreen ? 'fullscreen-mode' : ''}`} onClick={onClose}>
-      <div className={`ask-ai-modal ${isFullscreen ? 'fullscreen-modal' : ''}`} onClick={e => e.stopPropagation()}>
-        {/* Header */}
-        <div className="ask-ai-header">
-          <div className="ask-ai-header-inner">
-            <div className="ask-ai-title-wrap">
-              <div className="ai-sparkle-icon">
-                <Sparkles size={18} />
-              </div>
-              <div>
-                <h3 className="ask-ai-title">Ask AI Tutor — Q{question.question_number}</h3>
-              </div>
+    <div className="ask-ai-drawer-overlay" onClick={onClose}>
+      <div
+        className={`ask-ai-drawer ${isWide ? 'wide-drawer' : ''}`}
+        onClick={e => e.stopPropagation()}
+      >
+        {/* Drawer Header */}
+        <div className="ask-ai-drawer-header">
+          <div className="ask-ai-title-wrap">
+            <div className="ai-sparkle-icon">
+              <Sparkles size={18} />
             </div>
+            <div>
+              <h3 className="ask-ai-title">Ask AI Tutor — Q{question.question_number}</h3>
+              <span className="ask-ai-tag">NVIDIA NIM • Llama 3.2</span>
+            </div>
+          </div>
 
-            <div className="ask-ai-header-actions">
-              <button
-                className="ai-btn-reset"
-                onClick={handleResetChat}
-                title="Reset conversation"
-              >
-                <RotateCcw size={14} />
-              </button>
-              <button
-                className="ai-btn-fullscreen"
-                onClick={() => setIsFullscreen(!isFullscreen)}
-                title={isFullscreen ? 'Exit Full Screen' : 'Full Screen'}
-              >
-                {isFullscreen ? <Minimize2 size={16} /> : <Maximize2 size={16} />}
-              </button>
-              <button className="ai-btn-close" onClick={onClose} title="Close AI Tutor">
-                <X size={18} />
-              </button>
-            </div>
+          <div className="ask-ai-header-actions">
+            <button
+              className="ai-btn-reset"
+              onClick={handleResetChat}
+              title="Reset conversation"
+            >
+              <RotateCcw size={14} />
+            </button>
+            <button
+              className="ai-btn-fullscreen"
+              onClick={() => setIsWide(!isWide)}
+              title={isWide ? 'Standard Width' : 'Wider View'}
+            >
+              {isWide ? <Minimize2 size={15} /> : <Maximize2 size={15} />}
+            </button>
+            <button className="ai-btn-close" onClick={onClose} title="Close AI Tutor">
+              <ChevronRight size={20} />
+            </button>
           </div>
         </div>
 
