@@ -105,6 +105,10 @@ GUIDELINES FOR YOUR RESPONSES:
     setIsLoading(true);
     setError(null);
 
+    const botId = `bot-${Date.now()}`;
+    // Insert placeholder bot message for real-time streaming
+    setMessages(prev => [...prev, { id: botId, role: 'assistant', content: '' }]);
+
     try {
       // Build conversation payload
       const conversationHistory = [...messages, userMsg].map(m => ({
@@ -120,9 +124,10 @@ GUIDELINES FOR YOUR RESPONSES:
         ],
         temperature: 0.3,
         max_tokens: 1024,
+        stream: true,
       };
 
-      // Call our serverless /api/chat endpoint to eliminate CORS issues on Vercel
+      // Call our serverless /api/chat endpoint to eliminate CORS issues and stream on Vercel
       let res: Response;
       try {
         res = await fetch('/api/chat', {
@@ -146,33 +151,68 @@ GUIDELINES FOR YOUR RESPONSES:
 
       if (!res.ok) {
         const errorData = await res.json().catch(() => ({}));
-        throw new Error(errorData.error?.message || `API error (Status ${res.status})`);
+        throw new Error(errorData.error?.message || errorData.error || `API error (Status ${res.status})`);
       }
 
-      const data = await res.json();
-      const botResponse =
-        data.choices?.[0]?.message?.content ||
-        'I could not generate an answer at this moment. Please try asking again.';
+      // Read streaming SSE body
+      if (res.body) {
+        const reader = res.body.getReader();
+        const decoder = new TextDecoder();
+        let accumulatedText = '';
+        let isDone = false;
 
-      setMessages(prev => [
-        ...prev,
-        {
-          id: `bot-${Date.now()}`,
-          role: 'assistant',
-          content: botResponse,
-        },
-      ]);
+        while (!isDone) {
+          const { value, done } = await reader.read();
+          if (done) break;
+
+          const chunk = decoder.decode(value, { stream: true });
+          const lines = chunk.split('\n');
+
+          for (const line of lines) {
+            const trimmed = line.trim();
+            if (trimmed.startsWith('data: ')) {
+              const dataStr = trimmed.slice(6).trim();
+              if (dataStr === '[DONE]') {
+                isDone = true;
+                break;
+              }
+              try {
+                const parsed = JSON.parse(dataStr);
+                const delta = parsed.choices?.[0]?.delta?.content || '';
+                if (delta) {
+                  accumulatedText += delta;
+                  setMessages(prev =>
+                    prev.map(m => (m.id === botId ? { ...m, content: accumulatedText } : m))
+                  );
+                }
+              } catch {
+                // Ignore partial JSON chunks
+              }
+            }
+          }
+        }
+
+        if (!accumulatedText) {
+          const fallbackData = await res.json().catch(() => ({}));
+          const fallbackText = fallbackData.choices?.[0]?.message?.content || 'Explanation generated.';
+          setMessages(prev =>
+            prev.map(m => (m.id === botId ? { ...m, content: fallbackText } : m))
+          );
+        }
+      }
     } catch (err: any) {
       console.error('AI Tutor error:', err);
       setError(err.message || 'Failed to connect to AI Tutor.');
-      setMessages(prev => [
-        ...prev,
-        {
-          id: `bot-err-${Date.now()}`,
-          role: 'assistant',
-          content: `⚠️ **Connection Error**: ${err.message || 'Unable to reach NVIDIA NIM service. Please check your network and try again.'}`,
-        },
-      ]);
+      setMessages(prev =>
+        prev.map(m =>
+          m.id === botId
+            ? {
+                ...m,
+                content: `⚠️ **Connection Error**: ${err.message || 'Unable to reach NVIDIA NIM service. Please try again.'}`,
+              }
+            : m
+        )
+      );
     } finally {
       setIsLoading(false);
     }
@@ -246,31 +286,34 @@ GUIDELINES FOR YOUR RESPONSES:
         {/* Chat History */}
         <div className="ask-ai-chat-body">
           <div className="ask-ai-content-container">
-          {messages.map(msg => {
-            const isBot = msg.role === 'assistant';
-            return (
-              <div key={msg.id} className={`chat-message-row ${isBot ? 'bot-row' : 'user-row'}`}>
-                <div className={`chat-avatar ${isBot ? 'bot-avatar' : 'user-avatar'}`}>
-                  {isBot ? <Bot size={16} /> : <User size={16} />}
-                </div>
-                <div className={`chat-bubble ${isBot ? 'bot-bubble' : 'user-bubble'}`}>
-                  <MathRenderer text={msg.content} />
-                </div>
-              </div>
-            );
-          })}
+            {messages.map(msg => {
+              const isBot = msg.role === 'assistant';
+              if (isBot && !msg.content && isLoading) {
+                return (
+                  <div key={msg.id} className="chat-message-row bot-row">
+                    <div className="chat-avatar bot-avatar">
+                      <Bot size={16} />
+                    </div>
+                    <div className="chat-bubble bot-bubble loading-bubble">
+                      <Loader2 size={16} className="spinner-icon" />
+                      <span>Thinking with Llama 3.2 Vision...</span>
+                    </div>
+                  </div>
+                );
+              }
+              if (isBot && !msg.content) return null;
 
-            {isLoading && (
-              <div className="chat-message-row bot-row">
-                <div className="chat-avatar bot-avatar">
-                  <Bot size={16} />
+              return (
+                <div key={msg.id} className={`chat-message-row ${isBot ? 'bot-row' : 'user-row'}`}>
+                  <div className={`chat-avatar ${isBot ? 'bot-avatar' : 'user-avatar'}`}>
+                    {isBot ? <Bot size={16} /> : <User size={16} />}
+                  </div>
+                  <div className={`chat-bubble ${isBot ? 'bot-bubble' : 'user-bubble'}`}>
+                    <MathRenderer text={msg.content} />
+                  </div>
                 </div>
-                <div className="chat-bubble bot-bubble loading-bubble">
-                  <Loader2 size={16} className="spinner-icon" />
-                  <span>Thinking with Llama 3.2 Vision...</span>
-                </div>
-              </div>
-            )}
+              );
+            })}
 
             <div ref={chatEndRef} />
           </div>

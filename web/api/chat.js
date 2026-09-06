@@ -28,6 +28,7 @@ export default async function handler(request) {
 
   try {
     const body = await request.json();
+    body.stream = true;
 
     const nvidiaResponse = await fetch('https://integrate.api.nvidia.com/v1/chat/completions', {
       method: 'POST',
@@ -38,11 +39,23 @@ export default async function handler(request) {
       body: JSON.stringify(body),
     });
 
-    const data = await nvidiaResponse.text();
-    return new Response(data, {
-      status: nvidiaResponse.status,
+    if (!nvidiaResponse.ok) {
+      const errText = await nvidiaResponse.text();
+      return new Response(errText, {
+        status: nvidiaResponse.status,
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+        },
+      });
+    }
+
+    return new Response(nvidiaResponse.body, {
+      status: 200,
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'text/event-stream',
+        'Cache-Control': 'no-cache, no-transform',
+        'Connection': 'keep-alive',
         'Access-Control-Allow-Origin': '*',
       },
     });
