@@ -171,17 +171,22 @@ export const MathRenderer: React.FC<MathRendererProps> = ({ text, className = ''
         continue;
       }
 
-      // 3. Headings (#, ##, ###, ####)
-      if (/^#{1,6}\s+/.test(trimmed)) {
-        const level = trimmed.match(/^#+/)?.[0].length || 1;
-        const headingText = trimmed.replace(/^#+\s+/, '');
-        const headingTag = level <= 2 ? 'h3' : level === 3 ? 'h4' : 'h5';
-        const h = document.createElement(headingTag);
-        h.className = `markdown-heading markdown-h${level}`;
-        renderInline(headingText, h);
-        containerRef.current.appendChild(h);
-        i++;
-        continue;
+      // 3. Headings (#, ##, ###, ####, #####, ######) with or without trailing space
+      if (/^#{1,6}(?:\s*|\b)/.test(trimmed) && !trimmed.startsWith('###-')) {
+        const match = trimmed.match(/^#{1,6}/);
+        if (match) {
+          const level = Math.min(match[0].length, 6);
+          const headingText = trimmed.slice(level).trim();
+          if (headingText) {
+            const headingTag = level <= 2 ? 'h3' : level === 3 ? 'h4' : 'h5';
+            const h = document.createElement(headingTag);
+            h.className = `markdown-heading markdown-h${level}`;
+            renderInline(headingText, h);
+            containerRef.current.appendChild(h);
+            i++;
+            continue;
+          }
+        }
       }
 
       // 4. Horizontal Rule (---, ***, ___)
@@ -223,12 +228,12 @@ export const MathRenderer: React.FC<MathRendererProps> = ({ text, className = ''
         continue;
       }
 
-      // 7. Ordered List (1. , 2. , etc.)
-      if (/^\d+\.\s+/.test(trimmed)) {
+      // 7. Ordered List (1. , 2. , 1) , (1) , etc.)
+      if (/^(\d+[\.\)]|\([0-9a-zA-Z]\))\s+/.test(trimmed)) {
         const ol = document.createElement('ol');
         ol.className = 'markdown-ol';
-        while (i < lines.length && /^\d+\.\s+/.test(lines[i].trim())) {
-          const itemText = lines[i].trim().replace(/^\d+\.\s+/, '');
+        while (i < lines.length && /^(\d+[\.\)]|\([0-9a-zA-Z]\))\s+/.test(lines[i].trim())) {
+          const itemText = lines[i].trim().replace(/^(\d+[\.\)]|\([0-9a-zA-Z]\))\s+/, '');
           const li = document.createElement('li');
           li.className = 'markdown-li';
           renderInline(itemText, li);
