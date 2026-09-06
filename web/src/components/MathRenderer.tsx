@@ -13,57 +13,130 @@ export const MathRenderer: React.FC<MathRendererProps> = ({ text, className = ''
   useEffect(() => {
     if (!containerRef.current || !text) return;
 
-    // Split text by LaTeX math delimiters $$...$$ and $...$
-    const parts = text.split(/(\$\$.*?\$\$|\$.*?\$)/g);
-    
     containerRef.current.innerHTML = '';
 
-    parts.forEach(part => {
-      if (part.startsWith('$$') && part.endsWith('$$')) {
-        const math = part.slice(2, -2);
-        const span = document.createElement('div');
-        span.className = 'katex-block-wrapper my-2';
-        try {
-          katex.render(math, span, { displayMode: true, throwOnError: false });
-        } catch {
-          span.textContent = part;
-        }
-        containerRef.current?.appendChild(span);
-      } else if (part.startsWith('$') && part.endsWith('$')) {
-        const math = part.slice(1, -1);
-        const span = document.createElement('span');
-        span.className = 'katex-inline-wrapper';
-        try {
-          katex.render(math, span, { displayMode: false, throwOnError: false });
-        } catch {
-          span.textContent = part;
-        }
-        containerRef.current?.appendChild(span);
-      } else {
-        // Regular text (handle newlines and **bold** syntax)
-        const textWrapper = document.createElement('span');
-        // If part contains **bold**, split and style
-        if (part.includes('**')) {
-          const boldParts = part.split(/(\*\*.*?\*\*)/g);
+    // Helper to render inline content (KaTeX $...$ and **bold**) into a target DOM element
+    const renderInline = (str: string, parent: HTMLElement) => {
+      // Split by KaTeX $$...$$ or $...$
+      const mathParts = str.split(/(\$\$.*?\$\$|\$.*?\$)/g);
+      mathParts.forEach(mPart => {
+        if (mPart.startsWith('$$') && mPart.endsWith('$$')) {
+          const math = mPart.slice(2, -2);
+          const div = document.createElement('div');
+          div.className = 'katex-block-wrapper my-2';
+          try {
+            katex.render(math, div, { displayMode: true, throwOnError: false });
+          } catch {
+            div.textContent = mPart;
+          }
+          parent.appendChild(div);
+        } else if (mPart.startsWith('$') && mPart.endsWith('$')) {
+          const math = mPart.slice(1, -1);
+          const span = document.createElement('span');
+          span.className = 'katex-inline-wrapper';
+          try {
+            katex.render(math, span, { displayMode: false, throwOnError: false });
+          } catch {
+            span.textContent = mPart;
+          }
+          parent.appendChild(span);
+        } else {
+          // Check for bold **text**
+          const boldParts = mPart.split(/(\*\*.*?\*\*)/g);
           boldParts.forEach(bPart => {
             if (bPart.startsWith('**') && bPart.endsWith('**')) {
               const strong = document.createElement('strong');
-              strong.innerText = bPart.slice(2, -2);
-              strong.className = 'font-bold text-slate-900 dark:text-slate-100';
-              textWrapper.appendChild(strong);
-            } else {
-              const tSpan = document.createElement('span');
-              tSpan.innerText = bPart;
-              textWrapper.appendChild(tSpan);
+              strong.textContent = bPart.slice(2, -2);
+              strong.style.fontWeight = '700';
+              strong.style.color = 'var(--text-primary)';
+              parent.appendChild(strong);
+            } else if (bPart) {
+              const textNode = document.createTextNode(bPart);
+              parent.appendChild(textNode);
             }
           });
-        } else {
-          textWrapper.innerText = part;
         }
-        containerRef.current?.appendChild(textWrapper);
+      });
+    };
+
+    // Split entire text into lines to identify and extract Markdown tables vs regular paragraphs
+    const lines = text.split('\n');
+    let i = 0;
+
+    while (i < lines.length) {
+      const line = lines[i];
+
+      // Check if current line starts a markdown table (e.g. starts with | and next line is table header separator)
+      const isTableRow = (l: string) => l.trim().startsWith('|') && l.trim().endsWith('|');
+      const isTableSeparator = (l: string) => isTableRow(l) && /^\|(\s*:?-+:?\s*\|)+$/.test(l.trim());
+
+      if (isTableRow(line) && i + 1 < lines.length && isTableSeparator(lines[i + 1])) {
+        // We have a Markdown Table!
+        const tableLines: string[] = [];
+        while (i < lines.length && isTableRow(lines[i])) {
+          tableLines.push(lines[i].trim());
+          i++;
+        }
+
+        if (tableLines.length >= 2) {
+          const wrapper = document.createElement('div');
+          wrapper.className = 'table-responsive';
+
+          const table = document.createElement('table');
+          table.className = 'data-table';
+
+          // Header Row (tableLines[0])
+          const thead = document.createElement('thead');
+          const headerRow = document.createElement('tr');
+          const headerCells = tableLines[0]
+            .slice(1, -1)
+            .split('|')
+            .map(c => c.trim());
+
+          headerCells.forEach(cellText => {
+            const th = document.createElement('th');
+            renderInline(cellText, th);
+            headerRow.appendChild(th);
+          });
+          thead.appendChild(headerRow);
+          table.appendChild(thead);
+
+          // Body Rows (tableLines[2...])
+          const tbody = document.createElement('tbody');
+          for (let r = 2; r < tableLines.length; r++) {
+            const bodyRow = document.createElement('tr');
+            const cells = tableLines[r]
+              .slice(1, -1)
+              .split('|')
+              .map(c => c.trim());
+
+            cells.forEach(cellText => {
+              const td = document.createElement('td');
+              renderInline(cellText, td);
+              bodyRow.appendChild(td);
+            });
+            tbody.appendChild(bodyRow);
+          }
+          table.appendChild(tbody);
+          wrapper.appendChild(table);
+          containerRef.current?.appendChild(wrapper);
+        }
+      } else {
+        // Regular line / paragraph
+        const p = document.createElement('div');
+        p.className = 'text-line';
+        renderInline(line, p);
+        
+        // Preserve empty line spacing if line was empty
+        if (!line.trim()) {
+          p.style.minHeight = '0.75rem';
+        }
+
+        containerRef.current?.appendChild(p);
+        i++;
       }
-    });
+    }
   }, [text]);
 
-  return <div ref={containerRef} className={`math-content leading-relaxed ${className}`} style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word' }} />;
+  return <div ref={containerRef} className={`math-content ${className}`} />;
 };
